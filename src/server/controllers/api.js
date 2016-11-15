@@ -34,4 +34,31 @@ apiRoutes.post('/login', function(req, res) {
 	});
 });
 
+apiRoutes.use((req, res, next) => {
+	var token = req.body.token || req.query.token || req.headers['x-access-token']; // go check this
+
+	if (token) {
+		jwt.verify(token, app.get('superSecret'), (err, decoded) => {
+			if (err) {
+				return res.json({ success: false, message: 'Failed to authenticate token.' });
+			} else {
+				req.decoded = decoded;
+				next();
+			}
+		});
+	} else {
+		return res.status(403).send({
+			success: false,
+			message: 'No token provided.'
+		});
+	}
+});
+
+apiRoutes.get('/authenticate', (req, res) => {
+	res.json({
+		success: true,
+		message: 'Enjoy your token!',
+	});
+});
+
 export default apiRoutes;
