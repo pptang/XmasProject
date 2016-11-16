@@ -4,7 +4,8 @@
   "description": "Gift Exchanging System",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/server/index.js"
   },
   "repository": {
     "type": "git",
@@ -30,6 +31,7 @@
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "react": "^15.3.2",
+    "react-bootstrap": "^0.30.6",
     "react-dom": "^15.3.2",
     "react-redux": "^4.4.5",
     "react-router": "^3.0.0",
@@ -58,6 +60,7 @@
     "html-webpack-plugin": "^2.24.1",
     "redux-logger": "^2.7.4",
     "webpack": "^1.13.3",
-    "webpack-dev-server": "^1.16.2"
+    "webpack-dev-server": "^1.16.2",
+    "webpack-hot-middleware": "^2.13.2"
   }
 }

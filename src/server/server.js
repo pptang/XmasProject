@@ -24,7 +24,7 @@ import apiRoutes from './controllers/api.js';
 
 const app = new Express();
 const port = process.env.PORT || 3000;
-mongoose.connnect(config.database); // will be replaced by bluemix info
+mongoose.connect(config.database); // will be replaced by bluemix info
 app.set('env', 'production');
 app.use('/static', Express.static(__dirname + '/public'));
 app.use(cookieParser());
@@ -105,7 +105,7 @@ const renderFullPage = (html, preloadedState) => (`
  `);
 
 const compiler = webpack(webpackConfig);
-app.use(webpackDevMiddleware(compiler), { noInfo: true, publicPath: webpackConfig.output.publicPath }));
+app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: webpackConfig.output.publicPath }));
 app.use(webpackHotMiddleware(compiler));
 
 // set up api server routes

@@ -1,17 +1,19 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
-import Main from '../components/Main';
+import Main from '../components/Main/Main';
 import CheckAuth from '../components/CheckAuth';
-import HomePageContainer from '../containers/HomePageContainer';
+import HomePage from '../components/HomePage';
 import LoginPageContainer from '../containers/LoginPageContainer';
-import EnrollPageContainer from '../containers/EnrollPageContainer';
+// import EnrollPageContainer from '../containers/EnrollPageContainer';
 
 export default (
 	<Route path='/' component={Main}>
-		<IndexRoute component={HomePageContainer} />
+		<IndexRoute component={HomePage} />
 		<Route path='/login' component={CheckAuth(LoginPageContainer, 'guest')}/>
-		<Route path='/enroll' component={CheckAuth(EnrollPageContainer, 'auth')}/> 
+		{/*
+			<Route path='/enroll' component={CheckAuth(EnrollPageContainer, 'auth')}/> 
+			// modified enroll component to CheckEnrollStatus -> can't enroll twice
+		*/}
 	</Route>
 );
 
-// modified enroll component to CheckEnrollStatus -> can't enroll twice

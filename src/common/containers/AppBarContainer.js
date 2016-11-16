@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import AppBar from '../../components/AppBar';
+import AppBar from '../components/AppBar';
 import { browserHistory } from 'react-router';
 
 import {
 	startLogout,
 	setUi,
-} from '../../actions';
+} from '../actions';
 
 export default connect(
 	(state) => ({
