@@ -1,6 +1,7 @@
 import Express from 'express';
 import jwt from 'jsonwebtoken';
 import User from '../models/user';
+import Gift from '../models/gift';
 import config from '../config';
 
 const app = new Express();
@@ -20,9 +21,10 @@ apiRoutes.post('/login', function(req, res) {
 				email: req.body.email,
 				serialNumber: req.body.serialNumber,
 				phoneNumber: req.body.phoneNumber,
+				isEnrolled: false,
 				admin: false
 			});
-			newUser.save((err) => {
+			newUser.save((err, user) => {
 				if (err) throw err;
 				const token = jwt.sign({ email: req.body.email }, app.get('superSecret'), {
 					expiresIn: 60 * 60 * 24 //expires in 24 hours
@@ -32,7 +34,7 @@ apiRoutes.post('/login', function(req, res) {
 					success: true,
 					message: 'Got the token!',
 					token: token,
-					// userId: user._id, -> should add user id here
+					userId: user._id,
 					isEnrolled: false
 				});
 			});
@@ -46,12 +48,13 @@ apiRoutes.post('/login', function(req, res) {
 				const token = jwt.sign({ email: user.email }, app.get('superSecret'), {
 					expiresIn: 60 * 60 * 24 //expires in 24 hours
 				});
-				// TODO: get enroll status and put it here
+				
 				res.json({
 					success: true,
 					message: 'Got the token!',
 					token: token,
-					userId: user._id
+					userId: user._id,
+					isEnrolled: user.isEnrolled
 				});
 			}
 		}
@@ -84,5 +87,32 @@ apiRoutes.get('/authenticate', (req, res) => {
 		message: 'Enjoy your token!',
 	});
 });
+
+apiRoutes.post('/enroll', (req, res) => {
+	const newGift = new Gift({
+		name: req.body.name,
+		description: req.body.description,
+		providerId: req.body.userId,
+		enrolledAt: new Date(),
+		isExchanged: false
+	});
+
+	newGift.save((err) => {
+		if (err) throw err;
+		// update user enroll status
+		User.update({ _id: req.body.userId }, {
+			$set: { isEnrolled: true }
+		}, (err) => {
+			if (err) throw err;
+			console.log('Upload user enrolled status successfully!');
+
+		});
+		res.json({
+			success: true,
+			message: 'Successfully enrolled!',
+			isEnrolled: true
+		});
+	})
+})
 
 export default apiRoutes;

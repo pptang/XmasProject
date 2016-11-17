@@ -44,7 +44,8 @@ export default {
 					d.setTime(d.getTime() + (24 * 60 * 60 * 1000));
 					const expires = 'expires=' + d.toUTCString();
 					document.cookie = 'token=' + response.data.token + '; ' + expires;
-					dispatch(authComplete());
+					
+					dispatch(authComplete({ isEnrolled: response.data.isEnrolled }));
 					dispatch(hideSpinner());
 					browserHistory.push('/');
 				}
