@@ -5,7 +5,7 @@ import {
 	AUTH_START,
 	AUTH_COMPLETE,
 	AUTH_ERROR,
-	LOGOUT_START,
+	START_LOGOUT,
 	SET_USER,
 } from '../../constants/actionTypes';
 
@@ -18,24 +18,27 @@ const userReducers = handleActions({
 	),
 	AUTH_COMPLETE: (state) => (
 		state.merge({
+			username: '',
 			email: '',
-			password: '',
+			serialNumber: '',
+			phoneNumber: '',
 			isAuthorized: true,
 		})
 	),
-	AUTH_ERROR: (state) => {
+	AUTH_ERROR: (state) => (
 		state.merge({
 			username: '',
 			email: '',
-			password: '',
+			serialNumber: '',
+			phoneNumber: '',
 			isAuthorized: false,
 		})
-	},
-	START_LOGOUT: (state) => {
+	),
+	START_LOGOUT: (state) => (
 		state.merge({
 			isAuthorized: false,
 		})
-	},
+	),
 	CHECK_AUTH: (state) => (
 		state.set('isAuthorized', true)
 	),

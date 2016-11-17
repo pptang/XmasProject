@@ -4,14 +4,25 @@ import { Form, FormGroup, Button, FormControl, ControlLabel } from 'react-bootst
 const LoginBox = ({
 	email,
 	password,
+	onChangeUsernameInput,
 	onChangeEmailInput,
-	onChangePasswordInput,
+	onChangeSerialNumberInput,
+	onChangePhoneNumberInput,
 	onLoginSubmit
 }) => (
 	<div>
 		<Form horizontal>
 			<FormGroup controlId="formBasicText">
-				<ControlLabel>請輸入您的 Email</ControlLabel>
+				<ControlLabel>請輸入您的名字</ControlLabel>
+				<FormControl
+					type="text"
+					onChange={onChangeUsernameInput}
+					placeholder="Enter Name"
+				/>
+				<FormControl.Feedback />
+			</FormGroup>
+			<FormGroup controlId="formBasicText">
+				<ControlLabel>請輸入您的Email</ControlLabel>
 				<FormControl
 					type="text"
 					onChange={onChangeEmailInput}
@@ -19,12 +30,21 @@ const LoginBox = ({
 				/>
 				<FormControl.Feedback />
 			</FormGroup>
-			<FormGroup controlid="formBasicText">
-				<ControlLabel>請輸入您的密碼</ControlLabel>
+			<FormGroup controlId="formBasicText">
+				<ControlLabel>請輸入您的Serial Number</ControlLabel>
 				<FormControl
-					type="password"
-					onChange={onChangePasswordInput}
-					placeholder="Enter Password"
+					type="text"
+					onChange={onChangeSerialNumberInput}
+					placeholder="Enter Serial Number"
+				/>
+				<FormControl.Feedback />
+			</FormGroup>
+			<FormGroup controlId="formBasicText">
+				<ControlLabel>請輸入您的Phone Number</ControlLabel>
+				<FormControl
+					type="text"
+					onChange={onChangePhoneNumberInput}
+					placeholder="Enter Phone Number"
 				/>
 				<FormControl.Feedback />
 			</FormGroup>

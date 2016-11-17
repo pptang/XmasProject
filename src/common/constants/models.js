@@ -8,6 +8,8 @@ export const UiState = Immutable.fromJS({
 export const UserState = Immutable.fromJS({
 	username: '',
 	email: '',
-	password: '',
+	serialNumber: '',
+	phoneNumber: '',
+	isEnrolled: false,
 	isAuthorized: false,
 });

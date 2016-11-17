@@ -25,10 +25,12 @@ function getCookie(keyName) {
 }
 
 export default {
-	login: (dispatch, email, password) => {
+	login: (dispatch, username, email, serialNumber, phoneNumber) => {
 		axios.post('/api/login', {
+			username: username,
 			email: email,
-			password: password
+			serialNumber: serialNumber,
+			phoneNumber: phoneNumber
 		})
 		.then((response) => {
 			if (response.data.success === false) {
@@ -44,7 +46,7 @@ export default {
 					document.cookie = 'token=' + response.data.token + '; ' + expires;
 					dispatch(authComplete());
 					dispatch(hideSpinner());
-					browseerHistory.push('/');
+					browserHistory.push('/');
 				}
 			}
 		})

@@ -2,7 +2,7 @@ import React from 'react';
 
 const HomePage = () => (
 	<div>
-		This is Home Page
+		Put Countdown timer here
 	</div>
 );
 
