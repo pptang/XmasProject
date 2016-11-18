@@ -2,8 +2,10 @@ import React from 'react';
 import { Form, FormGroup, Button, FormControl, ControlLabel } from 'react-bootstrap';
 
 const LoginBox = ({
+	username,
 	email,
-	password,
+	serialNumber,
+	phoneNumber,
 	onChangeUsernameInput,
 	onChangeEmailInput,
 	onChangeSerialNumberInput,

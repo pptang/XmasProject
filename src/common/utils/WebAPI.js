@@ -74,6 +74,9 @@ export default {
 		.catch(function (error) {
 			dispatch(authError());
 		});
+	},
+	enroll: (dispatch, giftname, description) => {
+		
 	}
 
 };
