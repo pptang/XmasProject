@@ -54,8 +54,7 @@ const handleRender = (req, res) => {
 				isAuthorized = false;
 			}
 			let isEnrolled = response[0].data.isEnrolled;
-			console.log("isAuthorized:" + isAuthorized);
-			console.log("isEnrolled:" + isEnrolled);
+			
 			const initialState = fromJS({
 				// recipe: {
 				// 	recipes: response[0].data,
@@ -81,6 +80,7 @@ const handleRender = (req, res) => {
 			);
 			let state = store.getState();
 			let page = renderFullPage(initView, state);
+			console.log(page);
 			return res.status(200).send(page);
 		})
 		.catch(err => res.end(err.message));
