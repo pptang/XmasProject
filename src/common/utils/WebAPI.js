@@ -7,6 +7,8 @@ import {
 	authError,
 	hideSpinner,
 	completeLogout,
+	enrollComplete,
+	enrollError,
 } from '../actions';
 
 function getCookie(keyName) {
@@ -77,6 +79,22 @@ export default {
 	},
 	enroll: (dispatch, giftname, description) => {
 		
+		axios.post('/api/enroll', {
+			name: giftname,
+			description: description,
+			token: getCookie("token"),
+		})
+		.then((response) => {
+			if (response.data.success === false) {
+				dispatch(enrollError());
+			} else {
+				dispatch(enrollComplete());
+				dispatch(hideSpinner());
+			}
+		})
+		.catch(function(error) {
+			dispatch(enrollError());
+		});
 	}
 
 };

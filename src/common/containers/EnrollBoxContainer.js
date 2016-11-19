@@ -5,13 +5,13 @@ import EnrollBox from '../components/EnrollBox';
 import {
 	enrollStart,
 	showSpinner,
-	setUser,
+	setGift,
 } from '../actions';
 
 export default connect(
 	(state) => ({
-		giftname: state.getIn(['gift', 'giftname']),
-		description: state.getIn(['gift', 'description']),	
+		giftname: state.getIn(['enroll', 'giftname']),
+		description: state.getIn(['enroll', 'description']),	
 	}),
 	(dispatch) => ({
 		onChangeGiftNameInput: (event) => (

@@ -1,6 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 export default mongoose.model('User', new Schema({
-	id: Number,
+	id: Schema.Types.ObjectId,
 	username: String,
 	email: String,
 	serialNumber: String,

@@ -9,7 +9,6 @@ import {
 	SET_USER,
 } from '../../constants/actionTypes';
 
-// check the difference of state.merge and state.set
 const userReducers = handleActions({
 	AUTH_START: (state) => (
 		state.merge({

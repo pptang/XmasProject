@@ -39,5 +39,3 @@ export default function requireAuthentication(Component, type) {
 	});
 	return connect(mapStateToProps)(withRouter(AuthenticatedComponent));
 }
-
-// check state.getIn

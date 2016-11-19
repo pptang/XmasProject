@@ -26,9 +26,7 @@ apiRoutes.post('/login', function(req, res) {
 			});
 			newUser.save((err, user) => {
 				if (err) throw err;
-				const token = jwt.sign({ email: req.body.email }, app.get('superSecret'), {
-					expiresIn: 60 * 60 * 24 //expires in 24 hours
-				});
+				const token = getJwtToken(user);
 				
 				res.json({
 					success: true,
@@ -45,9 +43,7 @@ apiRoutes.post('/login', function(req, res) {
 			} else if (user.phoneNumber != req.body.phoneNumber) {
 				res.json({ success: false, message: 'Authentication failed. Wrong phone Number.'});
 			} else {
-				const token = jwt.sign({ email: user.email }, app.get('superSecret'), {
-					expiresIn: 60 * 60 * 24 //expires in 24 hours
-				});
+				const token = getJwtToken(user);
 				
 				res.json({
 					success: true,
@@ -60,6 +56,14 @@ apiRoutes.post('/login', function(req, res) {
 		}
 	});
 });
+
+function getJwtToken(user) {
+	return jwt.sign({ email: user.email, userId: user._id }, 
+						app.get('superSecret'), {
+							expiresIn: 60 * 60 * 24 //expires in 24 hours
+						}
+					);
+}
 
 apiRoutes.use((req, res, next) => {
 	var token = req.body.token || req.query.token || req.headers['x-access-token']; // go check this
@@ -82,17 +86,27 @@ apiRoutes.use((req, res, next) => {
 });
 
 apiRoutes.get('/authenticate', (req, res) => {
-	res.json({
-		success: true,
-		message: 'Enjoy your token!',
+	
+	User.findOne({
+		email: req.decoded.email
+	}, (err, user) => {
+		if (err) throw err;
+		res.json({
+			success: true,
+			message: 'Enjoy your token!',
+			isEnrolled: user.isEnrolled,
+		});
 	});
+
 });
 
 apiRoutes.post('/enroll', (req, res) => {
+	console.log("giftname:" + req.body.name);
+	console.log("description:" + req.body.description);
 	const newGift = new Gift({
 		name: req.body.name,
 		description: req.body.description,
-		providerId: req.body.userId,
+		providerId: req.decoded.userId,
 		enrolledAt: new Date(),
 		isExchanged: false
 	});

@@ -5,6 +5,7 @@ import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 // check why use linkcontainer
 const AppBar = ({
 	isAuthorized,
+	isEnrolled,
 	onLogout,
 }) => (
 	<Navbar>
@@ -23,9 +24,20 @@ const AppBar = ({
 					</Nav>
 				) :
 				(
-					<Nav pullRight>
-						<NavItem eventKey={1} onClick={onLogout} href="#">登出</NavItem>
-					</Nav>
+										
+					isEnrolled === false ?
+					(
+						<Nav pullRight>
+							<LinkContainer to={{ pathname: 'enroll' }}><NavItem eventKey={1} href="#">參加</NavItem></LinkContainer>
+							<NavItem eventKey={2} onClick={onLogout} href="#">登出</NavItem>
+						</Nav>
+					) :
+					(
+						<Nav pullRight>
+							<NavItem eventKey={1} onClick={onLogout} href="#">登出</NavItem>
+						</Nav>
+					)
+															
 				)
 			}
 		</Navbar.Collapse>

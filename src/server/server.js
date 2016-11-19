@@ -48,12 +48,14 @@ const handleRender = (req, res) => {
 		// fetch data from api server and construct initial state
 		fetchComponentData(req.cookies.token).then((response) => {
 			let isAuthorized = false;
-			if (response[1].data.success === true) {
+			if (response[0].data.success === true) {
 				isAuthorized = true;
 			} else {
 				isAuthorized = false;
 			}
-
+			let isEnrolled = response[0].data.isEnrolled;
+			console.log("isAuthorized:" + isAuthorized);
+			console.log("isEnrolled:" + isEnrolled);
 			const initialState = fromJS({
 				// recipe: {
 				// 	recipes: response[0].data,
@@ -66,7 +68,7 @@ const handleRender = (req, res) => {
 				// },
 				user: {
 					isAuthorized: isAuthorized,
-					// isEdit: false,
+					isEnrolled: isEnrolled,
 				}
 			});
 

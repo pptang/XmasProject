@@ -4,16 +4,13 @@ import Main from '../components/Main/Main';
 import CheckAuth from '../components/CheckAuth';
 import HomePage from '../components/HomePage';
 import LoginPageContainer from '../containers/LoginPageContainer';
-// import EnrollPageContainer from '../containers/EnrollPageContainer';
+import EnrollPageContainer from '../containers/EnrollPageContainer';
 
 export default (
 	<Route path='/' component={Main}>
 		<IndexRoute component={HomePage} />
 		<Route path='/login' component={CheckAuth(LoginPageContainer, 'guest')}/>
-		{/*
-			<Route path='/enroll' component={CheckAuth(EnrollPageContainer, 'auth')}/> 
-			// modified enroll component to CheckEnrollStatus -> can't enroll twice
-		*/}
+		<Route path='/enroll' component={EnrollPageContainer}/> 
 	</Route>
 );
 

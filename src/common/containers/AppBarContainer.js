@@ -11,6 +11,7 @@ import {
 export default connect(
 	(state) => ({
 		isAuthorized: state.getIn(['user', 'isAuthorized']),
+		isEnrolled: state.getIn(['user', 'isEnrolled']),
 	}),
 	(dispatch) => ({
 		onLogout: () => (

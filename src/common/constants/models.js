@@ -13,3 +13,8 @@ export const UserState = Immutable.fromJS({
 	isEnrolled: false,
 	isAuthorized: false,
 });
+
+export const GiftState = Immutable.fromJS({
+	giftName: '',
+	description: '',
+});
