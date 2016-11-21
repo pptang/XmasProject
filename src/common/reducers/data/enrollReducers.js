@@ -12,9 +12,11 @@ const giftReducers = handleActions({
 	ENROLL_START: (state) => {
 		return state;
 	},
-	ENROLL_COMPLETE: (state) => {
-		return state;
-	},
+	ENROLL_COMPLETE: (state) => (
+		state.merge({
+			isEnrolled: true,
+		})
+	),
 	ENROLL_ERROR: (state) => {
 		return state;
 	},

@@ -21,6 +21,7 @@ export default class HomePage extends React.Component {
 		const deadline = '2016-12-25';		
 		var t = getTimeRemaining(deadline);
 		this.props.updateDisplayTime({
+			total: t.total,
 			days: ('0' + t.days).slice(-2),
 			hours: ('0' + t.hours).slice(-2),
 			minutes: ('0' + t.minutes).slice(-2),
@@ -49,7 +50,7 @@ export default class HomePage extends React.Component {
 	
 	
 	render() {
-		const { days, hours, minutes, seconds, isAuthorized, isEnrolled, onDraw } = this.props;
+		const { total, days, hours, minutes, seconds, isAuthorized, isEnrolled, onDraw } = this.props;
 		
 		return (
 			<div>
@@ -73,7 +74,17 @@ export default class HomePage extends React.Component {
 					</div>		
 				</div>
 				{
-					(isAuthorized === true && isEnrolled === true) ? (<Button onClick={onDraw} bsStyle="success" bsSize="large">Draw</Button>) : null
+					(isAuthorized === true && isEnrolled === true) ? 
+					(
+						total !== 0 ?
+						(
+							<Button onClick={onDraw} bsStyle="success" bsSize="large" block>Draw</Button>
+						) :
+						(
+							<Button onClick={onDraw} bsStyle="success" bsSize="large" block disabled>Draw</Button>
+						)
+					) 
+					: null
 				}
 			</div>
 		);

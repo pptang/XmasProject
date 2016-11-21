@@ -11,6 +11,7 @@ import {
 	enrollError,
 	drawComplete,
 	drawError,
+	setUser,
 } from '../actions';
 
 function getCookie(keyName) {
@@ -90,7 +91,8 @@ export default {
 			if (response.data.success === false) {
 				dispatch(enrollError());
 			} else {
-				dispatch(enrollComplete());
+				// dispatch(enrollComplete());
+				dispatch(setUser({key: 'isEnrolled', value: true}));
 				dispatch(hideSpinner());
 			}
 		})
@@ -100,10 +102,14 @@ export default {
 	},
 
 	draw: (dispatch) => {
-		axios.get('/api/draw').then((response) => {
+		axios.post('/api/draw', {
+			token: getCookie("token"),
+		})
+		.then((response) => {
 			if (response.data.success === false) {
 				dispatch((drawError()));
 			} else {
+				console.log("gift:::" + JSON.stringify(response.data.gift));
 				dispatch(drawComplete());
 				dispatch(hideSpinner());
 			}

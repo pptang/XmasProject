@@ -10,6 +10,7 @@ import {
 
 export default connect(
 	(state) => ({
+		total: state.getIn(['timer', 'total']),
 		days: state.getIn(['timer', 'days']),
 		hours: state.getIn(['timer', 'hours']),
 		minutes: state.getIn(['timer', 'minutes']),
@@ -20,6 +21,7 @@ export default connect(
 	(dispatch) => ({
 		updateDisplayTime: (time) => (
 			dispatch(updateTime({
+				total: time.total,
 				days: time.days,
 				hours: time.hours,
 				minutes: time.minutes,

@@ -20,6 +20,7 @@ export const GiftState = Immutable.fromJS({
 });
 
 export const TimerState = Immutable.fromJS({
+	total: 0,
 	days: 0,
 	hours: 0,
 	minutes: 0,

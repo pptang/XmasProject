@@ -133,7 +133,7 @@ apiRoutes.post('/enroll', (req, res) => {
 	});
 });
 
-apiRoutes.get('/draw', (req, res) => {
+apiRoutes.post('/draw', (req, res) => {
 
 	Gift.aggregate([
 		{

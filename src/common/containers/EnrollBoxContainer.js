@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import EnrollBox from '../components/EnrollBox';
-
+import { browserHistory } from 'react-router';
 import {
 	enrollStart,
 	showSpinner,
@@ -11,7 +11,8 @@ import {
 export default connect(
 	(state) => ({
 		giftname: state.getIn(['enroll', 'giftname']),
-		description: state.getIn(['enroll', 'description']),	
+		description: state.getIn(['enroll', 'description']),
+		isEnrolled: state.getIn(['user', 'isEnrolled']),
 	}),
 	(dispatch) => ({
 		onChangeGiftNameInput: (event) => (
@@ -21,8 +22,11 @@ export default connect(
 			dispatch(setGift({ key: 'description', value: event.target.value }))
 		),
 		onEnrollSubmit: (giftname, description) => () => {
-			dispatch(enrollStart(dispatch, giftname, description)); //TODO: put token (in cookie) here
+			dispatch(enrollStart(dispatch, giftname, description)); 
 			dispatch(showSpinner());
+		},
+		goBackToIndex: () => {
+			browserHistory.push('/');
 		},
 	}),
 	(stateProps, dispatchProps, ownProps) => {
