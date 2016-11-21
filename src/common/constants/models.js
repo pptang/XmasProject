@@ -25,3 +25,7 @@ export const TimerState = Immutable.fromJS({
 	minutes: 0,
 	seconds: 0,
 });
+
+export const DrawState = Immutable.fromJS({
+	drawedGift: '',
+});

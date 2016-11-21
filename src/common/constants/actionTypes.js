@@ -12,3 +12,7 @@ export const ENROLL_COMPLETE = "ENROLL_COMPLETE";
 export const ENROLL_ERROR = "ENROLL_ERROR";
 export const SET_GIFT = "SET_GIFT";
 export const UPDATE_TIME = "UPDATE_TIME";
+export const DRAW_START = "DRAW_START";
+export const DRAW_COMPLETE = "DRAW_COMPLETE";
+export const DRAW_ERROR = "DRAW_ERROR";
+export const SET_DRAWED_GIFT = "SET_DRAWED_GIFT";

@@ -22,7 +22,8 @@ apiRoutes.post('/login', function(req, res) {
 				serialNumber: req.body.serialNumber,
 				phoneNumber: req.body.phoneNumber,
 				isEnrolled: false,
-				admin: false
+				admin: false,
+				isDrawed: false,
 			});
 			newUser.save((err, user) => {
 				if (err) throw err;
@@ -33,7 +34,8 @@ apiRoutes.post('/login', function(req, res) {
 					message: 'Got the token!',
 					token: token,
 					userId: user._id,
-					isEnrolled: false
+					isEnrolled: false,
+					isDrawed: false,
 				});
 			});
 			
@@ -50,7 +52,8 @@ apiRoutes.post('/login', function(req, res) {
 					message: 'Got the token!',
 					token: token,
 					userId: user._id,
-					isEnrolled: user.isEnrolled
+					isEnrolled: user.isEnrolled,
+					isDrawed: user.isDrawed,
 				});
 			}
 		}
@@ -64,24 +67,6 @@ function getJwtToken(user) {
 						}
 					);
 }
-
-apiRoutes.get('/test', (req, res) => {
-	Gift.aggregate([
-		{
-			$match: {
-				isExchanged: false
-			}
-		},
-		{
-			$sample: {
-				size: 1
-			}
-		}
-	], (err, result) => {
-		if (err) throw err;
-		res.json(result);
-	});
-});
 
 
 apiRoutes.use((req, res, next) => {
@@ -132,19 +117,66 @@ apiRoutes.post('/enroll', (req, res) => {
 	newGift.save((err) => {
 		if (err) throw err;
 		// update user enroll status
-		User.update({ _id: req.body.userId }, {
+		User.update({ _id: req.decoded.userId }, {
 			$set: { isEnrolled: true }
 		}, (err) => {
 			if (err) throw err;
 			console.log('Upload user enrolled status successfully!');
+			res.json({
+				success: true,
+				message: 'Successfully enrolled!',
+				isEnrolled: true
+			});
 
 		});
-		res.json({
-			success: true,
-			message: 'Successfully enrolled!',
-			isEnrolled: true
+		
+	});
+});
+
+apiRoutes.get('/draw', (req, res) => {
+
+	Gift.aggregate([
+		{
+			$match: {
+				isExchanged: false
+			}
+		},
+		{
+			$sample: {
+				size: 1
+			}
+		}
+	], (err, result) => {
+		
+		if (err) throw err;
+		User.update({
+			_id: req.decoded.userId,
+		}, {
+			$set: { isDrawed: true }
+		}, (err) => {
+			if (err) throw err;
+			Gift.findOneAndUpdate({
+				_id: result[0]._id
+			}, {
+				$set: {
+					isExchanged: true,
+					newOwnerId: req.decoded.userId,
+					exchangedAt: new Date(),
+				}
+			}, (err, gift) => {
+				
+				if (err) throw err;
+				res.json({
+					success: true,
+					message: 'Successfully drawed!',
+					gift: gift,
+				});
+			});
+			
 		});
-	})
+		
+
+	});
 });
 
 export default apiRoutes;

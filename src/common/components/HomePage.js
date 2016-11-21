@@ -48,7 +48,7 @@ export default class HomePage extends React.Component {
 	
 	
 	render() {
-		const { days, hours, minutes, seconds } = this.props;
+		const { days, hours, minutes, seconds, isAuthorized, isEnrolled } = this.props;
 		
 		return (
 			<div>
@@ -71,6 +71,9 @@ export default class HomePage extends React.Component {
 						<div className="smalltext">秒</div>
 					</div>		
 				</div>
+				{
+					(isAuthorized === true && isEnrolled === true) ? (<div>isAuthorized</div>) : null
+				}
 			</div>
 		);
 	}

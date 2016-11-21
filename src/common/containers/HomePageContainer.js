@@ -12,6 +12,8 @@ export default connect(
 		hours: state.getIn(['timer', 'hours']),
 		minutes: state.getIn(['timer', 'minutes']),
 		seconds: state.getIn(['timer', 'seconds']),
+		isAuthorized: state.getIn(['user', 'isAuthorized']),
+		isEnrolled: state.getIn(['user', 'isEnrolled']),
 	}),
 	(dispatch) => ({
 		updateDisplayTime: (time) => (

@@ -6,5 +6,6 @@ export default mongoose.model('User', new Schema({
 	serialNumber: String,
 	phoneNumber: String,
 	isEnrolled: Boolean,
-	admin: Boolean
+	admin: Boolean,
+	isDrawed: Boolean
 }));

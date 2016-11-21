@@ -9,6 +9,8 @@ import {
 	completeLogout,
 	enrollComplete,
 	enrollError,
+	drawComplete,
+	drawError,
 } from '../actions';
 
 function getCookie(keyName) {
@@ -94,6 +96,20 @@ export default {
 		})
 		.catch(function(error) {
 			dispatch(enrollError());
+		});
+	},
+
+	draw: (dispatch) => {
+		axios.get('/api/draw').then((response) => {
+			if (response.data.success === false) {
+				dispatch((drawError()));
+			} else {
+				dispatch(drawComplete());
+				dispatch(hideSpinner());
+			}
+		})
+		.catch(function(error) {
+			dispatch(drawError());
 		});
 	}
 

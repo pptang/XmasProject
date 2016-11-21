@@ -8,5 +8,4 @@ export default mongoose.model('Gift', new Schema({
 	enrolledAt: Date,
 	isExchanged: Boolean,
 	exchangedAt: Date
-
-}))
+}));
