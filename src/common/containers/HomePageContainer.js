@@ -4,6 +4,8 @@ import HomePage from '../components/HomePage';
 
 import {
 	updateTime,
+	drawStart,
+	showSpinner,
 } from '../actions';
 
 export default connect(
@@ -24,5 +26,10 @@ export default connect(
 				seconds: time.seconds,
 			}))
 		),
+		onDraw: () => {
+			dispatch(drawStart(dispatch));
+			dispatch(showSpinner());
+		},
+
 	})
 )(HomePage);

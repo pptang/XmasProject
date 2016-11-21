@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
 
 export default class HomePage extends React.Component {
 	constructor(props) {
@@ -48,7 +49,7 @@ export default class HomePage extends React.Component {
 	
 	
 	render() {
-		const { days, hours, minutes, seconds, isAuthorized, isEnrolled } = this.props;
+		const { days, hours, minutes, seconds, isAuthorized, isEnrolled, onDraw } = this.props;
 		
 		return (
 			<div>
@@ -72,7 +73,7 @@ export default class HomePage extends React.Component {
 					</div>		
 				</div>
 				{
-					(isAuthorized === true && isEnrolled === true) ? (<div>isAuthorized</div>) : null
+					(isAuthorized === true && isEnrolled === true) ? (<Button onClick={onDraw} bsStyle="success" bsSize="large">Draw</Button>) : null
 				}
 			</div>
 		);
