@@ -13,7 +13,9 @@ const AppBar = ({
 	isAuthorized,
 	isEnrolled,
 	onLogout,
-}) => (
+}) => {
+	console.log("isAuthorized:" + isAuthorized)
+	return (
 	<Navbar>
 		<Navbar.Header>
 			<Navbar.Brand>
@@ -48,7 +50,7 @@ const AppBar = ({
 		</Navbar.Collapse>
 
 	</Navbar>
-);
+)};
 
 // function renderContent(isAuthorized, isEnrolled) {
 // 	if (!isAuthorized) {

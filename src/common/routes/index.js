@@ -2,15 +2,15 @@ import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import Main from '../components/Main/Main';
 import CheckAuth from '../components/CheckAuth';
-import HomePage from '../components/HomePage';
+import HomePageContainer from '../containers/HomePageContainer';
 import LoginPageContainer from '../containers/LoginPageContainer';
 import EnrollPageContainer from '../containers/EnrollPageContainer';
 
 export default (
 	<Route path='/' component={Main}>
-		<IndexRoute component={HomePage} />
+		<IndexRoute component={HomePageContainer} />
 		<Route path='/login' component={CheckAuth(LoginPageContainer, 'guest')}/>
-		<Route path='/enroll' component={EnrollPageContainer}/> 
+		<Route path='/enroll' component={CheckAuth(EnrollPageContainer, 'auth')}/> 
 	</Route>
 );
 

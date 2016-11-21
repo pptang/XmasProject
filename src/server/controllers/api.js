@@ -65,6 +65,25 @@ function getJwtToken(user) {
 					);
 }
 
+apiRoutes.get('/test', (req, res) => {
+	Gift.aggregate([
+		{
+			$match: {
+				isExchanged: false
+			}
+		},
+		{
+			$sample: {
+				size: 1
+			}
+		}
+	], (err, result) => {
+		if (err) throw err;
+		res.json(result);
+	});
+});
+
+
 apiRoutes.use((req, res, next) => {
 	var token = req.body.token || req.query.token || req.headers['x-access-token']; // go check this
 
@@ -101,8 +120,7 @@ apiRoutes.get('/authenticate', (req, res) => {
 });
 
 apiRoutes.post('/enroll', (req, res) => {
-	console.log("giftname:" + req.body.name);
-	console.log("description:" + req.body.description);
+	
 	const newGift = new Gift({
 		name: req.body.name,
 		description: req.body.description,
@@ -127,6 +145,6 @@ apiRoutes.post('/enroll', (req, res) => {
 			isEnrolled: true
 		});
 	})
-})
+});
 
 export default apiRoutes;

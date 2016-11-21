@@ -11,3 +11,4 @@ export const ENROLL_START = "ENROLL_START";
 export const ENROLL_COMPLETE = "ENROLL_COMPLETE";
 export const ENROLL_ERROR = "ENROLL_ERROR";
 export const SET_GIFT = "SET_GIFT";
+export const UPDATE_TIME = "UPDATE_TIME";

@@ -54,7 +54,8 @@ const handleRender = (req, res) => {
 				isAuthorized = false;
 			}
 			let isEnrolled = response[0].data.isEnrolled;
-			
+			const deadline = '2016-12-25';		
+			var t = getTimeRemaining(deadline);
 			const initialState = fromJS({
 				// recipe: {
 				// 	recipes: response[0].data,
@@ -68,7 +69,14 @@ const handleRender = (req, res) => {
 				user: {
 					isAuthorized: isAuthorized,
 					isEnrolled: isEnrolled,
-				}
+				},
+				timer: {
+					days: ('0' + t.days).slice(-2),
+					hours: ('0' + t.hours).slice(-2),
+					minutes: ('0' + t.minutes).slice(-2),
+					seconds: ('0' + t.seconds).slice(-2),
+				},
+				
 			});
 
 			//server-side rendering
@@ -80,11 +88,25 @@ const handleRender = (req, res) => {
 			);
 			let state = store.getState();
 			let page = renderFullPage(initView, state);
-			console.log(page);
 			return res.status(200).send(page);
 		})
 		.catch(err => res.end(err.message));
 	})
+}
+
+const getTimeRemaining = (endtime) => {
+	var t = Date.parse(endtime) - Date.parse(new Date());
+	var seconds = Math.floor((t / 1000) % 60);
+	var minutes = Math.floor((t / (1000 * 60)) % 60);
+	var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+	var days = Math.floor(t/ (1000 * 60 * 60 * 24));
+	return {
+		'total': t,
+		'days': days,
+		'hours': hours,
+		'minutes': minutes,
+		'seconds': seconds
+	};
 }
 
 // basic html template
@@ -95,6 +117,7 @@ const renderFullPage = (html, preloadedState) => (`
 			<title>Xmas 交換禮物</title>
 			<!-- Latest compiled and minified CSS -->
         	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+        	<link rel="stylesheet" type="text/css" href="/static/index.css">
         </head>
         <body>
         	<div id="app">${html}</div>
