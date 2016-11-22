@@ -76,6 +76,9 @@ const handleRender = (req, res) => {
 					minutes: ('0' + t.minutes).slice(-2),
 					seconds: ('0' + t.seconds).slice(-2),
 				},
+				draw: {
+					drawedGift: '',
+				}
 				
 			});
 

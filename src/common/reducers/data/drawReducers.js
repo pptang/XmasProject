@@ -12,12 +12,19 @@ const giftReducers = handleActions({
 	DRAW_START: (state) => {
 		return state;
 	},
-	DRAW_COMPLETE: (state) => {
-		return state;
+	DRAW_COMPLETE: (state, { payload }) => {
+		console.log("payload:" + JSON.stringify(payload));
+		return state.merge({
+			name: payload.name,
+			description: payload.description,
+		});
+		// state.set(payload.key, payload.value)
 	},
-	DRAW_ERROR: (state) => {
-		return state;
-	},
+	DRAW_ERROR: (state) => (
+		state.merge({
+			drawedGift: '',
+		})
+	),
 	SET_DRAWED_GIFT: (state, { payload }) => (
 		state.set(payload.key, payload.value)
 	),

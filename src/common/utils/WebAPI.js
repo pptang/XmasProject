@@ -7,7 +7,6 @@ import {
 	authError,
 	hideSpinner,
 	completeLogout,
-	enrollComplete,
 	enrollError,
 	drawComplete,
 	drawError,
@@ -91,7 +90,7 @@ export default {
 			if (response.data.success === false) {
 				dispatch(enrollError());
 			} else {
-				// dispatch(enrollComplete());
+				
 				dispatch(setUser({key: 'isEnrolled', value: true}));
 				dispatch(hideSpinner());
 			}
@@ -108,9 +107,9 @@ export default {
 		.then((response) => {
 			if (response.data.success === false) {
 				dispatch((drawError()));
-			} else {
-				console.log("gift:::" + JSON.stringify(response.data.gift));
-				dispatch(drawComplete());
+			} else {		
+				// 原本的問題是因為db裡沒有可以換得了	
+				dispatch(drawComplete({name: response.data.name, description: response.data.description}));
 				dispatch(hideSpinner());
 			}
 		})

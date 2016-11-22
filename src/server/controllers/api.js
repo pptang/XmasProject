@@ -138,7 +138,8 @@ apiRoutes.post('/draw', (req, res) => {
 	Gift.aggregate([
 		{
 			$match: {
-				isExchanged: false
+				isExchanged: false,
+				//TODO: not your own userid
 			}
 		},
 		{
@@ -149,6 +150,7 @@ apiRoutes.post('/draw', (req, res) => {
 	], (err, result) => {
 		
 		if (err) throw err;
+		//TODO: if no more gift exists!!!!!
 		User.update({
 			_id: req.decoded.userId,
 		}, {
@@ -156,7 +158,7 @@ apiRoutes.post('/draw', (req, res) => {
 		}, (err) => {
 			if (err) throw err;
 			Gift.findOneAndUpdate({
-				_id: result[0]._id
+				_id: result[0] ? result[0]._id : null
 			}, {
 				$set: {
 					isExchanged: true,

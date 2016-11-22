@@ -50,8 +50,8 @@ export default class HomePage extends React.Component {
 	
 	
 	render() {
-		const { total, days, hours, minutes, seconds, isAuthorized, isEnrolled, onDraw } = this.props;
-		
+		const { total, days, hours, minutes, seconds, isAuthorized, isEnrolled, onDraw, drawedGift } = this.props;
+		console.log("drawedGift:" + drawedGift);
 		return (
 			<div>
 				<h1>聖誕交換禮物大作戰</h1>
@@ -74,7 +74,7 @@ export default class HomePage extends React.Component {
 					</div>		
 				</div>
 				{
-					(isAuthorized === true && isEnrolled === true) ? 
+					(isAuthorized === true && isEnrolled === true && !drawedGift) ? 
 					(
 						total !== 0 ?
 						(
@@ -84,7 +84,13 @@ export default class HomePage extends React.Component {
 							<Button onClick={onDraw} bsStyle="success" bsSize="large" block disabled>Draw</Button>
 						)
 					) 
-					: null
+					: 
+					(
+						<div>
+							<div>{drawedGift.name}</div>
+							<div>{drawedGift.description}</div>
+						</div>
+					)
 				}
 			</div>
 		);
