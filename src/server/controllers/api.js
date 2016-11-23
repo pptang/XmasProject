@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 import User from '../models/user';
 import Gift from '../models/gift';
 import config from '../config';
-
+import mongoose from 'mongoose';
 const app = new Express();
 const apiRoutes = Express.Router();
 
@@ -134,12 +134,15 @@ apiRoutes.post('/enroll', (req, res) => {
 });
 
 apiRoutes.post('/draw', (req, res) => {
-
+	
 	Gift.aggregate([
 		{
 			$match: {
 				isExchanged: false,
-				//TODO: not your own userid
+				providerId: {
+					$ne: mongoose.Types.ObjectId(req.decoded.userId), // can't be the same user as provider
+				},
+				
 			}
 		},
 		{
@@ -149,9 +152,16 @@ apiRoutes.post('/draw', (req, res) => {
 		}
 	], (err, result) => {
 		
+
 		if (err) throw err;
-		//TODO: if no more gift exists!!!!!
-		console.log("result:" + JSON.stringify(result));
+		
+		if(!result) {
+			res.json({
+				success: false,
+				message: 'No more gift!',
+			});
+		}
+
 		User.update({
 			_id: req.decoded.userId,
 		}, {

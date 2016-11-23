@@ -18,12 +18,13 @@ const giftReducers = handleActions({
 			description: payload.description,
 		})
 	),
-	DRAW_ERROR: (state) => (
-		state.merge({
+	DRAW_ERROR: (state) => {
+		alert("沒有禮物了，請洽管理員！");
+		return state.merge({
 			name: '',
 			description: '',
-		})
-	),
+		});
+	},
 	SET_DRAWED_GIFT: (state, { payload }) => (
 		state.set(payload.key, payload.value)
 	),

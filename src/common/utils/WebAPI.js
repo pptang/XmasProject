@@ -108,9 +108,9 @@ export default {
 			
 			console.log("response::::" + JSON.stringify(response));
 			if (response.data.success === false) {
-				dispatch((drawError()));
+				dispatch(drawError());
 			} else {		
-				// 原本的問題是因為db裡沒有可以換得了
+				
 				alert("drawedGift name:" + JSON.stringify(response.data.gift.name));
 				alert("drawedGift description:" + JSON.stringify(response.data.gift.description));
 				dispatch(drawComplete({name: response.data.gift.name, description: response.data.gift.description}));
