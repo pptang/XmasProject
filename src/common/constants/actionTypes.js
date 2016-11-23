@@ -14,4 +14,4 @@ export const UPDATE_TIME = "UPDATE_TIME";
 export const DRAW_START = "DRAW_START";
 export const DRAW_COMPLETE = "DRAW_COMPLETE";
 export const DRAW_ERROR = "DRAW_ERROR";
-export const SET_DRAWED_GIFT = "SET_DRAWED_GIFT";
+export const CLEAN_DRAWED_GIFT = "CLEAN_DRAWED_GIFT";

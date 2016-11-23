@@ -5,7 +5,7 @@ import {
 	DRAW_START,
 	DRAW_COMPLETE,
 	DRAW_ERROR,
-	SET_DRAWED_GIFT,
+	CLEAN_DRAWED_GIFT,
 } from '../../constants/actionTypes';
 
 const giftReducers = handleActions({
@@ -25,8 +25,11 @@ const giftReducers = handleActions({
 			description: '',
 		});
 	},
-	SET_DRAWED_GIFT: (state, { payload }) => (
-		state.set(payload.key, payload.value)
+	CLEAN_DRAWED_GIFT: (state, { payload }) => (
+		state.merge({
+			name: '',
+			description: '',
+		})
 	),
 }, DrawState);
 

@@ -6,6 +6,7 @@ import { browserHistory } from 'react-router';
 import {
 	startLogout,
 	setUi,
+	cleanDrawedGift,
 } from '../actions';
 
 export default connect(
@@ -14,8 +15,9 @@ export default connect(
 		isEnrolled: state.getIn(['user', 'isEnrolled']),
 	}),
 	(dispatch) => ({
-		onLogout: () => (
-			dispatch(startLogout(dispatch))
-		),
+		onLogout: () => {
+			dispatch(startLogout(dispatch));
+			dispatch(cleanDrawedGift());
+		},
 	})
 )(AppBar);
