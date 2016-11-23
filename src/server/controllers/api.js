@@ -162,6 +162,7 @@ apiRoutes.post('/draw', (req, res) => {
 				success: false,
 				message: 'No more gift!',
 			});
+			return;
 		}
 
 		User.update({
@@ -205,6 +206,7 @@ apiRoutes.get('/getMyGift', (req, res) => {
 				success: false,
 				message: 'No gift found',
 			});
+			return;
 		}
 
 		res.json({

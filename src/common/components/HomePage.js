@@ -48,61 +48,74 @@ export default class HomePage extends React.Component {
 		}
 	}
 	
-	
+	renderGift(giftname, firstDescription, secondDescription, thirdDescription) {
+		return (
+			<div>
+				<div>{giftname}</div>
+				<div>{firstDescription}</div>
+				<div>{secondDescription}</div>
+				<div>{thirdDescription}</div>
+			</div>
+		);
+	}
+
+	renderDrawBtn(total, isAuthorized, isEnrolled, onDraw) {
+		if (isAuthorized && isEnrolled) {
+			if (total != 0) {
+				return (<Button onClick={onDraw} bsStyle="success" bsSize="large" block>Draw</Button>);
+			} else {
+				return (<Button onClick={onDraw} bsStyle="success" bsSize="large" block disabled>Draw</Button>);
+			}
+		}
+	}
+
+	renderMainContent(total, days, hours, minutes, seconds, isAuthorized, isEnrolled, onDraw, giftname, firstDescription, secondDescription, thirdDescription) {
+		if (giftname) {
+			return (
+				<div>
+					{this.renderGift(giftname, firstDescription, secondDescription, thirdDescription)}
+				</div>
+			);
+		} else {
+			return (
+				<div>
+					<div id="clockdiv">
+						<div>
+							<span className="days">{days}</span>
+							<div className="smalltext">天</div>
+						</div>
+						<div>
+							<span className="hours">{hours}</span>
+							<div className="smalltext">時</div>
+						</div>
+						<div>
+							<span className="minutes">{minutes}</span>
+							<div className="smalltext">分</div>
+						</div>
+						<div>
+							<span className="seconds">{seconds}</span>
+							<div className="smalltext">秒</div>
+						</div>
+						
+					</div>
+					{this.renderDrawBtn(total, isAuthorized, isEnrolled, onDraw)}
+				</div>
+			);
+		}
+	}
+
 	render() {
 		const { total, days, hours, minutes, seconds, isAuthorized, isEnrolled, onDraw, giftname, firstDescription, secondDescription, thirdDescription } = this.props;
 		
 		return (
 			<div>
 				<h1>聖誕交換禮物大作戰</h1>
-				{
-					giftname ?
-					(
-						
-						<div>
-							<div>{giftname}</div>
-							<div>{firstDescription}</div>
-							<div>{secondDescription}</div>
-							<div>{thirdDescription}</div>
-						</div>
-							
-					)
-					:
-					(
-						<div id="clockdiv">
-							<div>
-								<span className="days">{days}</span>
-								<div className="smalltext">天</div>
-							</div>
-							<div>
-								<span className="hours">{hours}</span>
-								<div className="smalltext">時</div>
-							</div>
-							<div>
-								<span className="minutes">{minutes}</span>
-								<div className="smalltext">分</div>
-							</div>
-							<div>
-								<span className="seconds">{seconds}</span>
-								<div className="smalltext">秒</div>
-							</div>		
-						</div>
-						
-						(isAuthorized === true && isEnrolled === true) ? 
-						(
-							total !== 0 ?
-							(
-								<Button onClick={onDraw} bsStyle="success" bsSize="large" block>Draw</Button>
-							) :
-							(
-								<Button onClick={onDraw} bsStyle="success" bsSize="large" block disabled>Draw</Button>
-							)
-						) 
-						: 
-						null
-						
-					)
-				}
+				{this.renderMainContent(
+					total, days, hours, minutes, seconds, 
+					isAuthorized, isEnrolled, onDraw, giftname, 
+					firstDescription, secondDescription, thirdDescription
+				)}
+				
 				
 			</div>
 		);

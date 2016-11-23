@@ -21,7 +21,7 @@ const giftReducers = handleActions({
 		})
 	),
 	DRAW_ERROR: (state) => {
-		alert("沒有禮物了，請洽管理員！");
+		
 		return state.merge({
 			name: '',
 			firstDescription: '',
