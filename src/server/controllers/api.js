@@ -151,12 +151,14 @@ apiRoutes.post('/draw', (req, res) => {
 		
 		if (err) throw err;
 		//TODO: if no more gift exists!!!!!
+		console.log("result:" + JSON.stringify(result));
 		User.update({
 			_id: req.decoded.userId,
 		}, {
 			$set: { isDrawed: true }
 		}, (err) => {
 			if (err) throw err;
+			console.log("result after update:" + JSON.stringify(result));
 			Gift.findOneAndUpdate({
 				_id: result[0] ? result[0]._id : null
 			}, {
@@ -166,7 +168,7 @@ apiRoutes.post('/draw', (req, res) => {
 					exchangedAt: new Date(),
 				}
 			}, (err, gift) => {
-				
+				console.log("gift after findoneandupdate:" + JSON.stringify(gift));
 				if (err) throw err;
 				res.json({
 					success: true,

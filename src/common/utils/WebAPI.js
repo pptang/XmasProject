@@ -105,11 +105,15 @@ export default {
 			token: getCookie("token"),
 		})
 		.then((response) => {
+			
+			console.log("response::::" + JSON.stringify(response));
 			if (response.data.success === false) {
 				dispatch((drawError()));
 			} else {		
-				// 原本的問題是因為db裡沒有可以換得了	
-				dispatch(drawComplete({name: response.data.name, description: response.data.description}));
+				// 原本的問題是因為db裡沒有可以換得了
+				alert("drawedGift name:" + JSON.stringify(response.data.gift.name));
+				alert("drawedGift description:" + JSON.stringify(response.data.gift.description));
+				dispatch(drawComplete({name: response.data.gift.name, description: response.data.gift.description}));
 				dispatch(hideSpinner());
 			}
 		})

@@ -32,7 +32,7 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use(morgan('dev')); // for log requests to the console
+// app.use(morgan('dev')); // for log requests to the console
 
 // handle each request, do rendering on the server side and send to the front-end
 const handleRender = (req, res) => {
@@ -76,8 +76,10 @@ const handleRender = (req, res) => {
 					minutes: ('0' + t.minutes).slice(-2),
 					seconds: ('0' + t.seconds).slice(-2),
 				},
+				//TODO: should add initial gift status for refresh
 				draw: {
-					drawedGift: '',
+					name: '',
+					description: '',
 				}
 				
 			});
