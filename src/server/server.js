@@ -132,6 +132,7 @@ const renderFullPage = (html, preloadedState) => (`
 			<title>Xmas 交換禮物</title>
 			<!-- Latest compiled and minified CSS -->
         	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+        	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap-theme.min.css">
         	<link rel="stylesheet" type="text/css" href="/static/index.css">
         </head>
         <body>

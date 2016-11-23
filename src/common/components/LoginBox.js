@@ -12,10 +12,10 @@ const LoginBox = ({
 	onChangePhoneNumberInput,
 	onLoginSubmit
 }) => (
-	<div>
+	<div className="formFrame">
 		<Form horizontal>
 			<FormGroup controlId="formBasicText">
-				<ControlLabel>請輸入您的名字</ControlLabel>
+				<ControlLabel className="formLabel">請輸入您的名字</ControlLabel>
 				<FormControl
 					type="text"
 					onChange={onChangeUsernameInput}
@@ -24,7 +24,7 @@ const LoginBox = ({
 				<FormControl.Feedback />
 			</FormGroup>
 			<FormGroup controlId="formBasicText">
-				<ControlLabel>請輸入您的Email</ControlLabel>
+				<ControlLabel className="formLabel">請輸入您的Email</ControlLabel>
 				<FormControl
 					type="text"
 					onChange={onChangeEmailInput}
@@ -33,7 +33,7 @@ const LoginBox = ({
 				<FormControl.Feedback />
 			</FormGroup>
 			<FormGroup controlId="formBasicText">
-				<ControlLabel>請輸入您的Serial Number</ControlLabel>
+				<ControlLabel className="formLabel">請輸入您的Serial Number</ControlLabel>
 				<FormControl
 					type="text"
 					onChange={onChangeSerialNumberInput}
@@ -42,7 +42,7 @@ const LoginBox = ({
 				<FormControl.Feedback />
 			</FormGroup>
 			<FormGroup controlId="formBasicText">
-				<ControlLabel>請輸入您的Phone Number</ControlLabel>
+				<ControlLabel className="formLabel">請輸入您的Phone Number</ControlLabel>
 				<FormControl
 					type="text"
 					onChange={onChangePhoneNumberInput}
@@ -51,12 +51,12 @@ const LoginBox = ({
 				<FormControl.Feedback />
 			</FormGroup>
 			<Button
+				className="submitButton"
 				onClick={onLoginSubmit}
-				bsStyle="success"
 				bsSize="large"
 				block
 			>
-				提交送出
+				Submit
 			</Button>
 		</Form>
 	</div>

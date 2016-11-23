@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, FormGroup, Button, FormControl, ControlLabel } from 'react-bootstrap';
+import { Form, FormGroup, Button, FormControl, ControlLabel, Image } from 'react-bootstrap';
 
 const EnrollBox = ({
 	giftname,
@@ -17,9 +17,9 @@ const EnrollBox = ({
 	isEnrolled === false ?
 	(
 		<div>
-			<Form horizontal>
+			<Form horizontal className="formFrame">
 				<FormGroup controlId="formBasicText">
-					<ControlLabel>請輸入禮物名稱</ControlLabel>
+					<ControlLabel className="formLabel">請輸入禮物名稱</ControlLabel>
 					<FormControl
 						type="text"
 						onChange={onChangeGiftNameInput}
@@ -28,7 +28,7 @@ const EnrollBox = ({
 					<FormControl.Feedback />
 				</FormGroup>
 				<FormGroup controlId="formBasicText">
-					<ControlLabel>請輸入您的第一個禮物描述</ControlLabel>
+					<ControlLabel className="formLabel">請輸入您的第一個禮物描述</ControlLabel>
 					<FormControl
 						type="text"
 						onChange={onChangeFirstDescriptionInput}
@@ -37,7 +37,7 @@ const EnrollBox = ({
 					<FormControl.Feedback />
 				</FormGroup>
 				<FormGroup controlId="formBasicText">
-					<ControlLabel>請輸入您的第二個禮物描述</ControlLabel>
+					<ControlLabel className="formLabel">請輸入您的第二個禮物描述</ControlLabel>
 					<FormControl
 						type="text"
 						onChange={onChangeSecondDescriptionInput}
@@ -46,7 +46,7 @@ const EnrollBox = ({
 					<FormControl.Feedback />
 				</FormGroup>
 				<FormGroup controlId="formBasicText">
-					<ControlLabel>請輸入您的第三個禮物描述</ControlLabel>
+					<ControlLabel className="formLabel">請輸入您的第三個禮物描述</ControlLabel>
 					<FormControl
 						type="text"
 						onChange={onChangeThirdDescriptionInput}
@@ -56,19 +56,22 @@ const EnrollBox = ({
 				</FormGroup>
 				<Button
 					onClick={onEnrollSubmit}
-					bsStyle="success"
+					className="submitButton"
 					bsSize="large"
 					block
 				>
-					提交送出
+					Submit
 				</Button>
 			</Form>
 		</div>
 	) :
 	(
 		<div>
+			<Image src="/static/images/enroll_success.gif" id="enrollSuccessImg" />
 			<div>傳送成功！等聖誕節當天就可以上來抽囉！</div>
-			<Button onClick={goBackToIndex}>回首頁</Button>
+			<div className="drawBtnFrame">
+				<Button id="drawBtn" onClick={goBackToIndex} block>回首頁</Button>
+			</div>
 		</div>
 	)
 );

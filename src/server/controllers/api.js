@@ -172,6 +172,7 @@ apiRoutes.post('/draw', (req, res) => {
 		}, (err) => {
 			if (err) throw err;
 			console.log("result after update:" + JSON.stringify(result));
+
 			Gift.findOneAndUpdate({
 				_id: result[0] ? result[0]._id : null
 			}, {
@@ -182,6 +183,7 @@ apiRoutes.post('/draw', (req, res) => {
 				}
 			}, (err, gift) => {
 				console.log("gift after findoneandupdate:" + JSON.stringify(gift));
+				//TODO: 沒有禮物的話不能回true
 				if (err) throw err;
 				res.json({
 					success: true,

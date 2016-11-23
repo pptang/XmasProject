@@ -51,7 +51,8 @@ export default {
 					
 					dispatch(authComplete({ isEnrolled: response.data.isEnrolled }));
 					dispatch(hideSpinner());
-					browserHistory.push('/');
+					window.location.reload();
+					// browserHistory.push('/');
 				}
 			}
 		})
@@ -107,7 +108,7 @@ export default {
 			token: getCookie("token"),
 		})
 		.then((response) => {
-			
+			//TODO: 現在有錯誤都會跳沒有禮物，要做區分
 			console.log("response::::" + JSON.stringify(response));
 			if (response.data.success === false) {
 				dispatch(drawError());

@@ -1,12 +1,12 @@
 body {
 	text-align: center;
-	background: #00EC89;
-	font-family: sans-serif;
+	background: #9C3F3C;
+	font-family: cursive;
 	font-weight: 100;
 }
 
 h1 {
-	color: #396;
+	color: #fff;
 	font-weight: 100;
 	font-size: 40px;
 	margin: 40px 0px 20px;
@@ -22,20 +22,82 @@ h1 {
 }
 
 #clockdiv > div {
-	padding: 10px;
+	padding: 20px;
+	margin: 30px;
 	border-radius: 3px;
-	background: #00BF96;
+	background: #345D5B;
 	display: inline-block;
 }
 
 #clockdiv div > span {
-	padding: 15px;
+	padding: 20px;
 	border-radius: 3px;
-	background: #00816A;
+	background: #0C995C;
 	display: inline-block;
 }
 
 .smalltext {
 	padding-top: 5px;
-	font-size: 16px;
+	font-size: 25px;
+	color: #fff;
+	font-family: cursive;
 }
+
+.nav {
+	background: #C6BBAC;
+}
+
+.formFrame {
+	background: #345D5B;
+	padding: 50px;
+	border-radius: 10px;
+}
+
+.submitButton {
+	background: #0C995C;
+	color: #fff;
+}
+
+.formLabel {
+	color: #fff;
+	text-align: left;
+}
+
+.drawBtnFrame {
+	max-width: 400px;
+	margin: auto;
+}
+
+#drawBtn {
+	background: #0C995C;
+	color: #fff;
+	
+}
+#homeTitle {
+	color: #fff;
+	font-size: 40px;
+	vertical-align: center;
+}
+#indexTitle {
+	color: #fff;
+}
+.indexFrame {
+	background: #8C7259;
+	border-radius: 10px;
+	color: #fff;
+	font-weight: 100;
+}
+#enrollSuccessImg {
+	margin: auto;
+}
+
+.circle {
+	height: 100px;
+	width: 100px;
+	margin: 10px;
+	border-radius: 50%;
+	background: #C6BBAC;
+	display: inline-block;
+	line-height: 100px;
+}
+

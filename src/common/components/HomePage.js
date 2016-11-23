@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Image } from 'react-bootstrap';
 
 export default class HomePage extends React.Component {
 	constructor(props) {
@@ -51,10 +51,14 @@ export default class HomePage extends React.Component {
 	renderGift(giftname, firstDescription, secondDescription, thirdDescription) {
 		return (
 			<div>
-				<div>{giftname}</div>
-				<div>{firstDescription}</div>
-				<div>{secondDescription}</div>
-				<div>{thirdDescription}</div>
+				<h1>Congratulations! You got <b>{giftname}</b> as your X'mas gift!</h1>
+				<Image src="/static/images/santa.gif" />
+				<h2>It seems to be ...</h2>
+				
+				<div className="circle">{firstDescription}</div>
+				<div className="circle">{secondDescription}</div>
+				<div className="circle">{thirdDescription}</div>
+				
 			</div>
 		);
 	}
@@ -62,9 +66,9 @@ export default class HomePage extends React.Component {
 	renderDrawBtn(total, isAuthorized, isEnrolled, onDraw) {
 		if (isAuthorized && isEnrolled) {
 			if (total != 0) {
-				return (<Button onClick={onDraw} bsStyle="success" bsSize="large" block>Draw</Button>);
+				return (<Button id="drawBtn" onClick={onDraw} block>Draw</Button>);
 			} else {
-				return (<Button onClick={onDraw} bsStyle="success" bsSize="large" block disabled>Draw</Button>);
+				return (<Button id="drawBtn" onClick={onDraw} block disabled>Draw</Button>);
 			}
 		}
 	}
@@ -79,26 +83,29 @@ export default class HomePage extends React.Component {
 		} else {
 			return (
 				<div>
+					<h1>Merry Christmas</h1>
 					<div id="clockdiv">
 						<div>
 							<span className="days">{days}</span>
-							<div className="smalltext">天</div>
+							<div className="smalltext">Days</div>
 						</div>
 						<div>
 							<span className="hours">{hours}</span>
-							<div className="smalltext">時</div>
+							<div className="smalltext">Hours</div>
 						</div>
 						<div>
 							<span className="minutes">{minutes}</span>
-							<div className="smalltext">分</div>
+							<div className="smalltext">Minutes</div>
 						</div>
 						<div>
 							<span className="seconds">{seconds}</span>
-							<div className="smalltext">秒</div>
+							<div className="smalltext">Seconds</div>
 						</div>
 						
 					</div>
-					{this.renderDrawBtn(total, isAuthorized, isEnrolled, onDraw)}
+					<div className="drawBtnFrame">
+						{this.renderDrawBtn(total, isAuthorized, isEnrolled, onDraw)}
+					</div>
 				</div>
 			);
 		}
@@ -108,15 +115,12 @@ export default class HomePage extends React.Component {
 		const { total, days, hours, minutes, seconds, isAuthorized, isEnrolled, onDraw, giftname, firstDescription, secondDescription, thirdDescription } = this.props;
 		
 		return (
-			<div>
-				<h1>聖誕交換禮物大作戰</h1>
+			<div>				
 				{this.renderMainContent(
 					total, days, hours, minutes, seconds, 
 					isAuthorized, isEnrolled, onDraw, giftname, 
 					firstDescription, secondDescription, thirdDescription
-				)}
-				
-				
+				)}			
 			</div>
 		);
 	}
