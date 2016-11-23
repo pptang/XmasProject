@@ -11,18 +11,26 @@ import {
 export default connect(
 	(state) => ({
 		giftname: state.getIn(['enroll', 'giftname']),
-		description: state.getIn(['enroll', 'description']),
+		firstDescription: state.getIn(['enroll', 'firstDescription']),
+		secondDescription: state.getIn(['enroll', 'secondDescription']),
+		thirdDescription: state.getIn(['enroll', 'thirdDescription']),
 		isEnrolled: state.getIn(['user', 'isEnrolled']),
 	}),
 	(dispatch) => ({
 		onChangeGiftNameInput: (event) => (
 			dispatch(setGift({ key: 'giftname', value: event.target.value }))
 		),
-		onChangeDescriptionInput: (event) => (
-			dispatch(setGift({ key: 'description', value: event.target.value }))
+		onChangeFirstDescriptionInput: (event) => (
+			dispatch(setGift({ key: 'firstDescription', value: event.target.value }))
 		),
-		onEnrollSubmit: (giftname, description) => () => {
-			dispatch(enrollStart(dispatch, giftname, description)); 
+		onChangeSecondDescriptionInput: (event) => (
+			dispatch(setGift({ key: 'secondDescription', value: event.target.value }))
+		),
+		onChangeThirdDescriptionInput: (event) => (
+			dispatch(setGift({ key: 'thirdDescription', value: event.target.value }))
+		),
+		onEnrollSubmit: (giftname, firstDescription, secondDescription, thirdDescription) => () => {
+			dispatch(enrollStart(dispatch, giftname, firstDescription, secondDescription, thirdDescription)); 
 			dispatch(showSpinner());
 		},
 		goBackToIndex: () => {
@@ -30,10 +38,10 @@ export default connect(
 		},
 	}),
 	(stateProps, dispatchProps, ownProps) => {
-		const { giftname, description } = stateProps;
+		const { giftname, firstDescription, secondDescription, thirdDescription } = stateProps;
 		const { onEnrollSubmit } = dispatchProps;
 		return Object.assign({}, stateProps, dispatchProps, ownProps, {
-			onEnrollSubmit: onEnrollSubmit(giftname, description),
+			onEnrollSubmit: onEnrollSubmit(giftname, firstDescription, secondDescription, thirdDescription),
 		});
 	}
 )(EnrollBox);

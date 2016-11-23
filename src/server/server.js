@@ -32,7 +32,7 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// app.use(morgan('dev')); // for log requests to the console
+app.use(morgan('dev')); // for log requests to the console
 
 // handle each request, do rendering on the server side and send to the front-end
 const handleRender = (req, res) => {
@@ -47,9 +47,22 @@ const handleRender = (req, res) => {
 
 		// fetch data from api server and construct initial state
 		fetchComponentData(req.cookies.token).then((response) => {
+			
+			var drawedGift = {
+				name: '',
+				firstDescription: '',
+				secondDescription: '',
+				thirdDescription: '',
+			};
 			let isAuthorized = false;
 			if (response[0].data.success === true) {
 				isAuthorized = true;
+				if (response[1].data.success === true) {
+					drawedGift.name = response[1].data.gift.name;
+					drawedGift.firstDescription = response[1].data.gift.firstDescription;
+					drawedGift.secondDescription = response[1].data.gift.secondDescription;
+					drawedGift.thirdDescription = response[1].data.gift.thirdDescription;
+				}
 			} else {
 				isAuthorized = false;
 			}
@@ -77,10 +90,7 @@ const handleRender = (req, res) => {
 					seconds: ('0' + t.seconds).slice(-2),
 				},
 				//TODO: should add initial gift status for refresh
-				draw: {
-					name: '',
-					description: '',
-				}
+				draw: drawedGift,			
 				
 			});
 

@@ -50,49 +50,60 @@ export default class HomePage extends React.Component {
 	
 	
 	render() {
-		const { total, days, hours, minutes, seconds, isAuthorized, isEnrolled, onDraw, giftname, giftDescription } = this.props;
-		console.log("drawedGift name:" + giftname);
-		console.log("drawedGift description:" + giftDescription);
+		const { total, days, hours, minutes, seconds, isAuthorized, isEnrolled, onDraw, giftname, firstDescription, secondDescription, thirdDescription } = this.props;
+		
 		return (
 			<div>
 				<h1>聖誕交換禮物大作戰</h1>
-				<div id="clockdiv">
-					<div>
-						<span className="days">{days}</span>
-						<div className="smalltext">天</div>
-					</div>
-					<div>
-						<span className="hours">{hours}</span>
-						<div className="smalltext">時</div>
-					</div>
-					<div>
-						<span className="minutes">{minutes}</span>
-						<div className="smalltext">分</div>
-					</div>
-					<div>
-						<span className="seconds">{seconds}</span>
-						<div className="smalltext">秒</div>
-					</div>		
-				</div>
 				{
-					(isAuthorized === true && isEnrolled === true && !giftname) ? 
+					giftname ?
 					(
-						total !== 0 ?
-						(
-							<Button onClick={onDraw} bsStyle="success" bsSize="large" block>Draw</Button>
-						) :
-						(
-							<Button onClick={onDraw} bsStyle="success" bsSize="large" block disabled>Draw</Button>
-						)
-					) 
-					: 
-					(
+						
 						<div>
 							<div>{giftname}</div>
-							<div>{giftDescription}</div>
+							<div>{firstDescription}</div>
+							<div>{secondDescription}</div>
+							<div>{thirdDescription}</div>
 						</div>
+							
+					)
+					:
+					(
+						<div id="clockdiv">
+							<div>
+								<span className="days">{days}</span>
+								<div className="smalltext">天</div>
+							</div>
+							<div>
+								<span className="hours">{hours}</span>
+								<div className="smalltext">時</div>
+							</div>
+							<div>
+								<span className="minutes">{minutes}</span>
+								<div className="smalltext">分</div>
+							</div>
+							<div>
+								<span className="seconds">{seconds}</span>
+								<div className="smalltext">秒</div>
+							</div>		
+						</div>
+						
+						(isAuthorized === true && isEnrolled === true) ? 
+						(
+							total !== 0 ?
+							(
+								<Button onClick={onDraw} bsStyle="success" bsSize="large" block>Draw</Button>
+							) :
+							(
+								<Button onClick={onDraw} bsStyle="success" bsSize="large" block disabled>Draw</Button>
+							)
+						) 
+						: 
+						null
+						
 					)
 				}
+				
 			</div>
 		);
 	}

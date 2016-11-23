@@ -18,7 +18,9 @@ export default connect(
 		isAuthorized: state.getIn(['user', 'isAuthorized']),
 		isEnrolled: state.getIn(['user', 'isEnrolled']),
 		giftname: state.getIn(['draw', 'name']),
-		giftDescription: state.getIn(['draw', 'description']),
+		firstDescription: state.getIn(['draw', 'firstDescription']),
+		secondDescription: state.getIn(['draw', 'secondDescription']),
+		thirdDescription: state.getIn(['draw', 'thirdDescription']),
 	}),
 	(dispatch) => ({
 		updateDisplayTime: (time) => (

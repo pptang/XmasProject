@@ -14,7 +14,9 @@ const giftReducers = handleActions({
 	ENROLL_ERROR: (state) => (
 		state.merge({
 			giftName: '',
-			description: '',
+			firstDescription: '',
+			secondDescription: '',
+			thirdDescription: '',
 		})
 	),
 	SET_GIFT: (state, { payload }) => (

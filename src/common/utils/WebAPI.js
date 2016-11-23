@@ -79,11 +79,13 @@ export default {
 			dispatch(authError());
 		});
 	},
-	enroll: (dispatch, giftname, description) => {
+	enroll: (dispatch, giftname, firstDescription, secondDescription, thirdDescription) => {
 		
 		axios.post('/api/enroll', {
 			name: giftname,
-			description: description,
+			firstDescription: firstDescription,
+			secondDescription: secondDescription,
+			thirdDescription: thirdDescription,
 			token: getCookie("token"),
 		})
 		.then((response) => {
@@ -111,15 +113,18 @@ export default {
 				dispatch(drawError());
 			} else {		
 				
-				alert("drawedGift name:" + JSON.stringify(response.data.gift.name));
-				alert("drawedGift description:" + JSON.stringify(response.data.gift.description));
-				dispatch(drawComplete({name: response.data.gift.name, description: response.data.gift.description}));
+				dispatch(drawComplete({
+					name: response.data.gift.name, 
+					firstDescription: response.data.gift.firstDescription,
+					secondDescription: response.data.gift.secondDescription,
+					thirdDescription: response.data.gift.thirdDescription,
+				}));
 				dispatch(hideSpinner());
 			}
 		})
 		.catch(function(error) {
 			dispatch(drawError());
 		});
-	}
+	},
 
 };

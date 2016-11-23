@@ -16,7 +16,9 @@ export const UserState = Immutable.fromJS({
 
 export const GiftState = Immutable.fromJS({
 	giftName: '',
-	description: '',
+	firstDescription: '',
+	secondDescription: '',
+	thirdDescription: '',
 });
 
 export const TimerState = Immutable.fromJS({
@@ -29,5 +31,7 @@ export const TimerState = Immutable.fromJS({
 
 export const DrawState = Immutable.fromJS({
 	name: '',
-	description: '',
+	firstDescription: '',
+	secondDescription: '',
+	thirdDescription: '',
 });

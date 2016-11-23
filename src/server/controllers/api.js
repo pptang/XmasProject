@@ -108,7 +108,9 @@ apiRoutes.post('/enroll', (req, res) => {
 	
 	const newGift = new Gift({
 		name: req.body.name,
-		description: req.body.description,
+		firstDescription: req.body.firstDescription,
+		secondDescription: req.body.secondDescription,
+		thirdDescription: req.body.thirdDescription,
 		providerId: req.decoded.userId,
 		enrolledAt: new Date(),
 		isExchanged: false
@@ -190,6 +192,26 @@ apiRoutes.post('/draw', (req, res) => {
 		});
 		
 
+	});
+});
+
+apiRoutes.get('/getMyGift', (req, res) => {
+	Gift.findOne({
+		newOwnerId: req.decoded.userId
+	}, (err, gift) => {
+		if (err) throw err;
+		if (!gift) {
+			res.json({
+				success: false,
+				message: 'No gift found',
+			});
+		}
+
+		res.json({
+			success: true,
+			message: 'Successfully got your gift!',
+			gift: gift,
+		});
 	});
 });
 

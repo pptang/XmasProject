@@ -3,10 +3,14 @@ import { Form, FormGroup, Button, FormControl, ControlLabel } from 'react-bootst
 
 const EnrollBox = ({
 	giftname,
-	description,
+	firstDescription,
+	secondDescription,
+	thirdDescription,
 	isEnrolled,
 	onChangeGiftNameInput,
-	onChangeDescriptionInput,	
+	onChangeFirstDescriptionInput,
+	onChangeSecondDescriptionInput,
+	onChangeThirdDescriptionInput,
 	onEnrollSubmit,
 	goBackToIndex
 }) => (
@@ -24,11 +28,29 @@ const EnrollBox = ({
 					<FormControl.Feedback />
 				</FormGroup>
 				<FormGroup controlId="formBasicText">
-					<ControlLabel>請輸入您的禮物描述</ControlLabel>
+					<ControlLabel>請輸入您的第一個禮物描述</ControlLabel>
 					<FormControl
 						type="text"
-						onChange={onChangeDescriptionInput}
-						placeholder="Enter Description"
+						onChange={onChangeFirstDescriptionInput}
+						placeholder="Enter First Description"
+					/>
+					<FormControl.Feedback />
+				</FormGroup>
+				<FormGroup controlId="formBasicText">
+					<ControlLabel>請輸入您的第二個禮物描述</ControlLabel>
+					<FormControl
+						type="text"
+						onChange={onChangeSecondDescriptionInput}
+						placeholder="Enter Second Description"
+					/>
+					<FormControl.Feedback />
+				</FormGroup>
+				<FormGroup controlId="formBasicText">
+					<ControlLabel>請輸入您的第三個禮物描述</ControlLabel>
+					<FormControl
+						type="text"
+						onChange={onChangeThirdDescriptionInput}
+						placeholder="Enter Thrid Description"
 					/>
 					<FormControl.Feedback />
 				</FormGroup>

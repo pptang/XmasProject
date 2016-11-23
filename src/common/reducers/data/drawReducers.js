@@ -15,20 +15,26 @@ const giftReducers = handleActions({
 	DRAW_COMPLETE: (state, { payload }) => (		
 		state.merge({
 			name: payload.name,
-			description: payload.description,
+			firstDescription: payload.firstDescription,
+			secondDescription: payload.secondDescription,
+			thirdDescription: payload.thirdDescription,
 		})
 	),
 	DRAW_ERROR: (state) => {
 		alert("沒有禮物了，請洽管理員！");
 		return state.merge({
 			name: '',
-			description: '',
+			firstDescription: '',
+			secondDescription: '',
+			thirdDescription: '',
 		});
 	},
 	CLEAN_DRAWED_GIFT: (state, { payload }) => (
 		state.merge({
 			name: '',
-			description: '',
+			firstDescription: '',
+			secondDescription: '',
+			thirdDescription: '',
 		})
 	),
 }, DrawState);
