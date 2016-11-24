@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Image } from 'react-bootstrap';
-
+import { LinkContainer } from 'react-router-bootstrap';
 export default class HomePage extends React.Component {
 	constructor(props) {
 		super(props);
@@ -64,11 +64,19 @@ export default class HomePage extends React.Component {
 	}
 
 	renderDrawBtn(total, isAuthorized, isEnrolled, onDraw) {
-		if (isAuthorized && isEnrolled) {
-			if (total != 0) {
-				return (<Button id="drawBtn" onClick={onDraw} block>Draw</Button>);
+		if (isAuthorized) {
+			if (isEnrolled) {
+				if (total != 0) {
+					return (<Button id="drawBtn" onClick={onDraw} block>Draw</Button>);
+				} else {
+					return (<Button id="drawBtn" onClick={onDraw} block disabled>Draw</Button>);
+				}
 			} else {
-				return (<Button id="drawBtn" onClick={onDraw} block disabled>Draw</Button>);
+				return (
+					<LinkContainer to={{ pathname: '/enroll' }}>
+						<Button id="drawBtn" block>Join</Button>
+					</LinkContainer>
+				);
 			}
 		}
 	}

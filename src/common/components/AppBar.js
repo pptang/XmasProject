@@ -41,7 +41,7 @@ const AppBar = ({
 					isEnrolled === false ?
 					(
 						<Nav pullRight>
-							<LinkContainer to={{ pathname: 'enroll' }}>
+							<LinkContainer to={{ pathname: '/enroll' }}>
 								<NavItem eventKey={1} href="#" id="indexTitle">
 									<Button className="indexFrame">
 										Join
