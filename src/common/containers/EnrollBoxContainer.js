@@ -10,15 +10,27 @@ import {
 
 export default connect(
 	(state) => ({
-		giftname: state.getIn(['enroll', 'giftname']),
+		extension: state.getIn(['enroll', 'extension']),
+		building: state.getIn(['enroll', 'building']),
+		providerName: state.getIn(['enroll', 'providerName']),
+		providerPhoneNum: state.getIn(['enroll', 'providerPhoneNum']),
 		firstDescription: state.getIn(['enroll', 'firstDescription']),
 		secondDescription: state.getIn(['enroll', 'secondDescription']),
 		thirdDescription: state.getIn(['enroll', 'thirdDescription']),
 		isEnrolled: state.getIn(['user', 'isEnrolled']),
 	}),
 	(dispatch) => ({
-		onChangeGiftNameInput: (event) => (
-			dispatch(setGift({ key: 'giftname', value: event.target.value }))
+		onChangeExtensionInput: (event) => (
+			dispatch(setGift({ key: 'extension', value: event.target.value }))
+		),
+		onChangeBuildingInput: (event) => (
+			dispatch(setGift({ key: 'building', value: event.target.value }))
+		),
+		onChangeProviderNameInput: (event) => (
+			dispatch(setGift({ key: 'providerName', value: event.target.value }))
+		),
+		onChangeProviderPhoneNumInput: (event) => (
+			dispatch(setGift({ key: 'providerPhoneNum', value: event.target.value }))
 		),
 		onChangeFirstDescriptionInput: (event) => (
 			dispatch(setGift({ key: 'firstDescription', value: event.target.value }))
@@ -29,8 +41,8 @@ export default connect(
 		onChangeThirdDescriptionInput: (event) => (
 			dispatch(setGift({ key: 'thirdDescription', value: event.target.value }))
 		),
-		onEnrollSubmit: (giftname, firstDescription, secondDescription, thirdDescription) => () => {
-			dispatch(enrollStart(dispatch, giftname, firstDescription, secondDescription, thirdDescription)); 
+		onEnrollSubmit: (extension, building, providerName, providerPhoneNum, firstDescription, secondDescription, thirdDescription) => () => {
+			dispatch(enrollStart(dispatch, extension, building, providerName, providerPhoneNum, firstDescription, secondDescription, thirdDescription)); 
 			dispatch(showSpinner());
 		},
 		goBackToIndex: () => {
@@ -38,10 +50,10 @@ export default connect(
 		},
 	}),
 	(stateProps, dispatchProps, ownProps) => {
-		const { giftname, firstDescription, secondDescription, thirdDescription } = stateProps;
+		const { extension, building, providerName, providerPhoneNum, firstDescription, secondDescription, thirdDescription } = stateProps;
 		const { onEnrollSubmit } = dispatchProps;
 		return Object.assign({}, stateProps, dispatchProps, ownProps, {
-			onEnrollSubmit: onEnrollSubmit(giftname, firstDescription, secondDescription, thirdDescription),
+			onEnrollSubmit: onEnrollSubmit(extension, building, providerName, providerPhoneNum, firstDescription, secondDescription, thirdDescription),
 		});
 	}
 )(EnrollBox);

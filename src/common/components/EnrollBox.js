@@ -2,12 +2,18 @@ import React from 'react';
 import { Form, FormGroup, Button, FormControl, ControlLabel, Image } from 'react-bootstrap';
 
 const EnrollBox = ({
-	giftname,
+	extension,
+	building,
+	providerName,
+	providerPhoneNum,
 	firstDescription,
 	secondDescription,
 	thirdDescription,
 	isEnrolled,
-	onChangeGiftNameInput,
+	onChangeExtensionInput,
+	onChangeBuildingInput,
+	onChangeProviderNameInput,
+	onChangeProviderPhoneNumInput,
 	onChangeFirstDescriptionInput,
 	onChangeSecondDescriptionInput,
 	onChangeThirdDescriptionInput,
@@ -19,11 +25,38 @@ const EnrollBox = ({
 		<div>
 			<Form horizontal className="formFrame">
 				<FormGroup controlId="formBasicText">
-					<ControlLabel className="formLabel">請輸入禮物名稱</ControlLabel>
+					<ControlLabel className="formLabel">請輸入分機號碼</ControlLabel>
 					<FormControl
 						type="text"
-						onChange={onChangeGiftNameInput}
-						placeholder="Enter Gift Name"
+						onChange={onChangeExtensionInput}
+						placeholder="請輸入分機號碼"
+					/>
+					<FormControl.Feedback />
+				</FormGroup>
+				<FormGroup controlId="formBasicText">
+					<ControlLabel className="formLabel">請輸入公司Building</ControlLabel>
+					<FormControl
+						type="text"
+						onChange={onChangeBuildingInput}
+						placeholder="請輸入公司Building"
+					/>
+					<FormControl.Feedback />
+				</FormGroup>
+				<FormGroup controlId="formBasicText">
+					<ControlLabel className="formLabel">請輸入你的名字</ControlLabel>
+					<FormControl
+						type="text"
+						onChange={onChangeProviderNameInput}
+						placeholder="請輸入你的名字"
+					/>
+					<FormControl.Feedback />
+				</FormGroup>
+				<FormGroup controlId="formBasicText">
+					<ControlLabel className="formLabel">請輸入公司你的電話號碼</ControlLabel>
+					<FormControl
+						type="text"
+						onChange={onChangeProviderPhoneNumInput}
+						placeholder="請輸入公司你的電話號碼"
 					/>
 					<FormControl.Feedback />
 				</FormGroup>

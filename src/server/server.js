@@ -49,7 +49,10 @@ const handleRender = (req, res) => {
 		fetchComponentData(req.cookies.token).then((response) => {
 			
 			var drawedGift = {
-				name: '',
+				extension: '',
+				building: '',
+				providerName: '',
+				providerPhoneNum: '',
 				firstDescription: '',
 				secondDescription: '',
 				thirdDescription: '',
@@ -58,7 +61,10 @@ const handleRender = (req, res) => {
 			if (response[0].data.success === true) {
 				isAuthorized = true;
 				if (response[1].data.success === true) {
-					drawedGift.name = response[1].data.gift.name;
+					drawedGift.extension = response[1].data.gift.extension;
+					drawedGift.building = response[1].data.gift.building;
+					drawedGift.providerName = response[1].data.gift.providerName;
+					drawedGift.providerPhoneNum = response[1].data.gift.providerPhoneNum;
 					drawedGift.firstDescription = response[1].data.gift.firstDescription;
 					drawedGift.secondDescription = response[1].data.gift.secondDescription;
 					drawedGift.thirdDescription = response[1].data.gift.thirdDescription;

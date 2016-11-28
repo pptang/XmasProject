@@ -48,10 +48,10 @@ export default class HomePage extends React.Component {
 		}
 	}
 	
-	renderGift(giftname, firstDescription, secondDescription, thirdDescription) {
+	renderGift(extension, building, providerName, providerphoneNum, firstDescription, secondDescription, thirdDescription) {
 		return (
 			<div>
-				<h1>Congratulations! You got <b>{giftname}</b> as your X'mas gift!</h1>
+				<h1>Congratulations! You got <b>To be modified</b> as your X'mas gift!</h1>
 				<Image src="/static/images/santa.gif" />
 				<h2>It seems to be ...</h2>
 				
@@ -81,11 +81,11 @@ export default class HomePage extends React.Component {
 		}
 	}
 
-	renderMainContent(total, days, hours, minutes, seconds, isAuthorized, isEnrolled, onDraw, giftname, firstDescription, secondDescription, thirdDescription) {
+	renderMainContent(total, days, hours, minutes, seconds, isAuthorized, isEnrolled, onDraw, extension, building, providerName, providerphoneNum, firstDescription, secondDescription, thirdDescription) {
 		if (giftname) {
 			return (
 				<div>
-					{this.renderGift(giftname, firstDescription, secondDescription, thirdDescription)}
+					{this.renderGift(extension, building, providerName, providerphoneNum, firstDescription, secondDescription, thirdDescription)}
 				</div>
 			);
 		} else {

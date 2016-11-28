@@ -13,7 +13,10 @@ const giftReducers = handleActions({
 	},
 	ENROLL_ERROR: (state) => (
 		state.merge({
-			giftName: '',
+			extension: '',
+			building: '',
+			providerName: '',
+			providerPhoneNum: '',
 			firstDescription: '',
 			secondDescription: '',
 			thirdDescription: '',

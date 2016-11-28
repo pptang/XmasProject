@@ -18,20 +18,16 @@ const userReducers = handleActions({
 	AUTH_COMPLETE: (state, { payload }) => {
 		
 		return state.merge({
-			username: '',
 			email: '',
 			serialNumber: '',
-			phoneNumber: '',
 			isAuthorized: true,
 			isEnrolled: payload.isEnrolled,
 		})
 	},
 	AUTH_ERROR: (state) => (
 		state.merge({
-			username: '',
 			email: '',
 			serialNumber: '',
-			phoneNumber: '',
 			isAuthorized: false,
 		})
 	),

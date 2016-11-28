@@ -17,10 +17,8 @@ apiRoutes.post('/login', function(req, res) {
 		if (!user) {
 			// insert user
 			const newUser = new User({
-				username: req.body.username,
 				email: req.body.email,
 				serialNumber: req.body.serialNumber,
-				phoneNumber: req.body.phoneNumber,
 				isEnrolled: false,
 				admin: false,
 				isDrawed: false,
@@ -42,8 +40,6 @@ apiRoutes.post('/login', function(req, res) {
 		} else if (user) {
 			if (user.serialNumber != req.body.serialNumber) {
 				res.json({ success: false, message: 'Authentication failed. Wrong serial Number.'});
-			} else if (user.phoneNumber != req.body.phoneNumber) {
-				res.json({ success: false, message: 'Authentication failed. Wrong phone Number.'});
 			} else {
 				const token = getJwtToken(user);
 				
@@ -107,7 +103,10 @@ apiRoutes.get('/authenticate', (req, res) => {
 apiRoutes.post('/enroll', (req, res) => {
 	
 	const newGift = new Gift({
-		name: req.body.name,
+		extension: req.body.extension,
+		building: req.body.building,
+		providerName: req.body.providerName,
+		providerPhoneNum: req.body.providerPhoneNum,
 		firstDescription: req.body.firstDescription,
 		secondDescription: req.body.secondDescription,
 		thirdDescription: req.body.thirdDescription,

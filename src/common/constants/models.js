@@ -6,16 +6,17 @@ export const UiState = Immutable.fromJS({
 });
 
 export const UserState = Immutable.fromJS({
-	username: '',
 	email: '',
 	serialNumber: '',
-	phoneNumber: '',
 	isEnrolled: false,
 	isAuthorized: false,
 });
 
 export const GiftState = Immutable.fromJS({
-	giftName: '',
+	extension: '',
+	building: '',
+	providerName: '',
+	providerPhoneNum: '',
 	firstDescription: '',
 	secondDescription: '',
 	thirdDescription: '',
@@ -30,7 +31,10 @@ export const TimerState = Immutable.fromJS({
 });
 
 export const DrawState = Immutable.fromJS({
-	name: '',
+	extension: '',
+	building: '',
+	providerName: '',
+	providerPhoneNum: '',
 	firstDescription: '',
 	secondDescription: '',
 	thirdDescription: '',

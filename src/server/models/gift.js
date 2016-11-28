@@ -1,7 +1,10 @@
 import mongoose, { Schema } from 'mongoose';
 export default mongoose.model('Gift', new Schema({
 	id: Number,
-	name: String,
+	extension: String,
+	building: String,
+	providerName: String,
+	providerPhoneNum: String,
 	firstDescription: String,
 	secondDescription: String,
 	thirdDescription: String,

@@ -14,7 +14,10 @@ const giftReducers = handleActions({
 	},
 	DRAW_COMPLETE: (state, { payload }) => (		
 		state.merge({
-			name: payload.name,
+			extension: payload.extension,
+			building: payload.building,
+			providerName: payload.providerName,
+			providerPhoneNum: payload.providerPhoneNum,
 			firstDescription: payload.firstDescription,
 			secondDescription: payload.secondDescription,
 			thirdDescription: payload.thirdDescription,
@@ -23,7 +26,10 @@ const giftReducers = handleActions({
 	DRAW_ERROR: (state) => {
 		alert("禮物已抽完，請洽管理員！");
 		return state.merge({
-			name: '',
+			extension: '',
+			building: '',
+			providerName: '',
+			providerPhoneNum: '',
 			firstDescription: '',
 			secondDescription: '',
 			thirdDescription: '',
@@ -31,7 +37,10 @@ const giftReducers = handleActions({
 	},
 	CLEAN_DRAWED_GIFT: (state, { payload }) => (
 		state.merge({
-			name: '',
+			extension: '',
+			building: '',
+			providerName: '',
+			providerPhoneNum: '',
 			firstDescription: '',
 			secondDescription: '',
 			thirdDescription: '',

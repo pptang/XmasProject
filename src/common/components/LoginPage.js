@@ -11,7 +11,7 @@ const LoginPage = ({
 				<LoginBoxContainer />
 				{
 					spinnerVisible === true ?
-					<Image src="/static/images/loading.gif" /> : null
+					<Image src="/static/images/hourglass.svg" /> : null
 				}
 			</Col>
 		</Row>

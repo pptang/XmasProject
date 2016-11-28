@@ -29,12 +29,10 @@ function getCookie(keyName) {
 }
 
 export default {
-	login: (dispatch, username, email, serialNumber, phoneNumber) => {
+	login: (dispatch, email, serialNumber) => {
 		axios.post('/api/login', {
-			username: username,
 			email: email,
-			serialNumber: serialNumber,
-			phoneNumber: phoneNumber
+			serialNumber: serialNumber
 		})
 		.then((response) => {
 			if (response.data.success === false) {
@@ -80,10 +78,13 @@ export default {
 			dispatch(authError());
 		});
 	},
-	enroll: (dispatch, giftname, firstDescription, secondDescription, thirdDescription) => {
+	enroll: (dispatch, extension, building, providerName, providerPhoneNum, firstDescription, secondDescription, thirdDescription) => {
 		
 		axios.post('/api/enroll', {
-			name: giftname,
+			extension: extension,
+			building: building,
+			providerName: providerName,
+			providerPhoneNum: providerPhoneNum,
 			firstDescription: firstDescription,
 			secondDescription: secondDescription,
 			thirdDescription: thirdDescription,
@@ -115,7 +116,10 @@ export default {
 			} else {		
 				
 				dispatch(drawComplete({
-					name: response.data.gift.name, 
+					extension: response.data.gift.extension,
+					building: response.data.gift.building,
+					providerName: response.data.gift.providerName,
+					providerPhoneNum: response.data.gift.providerPhoneNum,
 					firstDescription: response.data.gift.firstDescription,
 					secondDescription: response.data.gift.secondDescription,
 					thirdDescription: response.data.gift.thirdDescription,
