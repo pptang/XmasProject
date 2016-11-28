@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, FormGroup, Button, FormControl, ControlLabel } from 'react-bootstrap';
+import { Form, FormGroup, Button, FormControl, ControlLabel, Col } from 'react-bootstrap';
 
 const LoginBox = ({
 	email,
@@ -12,11 +12,16 @@ const LoginBox = ({
 		<Form horizontal>
 			<FormGroup controlId="formBasicText">
 				<ControlLabel className="formLabel">請輸入您的Email</ControlLabel>
-				<FormControl
-					type="text"
-					onChange={onChangeEmailInput}
-					placeholder="Enter Email"
-				/>
+				<Col sm={10}>
+					<FormControl
+						type="text"
+						onChange={onChangeEmailInput}
+						placeholder="Enter Email"
+					/>
+				</Col>
+				<Col sm={2}>
+					<FormControl.Static className="formLabel">.tw.ibm.com</FormControl.Static>
+				</Col>
 				<FormControl.Feedback />
 			</FormGroup>
 			<FormGroup controlId="formBasicText">

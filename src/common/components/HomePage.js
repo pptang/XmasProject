@@ -54,7 +54,7 @@ export default class HomePage extends React.Component {
 				<h1>Congratulations! You got <b>To be modified</b> as your X'mas gift!</h1>
 				<Image src="/static/images/santa.gif" />
 				<h2>It seems to be ...</h2>
-				
+				{firstDescription}
 				<div className="circle">{firstDescription}</div>
 				<div className="circle">{secondDescription}</div>
 				<div className="circle">{thirdDescription}</div>

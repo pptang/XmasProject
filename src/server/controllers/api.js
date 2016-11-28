@@ -217,7 +217,7 @@ apiRoutes.get('/getMyGift', (req, res) => {
 			});
 			return;
 		}
-
+		console.log("mark::" + JSON.stringify(gift));
 		res.json({
 			success: true,
 			message: 'Successfully got your gift!',
