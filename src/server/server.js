@@ -24,7 +24,65 @@ import apiRoutes from './controllers/api.js';
 
 const app = new Express();
 const port = process.env.PORT || 3000;
-mongoose.connect(config.database); // will be replaced by bluemix info
+
+
+
+function initDBConnection(){
+
+	var ca;
+
+	if(process.env.VCAP_SERVICES) {
+                var vcapServices = JSON.parse(process.env.VCAP_SERVICES);
+                // Pattern match to find the first instance of a Cloudant service in
+                // VCAP_SERVICES. If you know your service key, you can access the
+                // service credentials directly by using the vcapServices object.
+                for(var vcapService in vcapServices){
+                        if(vcapService.match(/mongodb/i)){
+                                ca = [new Buffer(vcapServices[vcapService][0].credentials.ca_certificate_base64,'base64')];
+
+                                break;
+                        }
+                }
+        } else{
+		console.warn('VCAP_SERVICES environment variable not set - data will be unavailable to the UI');
+		ca = [new Buffer(config.credentials.ca_certificate_base64, 'base64')];
+	}
+
+
+	// If the connection throws an error
+	mongoose.connection.on('error',function (err) {
+	  console.log('Mongoose default connection error: ');
+	  console.log(err);
+	});
+
+	mongoose.connection.on('open', function (err) {
+	    console.log("open~~~nosql db!!!!")
+	    mongoose.connection.db.listCollections().toArray(function(err, collections) {
+		collections.forEach(function(collection) {
+		    console.log(collection);
+		});
+		//mongoose.connection.db.close();
+		//process.exit(0);
+	    })
+	});
+
+	var options = {
+	    mongos: {
+		ssl: true,
+		sslValidate: true,
+		sslCA:ca,
+		poolSize: 1,
+		reconnectTries: 1
+	    }
+	}
+
+	//mongoose.connect(config.database,options); // will be replaced by bluemix info
+	mongoose.connect(config.credentials.uri,options); // will be replaced by bluemix info
+}
+
+initDBConnection();
+
+
 app.set('env', 'production');
 app.use('/static', Express.static(__dirname + '/public'));
 app.use(cookieParser());
