@@ -42,8 +42,21 @@ export default connect(
 			dispatch(setGift({ key: 'thirdDescription', value: event.target.value }))
 		),
 		onEnrollSubmit: (extension, building, providerName, providerPhoneNum, firstDescription, secondDescription, thirdDescription) => () => {
-			dispatch(enrollStart(dispatch, extension, building, providerName, providerPhoneNum, firstDescription, secondDescription, thirdDescription)); 
-			dispatch(showSpinner());
+			// TODO: should be refactored, don't put condition validation here
+			if (!extension) {
+				alert("分機不得為空");
+			} else if (!building) {
+				alert("所在地不得為空");
+			} else if (!providerName) {
+				alert("姓名不得為空");
+			} else if (!providerPhoneNum) {
+				alert("電話不得為空");
+			} else if (!firstDescription) {
+				alert("第一個描述不得為空");
+			} else {
+				dispatch(enrollStart(dispatch, extension, building, providerName, providerPhoneNum, firstDescription, secondDescription, thirdDescription)); 
+				dispatch(showSpinner());
+			}
 		},
 		goBackToIndex: () => {
 			browserHistory.push('/');

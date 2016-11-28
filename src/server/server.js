@@ -80,8 +80,8 @@ function initDBConnection(){
 	mongoose.connect(config.credentials.uri,options); // will be replaced by bluemix info
 }
 
-initDBConnection();
-
+// initDBConnection();
+mongoose.connect(config.database);
 
 app.set('env', 'production');
 app.use('/static', Express.static(__dirname + '/public'));

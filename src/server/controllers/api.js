@@ -91,11 +91,19 @@ apiRoutes.get('/authenticate', (req, res) => {
 		email: req.decoded.email
 	}, (err, user) => {
 		if (err) throw err;
-		res.json({
-			success: true,
-			message: 'Enjoy your token!',
-			isEnrolled: user.isEnrolled,
-		});
+		if (user) {
+			res.json({
+				success: true,
+				message: 'Enjoy your token!',
+				isEnrolled: user.isEnrolled,
+			});
+		} else {
+			res.json({
+				success: false,
+				message: 'User not found!',
+			});
+		}
+		
 	});
 
 });

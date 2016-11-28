@@ -103,11 +103,11 @@ export default class HomePage extends React.Component {
 						</div>
 						<div>
 							<span className="minutes">{minutes}</span>
-							<div className="smalltext">Minutes</div>
+							<div className="smalltext">Mins</div>
 						</div>
 						<div>
 							<span className="seconds">{seconds}</span>
-							<div className="smalltext">Seconds</div>
+							<div className="smalltext">Secs</div>
 						</div>
 						
 					</div>

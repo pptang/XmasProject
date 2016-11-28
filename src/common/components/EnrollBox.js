@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, FormGroup, Button, FormControl, ControlLabel, Image } from 'react-bootstrap';
+import { Form, FormGroup, Button, FormControl, ControlLabel, Image, DropdownButton, MenuItem } from 'react-bootstrap';
 
 const EnrollBox = ({
 	extension,
@@ -36,10 +36,15 @@ const EnrollBox = ({
 				<FormGroup controlId="formBasicText">
 					<ControlLabel className="formLabel">請輸入公司Building</ControlLabel>
 					<FormControl
-						type="text"
+						componentClass="select"
 						onChange={onChangeBuildingInput}
-						placeholder="請輸入公司Building"
-					/>
+						placeholder="請選擇所在Building"
+					>
+						<option value="CFC3">CFC 3F</option>
+						<option value="CFC4">CFC 4F</option>
+						<option value="NKO9">NKO 9F</option>
+						<option value="NKO10">NKO 10F</option>
+					</FormControl>
 					<FormControl.Feedback />
 				</FormGroup>
 				<FormGroup controlId="formBasicText">
@@ -52,7 +57,7 @@ const EnrollBox = ({
 					<FormControl.Feedback />
 				</FormGroup>
 				<FormGroup controlId="formBasicText">
-					<ControlLabel className="formLabel">請輸入公司你的電話號碼</ControlLabel>
+					<ControlLabel className="formLabel">請輸入你的電話號碼</ControlLabel>
 					<FormControl
 						type="text"
 						onChange={onChangeProviderPhoneNumInput}
