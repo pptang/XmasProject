@@ -116,6 +116,17 @@ const handleRender = (req, res) => {
 				secondDescription: '',
 				thirdDescription: '',
 			};
+
+			var enrolledGift = {
+				giftId: 0,
+				extension: '',
+				building: '',
+				providerName: '',
+				providerPhoneNum: '',
+				firstDescription: '',
+				secondDescription: '',
+				thirdDescription: '',
+			};
 			let isAuthorized = false;
 			if (response[0].data.success === true) {
 				isAuthorized = true;
@@ -130,6 +141,18 @@ const handleRender = (req, res) => {
 					drawedGift.secondDescription = response[1].data.gift.secondDescription;
 					drawedGift.thirdDescription = response[1].data.gift.thirdDescription;
 				}
+
+				if (response[2].data.success === true) {
+					enrolledGift.giftId = response[2].data.enrolledGift.giftId;
+					enrolledGift.extension = response[2].data.enrolledGift.extension;
+					enrolledGift.building = response[2].data.enrolledGift.building;
+					enrolledGift.providerName = response[2].data.enrolledGift.providerName;
+					enrolledGift.providerPhoneNum = response[2].data.enrolledGift.providerPhoneNum;
+					enrolledGift.firstDescription = response[2].data.enrolledGift.firstDescription;
+					enrolledGift.secondDescription = response[2].data.enrolledGift.secondDescription;
+					enrolledGift.thirdDescription = response[2].data.enrolledGift.thirdDescription;
+				}
+
 			} else {
 				isAuthorized = false;
 			}
@@ -157,7 +180,8 @@ const handleRender = (req, res) => {
 					seconds: ('0' + t.seconds).slice(-2),
 				},
 				//TODO: should add initial gift status for refresh
-				draw: drawedGift,			
+				draw: drawedGift,
+				enroll: enrolledGift,	
 				
 			});
 

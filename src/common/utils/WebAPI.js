@@ -7,6 +7,7 @@ import {
 	authError,
 	hideSpinner,
 	completeLogout,
+	enrollComplte,
 	enrollError,
 	drawComplete,
 	drawError,
@@ -96,6 +97,16 @@ export default {
 			} else {
 				
 				dispatch(setUser({key: 'isEnrolled', value: true}));
+				dispatch(enrollComplte({
+					giftId: response.data.enrolledGift.giftId,
+					extension: response.data.enrolledGift.extension,
+					building: response.data.enrolledGift.building,
+					providerName: response.data.enrolledGift.providerName,
+					providerPhoneNum: response.data.enrolledGift.providerPhoneNum,
+					firstDescription: response.data.enrolledGift.firstDescription,
+					secondDescription: response.data.enrolledGift.secondDescription,
+					thirdDescription: response.data.enrolledGift.thirdDescription,
+				}))
 				dispatch(hideSpinner());
 			}
 		})

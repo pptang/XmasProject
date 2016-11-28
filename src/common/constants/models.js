@@ -13,6 +13,7 @@ export const UserState = Immutable.fromJS({
 });
 
 export const GiftState = Immutable.fromJS({
+	giftId: 0,
 	extension: '',
 	building: '',
 	providerName: '',

@@ -123,7 +123,7 @@ apiRoutes.post('/enroll', (req, res) => {
 		isExchanged: false
 	});
 
-	newGift.save((err) => {
+	newGift.save((err, enrolledGift) => {
 		if (err) throw err;
 		// update user enroll status
 		User.update({ _id: req.decoded.userId }, {
@@ -134,7 +134,8 @@ apiRoutes.post('/enroll', (req, res) => {
 			res.json({
 				success: true,
 				message: 'Successfully enrolled!',
-				isEnrolled: true
+				isEnrolled: true,
+				enrolledGift: enrolledGift,
 			});
 
 		});
@@ -217,11 +218,32 @@ apiRoutes.get('/getMyGift', (req, res) => {
 			});
 			return;
 		}
-		console.log("mark::" + JSON.stringify(gift));
+		
 		res.json({
 			success: true,
 			message: 'Successfully got your gift!',
 			gift: gift,
+		});
+	});
+});
+
+apiRoutes.get('/getEnrolledGift', (req, res) => {
+	Gift.findOne({
+		providerId: req.decoded.userId
+	}, (err, enrolledGift) => {
+		if (err) throw err;
+		if (!enrolledGift) {
+			res.json({
+				success: false,
+				message: 'No enrolled gift found',
+			});
+			return;
+		}
+		
+		res.json({
+			success: true,
+			message: 'Successfully got your gift!',
+			enrolledGift: enrolledGift,
 		});
 	});
 });
