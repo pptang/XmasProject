@@ -1,6 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
-export default mongoose.model('Gift', new Schema({
-	id: Number,
+import AutoIncrement from 'mongoose-sequence';
+const GiftSchema = mongoose.Schema({
+	giftId: Number,
 	extension: String,
 	building: String,
 	providerName: String,
@@ -13,4 +14,6 @@ export default mongoose.model('Gift', new Schema({
 	enrolledAt: Date,
 	isExchanged: Boolean,
 	exchangedAt: Date
-}));
+});
+GiftSchema.plugin(AutoIncrement, {inc_field: 'giftId'});
+export default mongoose.model('Gift', GiftSchema);

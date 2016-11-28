@@ -31,6 +31,7 @@ export const TimerState = Immutable.fromJS({
 });
 
 export const DrawState = Immutable.fromJS({
+	giftId: 0,
 	extension: '',
 	building: '',
 	providerName: '',

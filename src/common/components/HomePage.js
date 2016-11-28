@@ -48,7 +48,7 @@ export default class HomePage extends React.Component {
 		}
 	}
 	
-	renderGift(extension, building, providerName, providerphoneNum, firstDescription, secondDescription, thirdDescription) {
+	renderGift(giftId, extension, building, providerName, providerphoneNum, firstDescription, secondDescription, thirdDescription) {
 		return (
 			<div>
 				<h1>Congratulations! You got <b>To be modified</b> as your X'mas gift!</h1>
@@ -81,11 +81,11 @@ export default class HomePage extends React.Component {
 		}
 	}
 
-	renderMainContent(total, days, hours, minutes, seconds, isAuthorized, isEnrolled, onDraw, extension, building, providerName, providerphoneNum, firstDescription, secondDescription, thirdDescription) {
-		if (giftname) {
+	renderMainContent(total, days, hours, minutes, seconds, isAuthorized, isEnrolled, onDraw, giftId, extension, building, providerName, providerphoneNum, firstDescription, secondDescription, thirdDescription) {
+		if (giftId) {
 			return (
 				<div>
-					{this.renderGift(extension, building, providerName, providerphoneNum, firstDescription, secondDescription, thirdDescription)}
+					{this.renderGift(giftId, extension, building, providerName, providerphoneNum, firstDescription, secondDescription, thirdDescription)}
 				</div>
 			);
 		} else {
@@ -120,14 +120,14 @@ export default class HomePage extends React.Component {
 	}
 
 	render() {
-		const { total, days, hours, minutes, seconds, isAuthorized, isEnrolled, onDraw, giftname, firstDescription, secondDescription, thirdDescription } = this.props;
+		const { total, days, hours, minutes, seconds, isAuthorized, isEnrolled, onDraw, giftId, extension, building, providerName, providerphoneNum, firstDescription, secondDescription, thirdDescription } = this.props;
 		
 		return (
 			<div>				
 				{this.renderMainContent(
 					total, days, hours, minutes, seconds, 
-					isAuthorized, isEnrolled, onDraw, giftname, 
-					firstDescription, secondDescription, thirdDescription
+					isAuthorized, isEnrolled, onDraw, giftId, 
+					extension, building, providerName, providerphoneNum
 				)}			
 			</div>
 		);

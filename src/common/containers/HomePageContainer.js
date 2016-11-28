@@ -17,6 +17,7 @@ export default connect(
 		seconds: state.getIn(['timer', 'seconds']),
 		isAuthorized: state.getIn(['user', 'isAuthorized']),
 		isEnrolled: state.getIn(['user', 'isEnrolled']),
+		giftId: state.getIn(['draw', 'giftId']),
 		extension: state.getIn(['draw', 'extension']),
 		building: state.getIn(['draw', 'building']),
 		providerName: state.getIn(['draw', 'providerName']),

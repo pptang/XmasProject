@@ -78,9 +78,10 @@ export default {
 			dispatch(authError());
 		});
 	},
-	enroll: (dispatch, extension, building, providerName, providerPhoneNum, firstDescription, secondDescription, thirdDescription) => {
+	enroll: (dispatch, giftId, extension, building, providerName, providerPhoneNum, firstDescription, secondDescription, thirdDescription) => {
 		
 		axios.post('/api/enroll', {
+			giftId: giftId,
 			extension: extension,
 			building: building,
 			providerName: providerName,
@@ -116,6 +117,7 @@ export default {
 			} else {		
 				
 				dispatch(drawComplete({
+					giftId: response.data.gift.giftId,
 					extension: response.data.gift.extension,
 					building: response.data.gift.building,
 					providerName: response.data.gift.providerName,
