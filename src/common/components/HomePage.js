@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Image, Panel, Grid, Row, Col } from 'react-bootstrap';
+import { Button, Image, Panel, Grid, Row, Col, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 export default class HomePage extends React.Component {
 	constructor(props) {
@@ -53,7 +53,8 @@ export default class HomePage extends React.Component {
 			<h1>抽到的禮物</h1>
 		);
 		return (
-			<Panel header={title}>
+			<Panel header={title} bsStyle="primary">
+				
 				<Grid>
 					<Row className="show-grid">
 						<Col sm={4}>分機</Col>
@@ -87,6 +88,10 @@ export default class HomePage extends React.Component {
 				<Button onClick={this.printResult}>列印</Button>
 			</Panel>
 		);
+	}
+
+	printResult() {
+		window.print();
 	}
 
 	renderDrawBtn(total, isAuthorized, isEnrolled, onDraw) {

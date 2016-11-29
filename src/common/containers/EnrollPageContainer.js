@@ -6,6 +6,7 @@ export default connect(
 	(state) => ({
 		spinnerVisible: state.getIn(['ui', 'spinnerVisible']),
 		isEnrolled: state.getIn(['user', 'isEnrolled']),
+		giftId: state.getIn(['enroll', 'giftId']),
 		extension: state.getIn(['enroll', 'extension']),
 		building: state.getIn(['enroll', 'building']),
 		providerName: state.getIn(['enroll', 'providerName']),

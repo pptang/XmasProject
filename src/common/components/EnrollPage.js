@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Row, Col, Image, Panel, Button } from 'react-bootstrap';
+import { Grid, Row, Col, Image, Panel, Button, ListGroup, ListGroupItem } from 'react-bootstrap';
 import EnrollBoxContainer from '../containers/EnrollBoxContainer';
 
 export default class EnrollPage extends React.Component {
@@ -25,42 +25,20 @@ export default class EnrollPage extends React.Component {
 		);
 	}
 
-	renderEnrolledGift(extension, building, providerName, providerPhoneNum, firstDescription, secondDescription, thirdDescription) {
+	renderEnrolledGift(giftId, extension, building, providerName, providerPhoneNum, firstDescription, secondDescription, thirdDescription) {
 		const title = (
 			<h1>你的禮物</h1>
 		);
 		return (
-			<Panel header={title}>
-				<Grid>
-					<Row className="show-grid">
-						<Col sm={4}>分機</Col>
-						<Col sm={8}>{extension}</Col>
-					</Row>
-					<Row className="show-grid">
-						<Col sm={4}>所在地</Col>
-						<Col sm={8}>{building}</Col>
-					</Row>
-					<Row className="show-grid">
-						<Col sm={4}>姓名</Col>
-						<Col sm={8}>{providerName}</Col>
-					</Row>
-					<Row className="show-grid">
-						<Col sm={4}>電話號碼</Col>
-						<Col sm={8}>{providerPhoneNum}</Col>
-					</Row>
-					<Row className="show-grid">
-						<Col sm={4}>第一個描述</Col>
-						<Col sm={8}>{firstDescription}</Col>
-					</Row>
-					<Row className="show-grid">
-						<Col sm={4}>第二個描述</Col>
-						<Col sm={8}>{secondDescription}</Col>
-					</Row>
-					<Row className="show-grid">
-						<Col sm={4}>第三個描述</Col>
-						<Col sm={8}>{thirdDescription}</Col>
-					</Row>
-				</Grid>
+			<Panel header={title} bsStyle="primary">
+				<h1 style={{color: 'black'}}>{giftId}</h1>
+				<ListGroup fill>
+					<ListGroupItem>{providerName} / {providerPhoneNum}</ListGroupItem>
+					<ListGroupItem>禮物形容詞1: {firstDescription}</ListGroupItem>
+					<ListGroupItem>禮物形容詞2: {secondDescription}</ListGroupItem>
+					<ListGroupItem>禮物形容詞3: {thirdDescription}</ListGroupItem>
+					<ListGroupItem></ListGroupItem>
+				</ListGroup>
 				<Button onClick={this.printResult}>列印</Button>
 			</Panel>
 		);
@@ -71,7 +49,7 @@ export default class EnrollPage extends React.Component {
 	}
 
 	render() {
-		const { spinnerVisible, isEnrolled, extension, building, providerName, providerPhoneNum, firstDescription, secondDescription, thirdDescription} = this.props;
+		const { spinnerVisible, isEnrolled, giftId, extension, building, providerName, providerPhoneNum, firstDescription, secondDescription, thirdDescription} = this.props;
 		if (!isEnrolled) {
 			return (
 				<Grid>{this.renderEnrollBox(spinnerVisible, isEnrolled)}</Grid>
@@ -79,7 +57,7 @@ export default class EnrollPage extends React.Component {
 			
 		} else {
 			return (
-				<div>{this.renderEnrolledGift(extension, building, providerName, providerPhoneNum, firstDescription, secondDescription, thirdDescription)}</div>
+				<div>{this.renderEnrolledGift(giftId, extension, building, providerName, providerPhoneNum, firstDescription, secondDescription, thirdDescription)}</div>
 			);
 		}
 		
