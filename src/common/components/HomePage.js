@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Image } from 'react-bootstrap';
+import { Button, Image, Panel, Grid, Row, Col } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 export default class HomePage extends React.Component {
 	constructor(props) {
@@ -48,18 +48,44 @@ export default class HomePage extends React.Component {
 		}
 	}
 	
-	renderGift(giftId, extension, building, providerName, providerphoneNum, firstDescription, secondDescription, thirdDescription) {
+	renderGift(giftId, extension, building, providerName, providerPhoneNum, firstDescription, secondDescription, thirdDescription) {
+		const title = (
+			<h1>抽到的禮物</h1>
+		);
 		return (
-			<div>
-				<h1>Congratulations! You got <b>To be modified</b> as your X'mas gift!</h1>
-				<Image src="/static/images/santa.gif" />
-				<h2>It seems to be ...</h2>
-				{firstDescription}
-				<div className="circle">{firstDescription}</div>
-				<div className="circle">{secondDescription}</div>
-				<div className="circle">{thirdDescription}</div>
-				
-			</div>
+			<Panel header={title}>
+				<Grid>
+					<Row className="show-grid">
+						<Col sm={4}>分機</Col>
+						<Col sm={8}>{extension}</Col>
+					</Row>
+					<Row className="show-grid">
+						<Col sm={4}>所在地</Col>
+						<Col sm={8}>{building}</Col>
+					</Row>
+					<Row className="show-grid">
+						<Col sm={4}>姓名</Col>
+						<Col sm={8}>{providerName}</Col>
+					</Row>
+					<Row className="show-grid">
+						<Col sm={4}>電話號碼</Col>
+						<Col sm={8}>{providerPhoneNum}</Col>
+					</Row>
+					<Row className="show-grid">
+						<Col sm={4}>第一個描述</Col>
+						<Col sm={8}>{firstDescription}</Col>
+					</Row>
+					<Row className="show-grid">
+						<Col sm={4}>第二個描述</Col>
+						<Col sm={8}>{secondDescription}</Col>
+					</Row>
+					<Row className="show-grid">
+						<Col sm={4}>第三個描述</Col>
+						<Col sm={8}>{thirdDescription}</Col>
+					</Row>
+				</Grid>
+				<Button onClick={this.printResult}>列印</Button>
+			</Panel>
 		);
 	}
 
@@ -120,14 +146,15 @@ export default class HomePage extends React.Component {
 	}
 
 	render() {
-		const { total, days, hours, minutes, seconds, isAuthorized, isEnrolled, onDraw, giftId, extension, building, providerName, providerphoneNum, firstDescription, secondDescription, thirdDescription } = this.props;
+		const { total, days, hours, minutes, seconds, isAuthorized, isEnrolled, onDraw, giftId, extension, building, providerName, providerPhoneNum, firstDescription, secondDescription, thirdDescription } = this.props;
 		
 		return (
 			<div>				
 				{this.renderMainContent(
 					total, days, hours, minutes, seconds, 
 					isAuthorized, isEnrolled, onDraw, giftId, 
-					extension, building, providerName, providerphoneNum
+					extension, building, providerName, providerPhoneNum,
+					firstDescription, secondDescription, thirdDescription
 				)}			
 			</div>
 		);

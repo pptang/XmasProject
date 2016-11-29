@@ -193,11 +193,19 @@ apiRoutes.post('/draw', (req, res) => {
 				console.log("gift after findoneandupdate:" + JSON.stringify(gift));
 				//TODO: 沒有禮物的話不能回true
 				if (err) throw err;
-				res.json({
-					success: true,
-					message: 'Successfully drawed!',
-					gift: gift,
-				});
+				if (gift) {
+					res.json({
+						success: true,
+						message: 'Successfully drawed!',
+						gift: gift,
+					});
+				} else {
+					res.json({
+						success: false,
+						message: 'No more gift!',
+					});
+				}
+				
 			});
 			
 		});
