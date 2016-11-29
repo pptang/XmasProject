@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Row, Col, Image, Panel } from 'react-bootstrap';
+import { Grid, Row, Col, Image, Panel, Button } from 'react-bootstrap';
 import EnrollBoxContainer from '../containers/EnrollBoxContainer';
 
 export default class EnrollPage extends React.Component {
@@ -61,8 +61,13 @@ export default class EnrollPage extends React.Component {
 						<Col sm={8}>{thirdDescription}</Col>
 					</Row>
 				</Grid>
+				<Button onClick={this.printResult}>列印</Button>
 			</Panel>
 		);
+	}
+
+	printResult() {
+		window.print();
 	}
 
 	render() {

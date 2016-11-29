@@ -7,7 +7,7 @@ import {
 	authError,
 	hideSpinner,
 	completeLogout,
-	enrollComplte,
+	enrollComplete,
 	enrollError,
 	drawComplete,
 	drawError,
@@ -95,9 +95,10 @@ export default {
 			if (response.data.success === false) {
 				dispatch(enrollError());
 			} else {
+				console.log("bible:" + response.data.enrolledGift.giftId);
 				
 				dispatch(setUser({key: 'isEnrolled', value: true}));
-				dispatch(enrollComplte({
+				dispatch(enrollComplete({
 					giftId: response.data.enrolledGift.giftId,
 					extension: response.data.enrolledGift.extension,
 					building: response.data.enrolledGift.building,
@@ -106,7 +107,7 @@ export default {
 					firstDescription: response.data.enrolledGift.firstDescription,
 					secondDescription: response.data.enrolledGift.secondDescription,
 					thirdDescription: response.data.enrolledGift.thirdDescription,
-				}))
+				}));
 				dispatch(hideSpinner());
 			}
 		})
