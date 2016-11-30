@@ -8,15 +8,15 @@ import config from './config';
 import User from './models/user';
 // import Recipe from './models/recipe';
 
-import webpack from 'webpack';
+//import webpack from 'webpack';
 import React from 'react';
-import webpackDevMiddleware from 'webpack-dev-middleware';
-import webpackHotMiddleware from 'webpack-hot-middleware';
+//import webpackDevMiddleware from 'webpack-dev-middleware';
+//import webpackHotMiddleware from 'webpack-hot-middleware';
 import { RouterContext, match } from 'react-router';
 import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import Immutable, { fromJS } from 'immutable';
-import webpackConfig from '../../webpack.config';
+//import webpackConfig from '../../webpack.config';
 import routes from '../common/routes';
 import configureStore from '../common/store/configureStore';
 import fetchComponentData from '../common/utils/fetchComponentData';
@@ -24,12 +24,14 @@ import apiRoutes from './controllers/api.js';
 
 const app = new Express();
 const port = process.env.PORT || 3000;
+const host = process.env.VCAP_APP_HOST || 'localhost';
 
 
 
 function initDBConnection(){
 
 	var ca;
+	var uri;
 
 	if(process.env.VCAP_SERVICES) {
                 var vcapServices = JSON.parse(process.env.VCAP_SERVICES);
@@ -39,6 +41,7 @@ function initDBConnection(){
                 for(var vcapService in vcapServices){
                         if(vcapService.match(/mongodb/i)){
                                 ca = [new Buffer(vcapServices[vcapService][0].credentials.ca_certificate_base64,'base64')];
+				uri = vcapServices[vcapService][0].credentials.uri;
 
                                 break;
                         }
@@ -46,6 +49,7 @@ function initDBConnection(){
         } else{
 		console.warn('VCAP_SERVICES environment variable not set - data will be unavailable to the UI');
 		ca = [new Buffer(config.credentials.ca_certificate_base64, 'base64')];
+		uri = config.credentials.uri;
 	}
 
 
@@ -56,7 +60,7 @@ function initDBConnection(){
 	});
 
 	mongoose.connection.on('open', function (err) {
-	    console.log("open~~~nosql db!!!!")
+	    console.log("open~~~mongo db!!!!")
 	    mongoose.connection.db.listCollections().toArray(function(err, collections) {
 		collections.forEach(function(collection) {
 		    console.log(collection);
@@ -76,12 +80,11 @@ function initDBConnection(){
 	    }
 	}
 
-	//mongoose.connect(config.database,options); // will be replaced by bluemix info
-	mongoose.connect(config.credentials.uri,options); // will be replaced by bluemix info
+	mongoose.connect(uri,options); // will be replaced by bluemix info
 }
 
-// initDBConnection();
-mongoose.connect(config.database);
+initDBConnection();
+//mongoose.connect(config.database);
 
 app.set('env', 'production');
 app.use('/static', Express.static(__dirname + '/public'));
@@ -192,6 +195,7 @@ const handleRender = (req, res) => {
 					<RouterContext {...renderProps} />
 				</Provider>
 			);
+
 			let state = store.getState();
 			let page = renderFullPage(initView, state);
 			return res.status(200).send(page);
@@ -236,17 +240,20 @@ const renderFullPage = (html, preloadedState) => (`
      </html>
  `);
 
+/*
 const compiler = webpack(webpackConfig);
 app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: webpackConfig.output.publicPath }));
 app.use(webpackHotMiddleware(compiler));
+*/
 
 // set up api server routes
 app.use('/api', apiRoutes);
 app.use(handleRender);
-app.listen(port, (error) => {
+app.listen(port,host, (error) => {
 	if (error) {
 		console.error(error);
 	} else {
-		console.info(`==> 🌎 Listening on port ${port}. Open up http://localhost:${port}/ in your browser.`);
+		console.log(process.env);
+		console.info(`==> 🌎Listening on port ${port}. Open up http://${host}:${port}/ in your browser.`);
 	}
 });
