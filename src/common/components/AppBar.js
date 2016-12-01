@@ -31,7 +31,7 @@ const AppBar = ({
         		    <LinkContainer to={{ pathname: '/login' }}>
         		    	<NavItem eventKey={2} href="#" id="indexTitle">
         		    		<Button className="indexFrame">
-        		    			Login
+        		    			登入
         		    		</Button>
         		    	</NavItem>
         		    </LinkContainer>

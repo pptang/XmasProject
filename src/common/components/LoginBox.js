@@ -10,16 +10,16 @@ const LoginBox = ({
 }) => (
 	<div className="formFrame">
 		<form>
-			<FormGroup controlId="formControlsEmail">
-				<ControlLabel><h3 className="formLabel">Email</h3></ControlLabel>
+			<FormGroup controlId="formControlsEmail" className="formGroup">
+				<ControlLabel><h5>Email</h5></ControlLabel>
 				<InputGroup>				
 					<FormControl type="email" onChange={onChangeEmailInput}
 						placeholder="Enter Email"/>
 					<InputGroup.Addon>@tw.ibm.com</InputGroup.Addon>
 				</InputGroup>
 			</FormGroup>
-			<FormGroup controlId="formControlsSN">
-				<ControlLabel><h3 className="formLabel">S/N</h3></ControlLabel>
+			<FormGroup controlId="formControlsSN" className="formGroup">
+				<ControlLabel><h5>S/N</h5></ControlLabel>
 				<FormControl type="text" onChange={onChangeSerialNumberInput}
 					placeholder="Enter Serial Number"/>
 			</FormGroup>
