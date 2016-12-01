@@ -48,7 +48,7 @@ export default class HomePage extends React.Component {
 		}
 	}
 	
-	renderGift(giftId, extension, building, providerName, providerPhoneNum, firstDescription, secondDescription, thirdDescription) {
+	renderGift(giftId, extension, building, providerName, providerPhoneNum, firstDescription, secondDescription, thirdDescription, exchangedAt) {
 		const title = (
 			<h1>抽到的禮物</h1>
 		);
@@ -56,6 +56,10 @@ export default class HomePage extends React.Component {
 			<Panel header={title} bsStyle="primary">
 				
 				<Grid>
+					<Row className="show-grid">
+						<Col sm={4}>禮物號碼</Col>
+						<Col sm={8}>{giftId}</Col>
+					</Row>
 					<Row className="show-grid">
 						<Col sm={4}>分機</Col>
 						<Col sm={8}>{extension}</Col>
@@ -84,6 +88,10 @@ export default class HomePage extends React.Component {
 						<Col sm={4}>第三個描述</Col>
 						<Col sm={8}>{thirdDescription}</Col>
 					</Row>
+					<Row className="show-grid">
+						<Col sm={4}>抽獎時間</Col>
+						<Col sm={8}>{exchangedAt}</Col>
+					</Row>
 				</Grid>
 				<Button onClick={this.printResult}>列印</Button>
 			</Panel>
@@ -98,25 +106,25 @@ export default class HomePage extends React.Component {
 		if (isAuthorized) {
 			if (isEnrolled) {
 				if (total != 0) {
-					return (<Button id="drawBtn" onClick={onDraw} block>Draw</Button>);
+					return (<Button id="drawBtn" onClick={onDraw} block>點我抽獎</Button>);
 				} else {
-					return (<Button id="drawBtn" onClick={onDraw} block disabled>Draw</Button>);
+					return (<Button id="drawBtn" onClick={onDraw} block disabled>點我抽獎</Button>);
 				}
 			} else {
 				return (
 					<LinkContainer to={{ pathname: '/enroll' }}>
-						<Button id="drawBtn" block>Join</Button>
+						<Button id="drawBtn" block>參加活動</Button>
 					</LinkContainer>
 				);
 			}
 		}
 	}
 
-	renderMainContent(total, days, hours, minutes, seconds, isAuthorized, isEnrolled, onDraw, giftId, extension, building, providerName, providerphoneNum, firstDescription, secondDescription, thirdDescription) {
+	renderMainContent(total, days, hours, minutes, seconds, isAuthorized, isEnrolled, onDraw, giftId, extension, building, providerName, providerphoneNum, firstDescription, secondDescription, thirdDescription, exchangedAt) {
 		if (giftId) {
 			return (
 				<div>
-					{this.renderGift(giftId, extension, building, providerName, providerphoneNum, firstDescription, secondDescription, thirdDescription)}
+					{this.renderGift(giftId, extension, building, providerName, providerphoneNum, firstDescription, secondDescription, thirdDescription, exchangedAt)}
 				</div>
 			);
 		} else {
@@ -151,7 +159,7 @@ export default class HomePage extends React.Component {
 	}
 
 	render() {
-		const { total, days, hours, minutes, seconds, isAuthorized, isEnrolled, onDraw, giftId, extension, building, providerName, providerPhoneNum, firstDescription, secondDescription, thirdDescription } = this.props;
+		const { total, days, hours, minutes, seconds, isAuthorized, isEnrolled, onDraw, giftId, extension, building, providerName, providerPhoneNum, firstDescription, secondDescription, thirdDescription, exchangedAt } = this.props;
 		
 		return (
 			<div>				
@@ -159,7 +167,7 @@ export default class HomePage extends React.Component {
 					total, days, hours, minutes, seconds, 
 					isAuthorized, isEnrolled, onDraw, giftId, 
 					extension, building, providerName, providerPhoneNum,
-					firstDescription, secondDescription, thirdDescription
+					firstDescription, secondDescription, thirdDescription, exchangedAt
 				)}			
 			</div>
 		);

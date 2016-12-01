@@ -31,8 +31,9 @@ function getCookie(keyName) {
 
 export default {
 	login: (dispatch, email, serialNumber) => {
+
 		axios.post('/api/login', {
-			email: email,
+			email: email + '@tw.ibm.com',
 			serialNumber: serialNumber
 		})
 		.then((response) => {
@@ -136,6 +137,7 @@ export default {
 					firstDescription: response.data.gift.firstDescription,
 					secondDescription: response.data.gift.secondDescription,
 					thirdDescription: response.data.gift.thirdDescription,
+					exchangedAt: response.data.gift.exchangedAt,
 				}));
 				dispatch(hideSpinner());
 			}

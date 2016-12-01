@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import HomePage from '../components/HomePage';
-
+import moment from 'moment';
 import {
 	updateTime,
 	drawStart,
@@ -25,6 +25,7 @@ export default connect(
 		firstDescription: state.getIn(['draw', 'firstDescription']),
 		secondDescription: state.getIn(['draw', 'secondDescription']),
 		thirdDescription: state.getIn(['draw', 'thirdDescription']),
+		exchangedAt: moment(state.getIn(['draw', 'exchangedAt'])).format('YYYY-MM-DD HH:MM:SS'),
 	}),
 	(dispatch) => ({
 		updateDisplayTime: (time) => (

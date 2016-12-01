@@ -6,6 +6,7 @@ import {
 	enrollStart,
 	showSpinner,
 	setGift,
+	hideEnrollModal,
 } from '../actions';
 
 export default connect(
@@ -56,6 +57,7 @@ export default connect(
 			} else {
 				dispatch(enrollStart(dispatch, extension, building, providerName, providerPhoneNum, firstDescription, secondDescription, thirdDescription)); 
 				dispatch(showSpinner());
+				dispatch(hideEnrollModal());
 			}
 		},
 		goBackToIndex: () => {

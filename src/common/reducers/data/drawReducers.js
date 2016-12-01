@@ -22,6 +22,7 @@ const giftReducers = handleActions({
 			firstDescription: payload.firstDescription,
 			secondDescription: payload.secondDescription,
 			thirdDescription: payload.thirdDescription,
+			exchangedAt: payload.exchangedAt,
 		})
 	),
 	DRAW_ERROR: (state) => {
@@ -35,6 +36,7 @@ const giftReducers = handleActions({
 			firstDescription: '',
 			secondDescription: '',
 			thirdDescription: '',
+			exchangedAt: '',
 		});
 	},
 	CLEAN_DRAWED_GIFT: (state, { payload }) => (
@@ -47,6 +49,7 @@ const giftReducers = handleActions({
 			firstDescription: '',
 			secondDescription: '',
 			thirdDescription: '',
+			exchangedAt: '',
 		})
 	),
 }, DrawState);

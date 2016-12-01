@@ -20,7 +20,7 @@ const EnrollBox = ({
 	onEnrollSubmit,
 	goBackToIndex
 }) => (
-	isEnrolled === false ?
+	isEnrolled === true ?
 	(
 		<div>
 			<Form horizontal className="formFrame">
@@ -30,6 +30,7 @@ const EnrollBox = ({
 						type="text"
 						onChange={onChangeExtensionInput}
 						placeholder="請輸入分機號碼"
+						defaultValue={extension}
 					/>
 					<FormControl.Feedback />
 				</FormGroup>
@@ -39,6 +40,7 @@ const EnrollBox = ({
 						componentClass="select"
 						onChange={onChangeBuildingInput}
 						placeholder="請選擇所在Building"
+						defaultValue={building}
 					>
 						<option>Building</option>
 						<option value="CFC3">CFC 3F</option>
@@ -54,6 +56,7 @@ const EnrollBox = ({
 						type="text"
 						onChange={onChangeProviderNameInput}
 						placeholder="請輸入你的名字"
+						defaultValue={providerName}
 					/>
 					<FormControl.Feedback />
 				</FormGroup>
@@ -62,7 +65,8 @@ const EnrollBox = ({
 					<FormControl
 						type="text"
 						onChange={onChangeProviderPhoneNumInput}
-						placeholder="請輸入公司你的電話號碼"
+						placeholder="請輸入你的電話號碼"
+						defaultValue={providerPhoneNum}
 					/>
 					<FormControl.Feedback />
 				</FormGroup>
@@ -72,6 +76,7 @@ const EnrollBox = ({
 						type="text"
 						onChange={onChangeFirstDescriptionInput}
 						placeholder="Enter First Description"
+						defaultValue={firstDescription}
 					/>
 					<FormControl.Feedback />
 				</FormGroup>
@@ -81,6 +86,7 @@ const EnrollBox = ({
 						type="text"
 						onChange={onChangeSecondDescriptionInput}
 						placeholder="Enter Second Description"
+						defaultValue={secondDescription}
 					/>
 					<FormControl.Feedback />
 				</FormGroup>
@@ -90,6 +96,7 @@ const EnrollBox = ({
 						type="text"
 						onChange={onChangeThirdDescriptionInput}
 						placeholder="Enter Thrid Description"
+						defaultValue={thirdDescription}
 					/>
 					<FormControl.Feedback />
 				</FormGroup>

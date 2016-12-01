@@ -20,7 +20,7 @@ const LoginBox = ({
 					/>
 				</Col>
 				<Col sm={2}>
-					<FormControl.Static className="formLabel">.tw.ibm.com</FormControl.Static>
+					<FormControl.Static className="formLabel">@tw.ibm.com</FormControl.Static>
 				</Col>
 				<FormControl.Feedback />
 			</FormGroup>

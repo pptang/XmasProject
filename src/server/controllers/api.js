@@ -4,6 +4,7 @@ import User from '../models/user';
 import Gift from '../models/gift';
 import config from '../config';
 import mongoose from 'mongoose';
+
 const app = new Express();
 const apiRoutes = Express.Router();
 
@@ -110,37 +111,75 @@ apiRoutes.get('/authenticate', (req, res) => {
 
 apiRoutes.post('/enroll', (req, res) => {
 	
-	const newGift = new Gift({
-		extension: req.body.extension,
-		building: req.body.building,
-		providerName: req.body.providerName,
-		providerPhoneNum: req.body.providerPhoneNum,
-		firstDescription: req.body.firstDescription,
-		secondDescription: req.body.secondDescription,
-		thirdDescription: req.body.thirdDescription,
-		providerId: req.decoded.userId,
-		enrolledAt: new Date(),
-		isExchanged: false
-	});
-
-	newGift.save((err, enrolledGift) => {
+	Gift.findOne({
+		providerId: req.decoded.userId
+	}, (err, gift) => {
 		if (err) throw err;
-		// update user enroll status
-		User.update({ _id: req.decoded.userId }, {
-			$set: { isEnrolled: true }
-		}, (err) => {
-			if (err) throw err;
-			console.log('Upload user enrolled status successfully!');
-			res.json({
-				success: true,
-				message: 'Successfully enrolled!',
-				isEnrolled: true,
-				enrolledGift: enrolledGift,
+		if (gift) {
+			Gift.findOneAndUpdate({
+				providerId: req.decoded.userId
+			}, {
+				$set: {
+					extension: req.body.extension,
+					building: req.body.building,
+					providerName: req.body.providerName,
+					providerPhoneNum: req.body.providerPhoneNum,
+					firstDescription: req.body.firstDescription,
+					secondDescription: req.body.secondDescription,
+					thirdDescription: req.body.thirdDescription,
+					providerId: req.decoded.userId,
+					enrolledAt: new Date(),
+					isExchanged: false
+				}
+			}, {
+				new: true
+			}, (err, enrolledGift) => {
+				if (err) throw err;
+				console.log("api test::" + JSON.stringify(enrolledGift));
+				res.json({
+					success: true,
+					message: 'Successfully updated enrolled info!',
+					isEnrolled: true,
+					enrolledGift: enrolledGift,
+				})
+
+			});
+		} else {
+			const newGift = new Gift({
+				extension: req.body.extension,
+				building: req.body.building,
+				providerName: req.body.providerName,
+				providerPhoneNum: req.body.providerPhoneNum,
+				firstDescription: req.body.firstDescription,
+				secondDescription: req.body.secondDescription,
+				thirdDescription: req.body.thirdDescription,
+				providerId: req.decoded.userId,
+				enrolledAt: new Date(),
+				isExchanged: false
 			});
 
-		});
+			newGift.save((err, enrolledGift) => {
+				if (err) throw err;
+				// update user enroll status
+				User.update({ _id: req.decoded.userId }, {
+					$set: { isEnrolled: true }
+				}, (err) => {
+					if (err) throw err;
+					
+					res.json({
+						success: true,
+						message: 'Successfully enrolled!',
+						isEnrolled: true,
+						enrolledGift: enrolledGift,
+					});
 		
+				});
+		
+			});
+
+		}
 	});
+	
 });
 
 apiRoutes.post('/draw', (req, res) => {
@@ -189,8 +228,10 @@ apiRoutes.post('/draw', (req, res) => {
 					newOwnerId: req.decoded.userId,
 					exchangedAt: new Date(),
 				}
+			}, {
+				new: true
 			}, (err, gift) => {
-				console.log("gift after findoneandupdate:" + JSON.stringify(gift));
+				
 				//TODO: 沒有禮物的話不能回true
 				if (err) throw err;
 				if (gift) {

@@ -41,25 +41,25 @@ const AppBar = ({
 					isEnrolled === false ?
 					(
 						<Nav pullRight>
-							<LinkContainer to={{ pathname: '/enroll' }}>
-								<NavItem eventKey={1} href="#" id="indexTitle">
-									<Button className="indexFrame">
-										Join
-									</Button>
-								</NavItem>
-							</LinkContainer>
 							<NavItem eventKey={2} onClick={onLogout} href="#" id="indexTitle">
 								<Button className="indexFrame">
-									Logout
+									登出
 								</Button>
 							</NavItem>
 						</Nav>
 					) :
 					(
 						<Nav pullRight>
+							<LinkContainer to={{ pathname: '/enroll' }}>
+								<NavItem eventKey={1} href="#" id="indexTitle">
+									<Button className="indexFrame">
+										我的禮物
+									</Button>
+								</NavItem>
+							</LinkContainer>
 							<NavItem eventKey={1} onClick={onLogout} href="#" id="indexTitle">
 								<Button className="indexFrame">
-									Logout
+									登出
 								</Button>
 							</NavItem>
 						</Nav>

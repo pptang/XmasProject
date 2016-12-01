@@ -2,6 +2,7 @@ import Immutable from 'immutable';
 
 export const UiState = Immutable.fromJS({
 	spinnerVisible: false,
+	modalVisible: false,
 	isEdit: false,
 });
 
@@ -40,4 +41,5 @@ export const DrawState = Immutable.fromJS({
 	firstDescription: '',
 	secondDescription: '',
 	thirdDescription: '',
+	exchangedAt: '',
 });
