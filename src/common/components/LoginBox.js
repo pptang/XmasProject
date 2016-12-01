@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, FormGroup, Button, FormControl, ControlLabel, Col } from 'react-bootstrap';
+import { Form, FormGroup, Button, FormControl, ControlLabel, InputGroup, Col } from 'react-bootstrap';
 
 const LoginBox = ({
 	email,
@@ -9,39 +9,30 @@ const LoginBox = ({
 	onLoginSubmit
 }) => (
 	<div className="formFrame">
-		<Form horizontal>
-			<FormGroup controlId="formBasicText">
-				<ControlLabel className="formLabel">請輸入您的Email</ControlLabel>
-				<Col sm={10}>
-					<FormControl
-						type="text"
-						onChange={onChangeEmailInput}
-						placeholder="Enter Email"
-					/>
-				</Col>
-				<Col sm={2}>
-					<FormControl.Static className="formLabel">@tw.ibm.com</FormControl.Static>
-				</Col>
-				<FormControl.Feedback />
+		<form>
+			<FormGroup controlId="formControlsEmail">
+				<ControlLabel><h3 className="formLabel">Email</h3></ControlLabel>
+				<InputGroup>				
+					<FormControl type="email" onChange={onChangeEmailInput}
+						placeholder="Enter Email"/>
+					<InputGroup.Addon>@tw.ibm.com</InputGroup.Addon>
+				</InputGroup>
 			</FormGroup>
-			<FormGroup controlId="formBasicText">
-				<ControlLabel className="formLabel">請輸入您的Serial Number</ControlLabel>
-				<FormControl
-					type="text"
-					onChange={onChangeSerialNumberInput}
-					placeholder="Enter Serial Number"
-				/>
-				<FormControl.Feedback />
+			<FormGroup controlId="formControlsSN">
+				<ControlLabel><h3 className="formLabel">S/N</h3></ControlLabel>
+				<FormControl type="text" onChange={onChangeSerialNumberInput}
+					placeholder="Enter Serial Number"/>
 			</FormGroup>
+			
 			<Button
 				className="submitButton"
 				onClick={onLoginSubmit}
 				bsSize="large"
 				block
 			>
-				Submit
+				登入
 			</Button>
-		</Form>
+		</form>
 	</div>
 );
 

@@ -1,5 +1,5 @@
 body {
-	text-align: center;
+	/*text-align: center;*/
 	background: #9C3F3C;
 	font-family: monospace;
 	font-weight: 100;
@@ -60,7 +60,6 @@ h1 {
 
 .formLabel {
 	color: #fff;
-	text-align: left;
 }
 
 .drawBtnFrame {
