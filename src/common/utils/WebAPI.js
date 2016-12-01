@@ -40,7 +40,8 @@ export default {
 			if (response.data.success === false) {
 				dispatch(authError());
 				dispatch(hideSpinner());
-				alert('發生錯誤，請再試一次！');
+				//alert('發生錯誤，請再試一次！');
+				alert(response.data.message);
 				window.location.reload();
 			} else {
 				if (!document.cookie.token) {

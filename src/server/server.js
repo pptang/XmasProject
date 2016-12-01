@@ -253,7 +253,6 @@ app.listen(port,host, (error) => {
 	if (error) {
 		console.error(error);
 	} else {
-		console.log(process.env);
 		console.info(`==> 🌎Listening on port ${port}. Open up http://${host}:${port}/ in your browser.`);
 	}
 });
