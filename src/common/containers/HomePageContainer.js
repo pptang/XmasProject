@@ -25,7 +25,7 @@ export default connect(
 		firstDescription: state.getIn(['draw', 'firstDescription']),
 		secondDescription: state.getIn(['draw', 'secondDescription']),
 		thirdDescription: state.getIn(['draw', 'thirdDescription']),
-		exchangedAt: moment(state.getIn(['draw', 'exchangedAt'])).format('YYYY-MM-DD HH:MM:SS'),
+		exchangedAt: moment(state.getIn(['draw', 'exchangedAt'])).format('YYYY-MM-DD HH:MM'),
 	}),
 	(dispatch) => ({
 		updateDisplayTime: (time) => (

@@ -53,48 +53,24 @@ export default class HomePage extends React.Component {
 			<h1>抽到的禮物</h1>
 		);
 		return (
-			<Panel header={title} bsStyle="primary">
-				
-				<Grid>
-					<Row className="show-grid">
-						<Col sm={4}>禮物號碼</Col>
-						<Col sm={8}>{giftId}</Col>
-					</Row>
-					<Row className="show-grid">
-						<Col sm={4}>分機</Col>
-						<Col sm={8}>{extension}</Col>
-					</Row>
-					<Row className="show-grid">
-						<Col sm={4}>所在地</Col>
-						<Col sm={8}>{building}</Col>
-					</Row>
-					<Row className="show-grid">
-						<Col sm={4}>姓名</Col>
-						<Col sm={8}>{providerName}</Col>
-					</Row>
-					<Row className="show-grid">
-						<Col sm={4}>電話號碼</Col>
-						<Col sm={8}>{providerPhoneNum}</Col>
-					</Row>
-					<Row className="show-grid">
-						<Col sm={4}>第一個描述</Col>
-						<Col sm={8}>{firstDescription}</Col>
-					</Row>
-					<Row className="show-grid">
-						<Col sm={4}>第二個描述</Col>
-						<Col sm={8}>{secondDescription}</Col>
-					</Row>
-					<Row className="show-grid">
-						<Col sm={4}>第三個描述</Col>
-						<Col sm={8}>{thirdDescription}</Col>
-					</Row>
-					<Row className="show-grid">
-						<Col sm={4}>抽獎時間</Col>
-						<Col sm={8}>{exchangedAt}</Col>
-					</Row>
-				</Grid>
-				<Button onClick={this.printResult}>列印</Button>
-			</Panel>
+			<Row className="show-grid">
+				<Col xs={6} xsOffset={3}>
+					<Panel header={title} bsStyle="primary">
+						<h1 style={{color: 'black'}}>你抽到的禮物</h1>
+						<h2 style={{color: 'black'}}>{giftId}</h2>
+						<ListGroup fill style={{"textAlign": "left"}}>
+							<ListGroupItem>{providerName} / {providerPhoneNum}</ListGroupItem>
+							<ListGroupItem>禮物形容詞1: {firstDescription}</ListGroupItem>
+							<ListGroupItem>禮物形容詞2: {secondDescription}</ListGroupItem>
+							<ListGroupItem>禮物形容詞3: {thirdDescription}</ListGroupItem>
+							<ListGroupItem>所在地: {building}</ListGroupItem>
+							<ListGroupItem>分機: {extension}</ListGroupItem>
+							<ListGroupItem>抽獎時間: {exchangedAt}</ListGroupItem>
+						</ListGroup>
+						<Button onClick={this.printResult}>列印</Button>
+					</Panel>
+				</Col>
+			</Row>
 		);
 	}
 

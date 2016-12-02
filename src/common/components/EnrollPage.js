@@ -30,35 +30,32 @@ export default class EnrollPage extends React.Component {
 			<h1>你的禮物</h1>
 		);
 		return (
-			<div>
-				<Panel header={title} bsStyle="primary">
-					<h1 style={{color: 'black'}}>{giftId}</h1>
-					<ListGroup fill>
-						<ListGroupItem>{providerName} / {providerPhoneNum}</ListGroupItem>
-						<ListGroupItem>禮物形容詞1: {firstDescription}</ListGroupItem>
-						<ListGroupItem>禮物形容詞2: {secondDescription}</ListGroupItem>
-						<ListGroupItem>禮物形容詞3: {thirdDescription}</ListGroupItem>
-						<ListGroupItem></ListGroupItem>
-					</ListGroup>
-					<Button onClick={this.props.onOpenModal}>修改資訊</Button>
-					<Button onClick={this.printResult}>列印</Button>
-				</Panel>
-				<Modal show={modalVisible} onHide={this.props.onCloseModal}>
-					<Modal.Header closeButton>
-						<Modal.Title>修改資訊</Modal.Title>					
-					</Modal.Header>
-					<Modal.Body>
-						<EnrollBoxContainer />
-					</Modal.Body>
-					<Modal.Footer>
-					</Modal.Footer>
-				</Modal>
-			</div>
+			<Row className="show-grid">
+				<Col xs={6} xsOffset={3}>
+					<Panel header={title} bsStyle="primary">
+						<h1 style={{color: 'black'}}>{giftId}</h1>
+						<ListGroup fill style={{"textAlign": "left"}}>
+							<ListGroupItem>{providerName} / {providerPhoneNum}</ListGroupItem>
+							<ListGroupItem>禮物形容詞1: {firstDescription}</ListGroupItem>
+							<ListGroupItem>禮物形容詞2: {secondDescription}</ListGroupItem>
+							<ListGroupItem>禮物形容詞3: {thirdDescription}</ListGroupItem>
+						</ListGroup>
+						<Button onClick={this.props.onOpenModal}>修改資訊</Button>
+						<Button onClick={this.printResult}>列印</Button>
+					</Panel>
+					<Modal show={modalVisible} onHide={this.props.onCloseModal}>
+						<Modal.Header closeButton>
+							<Modal.Title>修改資訊</Modal.Title>					
+						</Modal.Header>
+						<Modal.Body>
+							<EnrollBoxContainer />
+						</Modal.Body>
+						<Modal.Footer>
+						</Modal.Footer>
+					</Modal>
+				</Col>
+			</Row>
 		);
-	}
-
-	modifyEnrolledInfo() {
-
 	}
 
 	printResult() {
@@ -69,12 +66,16 @@ export default class EnrollPage extends React.Component {
 		const { spinnerVisible, modalVisible, isEnrolled, giftId, extension, building, providerName, providerPhoneNum, firstDescription, secondDescription, thirdDescription} = this.props;
 		if (!isEnrolled) {
 			return (
-				<Grid>{this.renderEnrollBox(spinnerVisible, isEnrolled)}</Grid>
+				<Grid>
+					{this.renderEnrollBox(spinnerVisible, isEnrolled)}
+				</Grid>
 			);
 			
 		} else {
 			return (
-				<div>{this.renderEnrolledGift(modalVisible, giftId, extension, building, providerName, providerPhoneNum, firstDescription, secondDescription, thirdDescription)}</div>
+				<Grid>
+					{this.renderEnrolledGift(modalVisible, giftId, extension, building, providerName, providerPhoneNum, firstDescription, secondDescription, thirdDescription)}
+				</Grid>
 			);
 		}
 		
