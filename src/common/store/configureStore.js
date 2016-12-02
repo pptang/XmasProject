@@ -10,7 +10,7 @@ export default function configureStore(preloadedState = initialState) {
 	const store = createStore(
 		rootReducer,
 		preloadedState,
-		applyMiddleware(createLogger({ stateTransformer: state => state.toJS() }, promiseMiddleware))
+		// applyMiddleware(createLogger({ stateTransformer: state => state.toJS() }, promiseMiddleware))
 	);
 
 	return store;

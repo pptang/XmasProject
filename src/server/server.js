@@ -72,11 +72,14 @@ function initDBConnection(){
 
 	var options = {
 	    mongos: {
-		ssl: true,
-		sslValidate: true,
-		sslCA:ca,
-		poolSize: 1,
-		reconnectTries: 1
+			ssl: true,
+			sslValidate: true,
+			sslCA:ca,
+			poolSize: 1,
+			reconnectTries: 1
+	    },
+	    db: {
+	    	safe: false
 	    }
 	}
 
