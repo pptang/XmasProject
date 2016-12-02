@@ -22,6 +22,7 @@ const giftReducers = handleActions({
 			firstDescription: payload.firstDescription,
 			secondDescription: payload.secondDescription,
 			thirdDescription: payload.thirdDescription,
+			isExchanged: payload.isExchanged,
 		})
 	),
 	ENROLL_ERROR: (state) => (
@@ -33,6 +34,7 @@ const giftReducers = handleActions({
 			firstDescription: '',
 			secondDescription: '',
 			thirdDescription: '',
+			isExchanged: false,
 		})
 	),
 	SET_GIFT: (state, { payload }) => (

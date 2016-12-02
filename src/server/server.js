@@ -8,15 +8,15 @@ import config from './config';
 import User from './models/user';
 // import Recipe from './models/recipe';
 
-//import webpack from 'webpack';
+import webpack from 'webpack';
 import React from 'react';
-//import webpackDevMiddleware from 'webpack-dev-middleware';
-//import webpackHotMiddleware from 'webpack-hot-middleware';
+import webpackDevMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
 import { RouterContext, match } from 'react-router';
 import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import Immutable, { fromJS } from 'immutable';
-//import webpackConfig from '../../webpack.config';
+import webpackConfig from '../../webpack.config';
 import routes from '../common/routes';
 import configureStore from '../common/store/configureStore';
 import fetchComponentData from '../common/utils/fetchComponentData';
@@ -84,7 +84,7 @@ function initDBConnection(){
 }
 
 initDBConnection();
-//mongoose.connect(config.database);
+// mongoose.connect(config.database);
 
 app.set('env', 'production');
 app.use('/static', Express.static(__dirname + '/public'));
@@ -129,6 +129,7 @@ const handleRender = (req, res) => {
 				firstDescription: '',
 				secondDescription: '',
 				thirdDescription: '',
+				isExchanged: false,
 			};
 			let isAuthorized = false;
 			if (response[0].data.success === true) {
@@ -154,6 +155,7 @@ const handleRender = (req, res) => {
 					enrolledGift.firstDescription = response[2].data.enrolledGift.firstDescription;
 					enrolledGift.secondDescription = response[2].data.enrolledGift.secondDescription;
 					enrolledGift.thirdDescription = response[2].data.enrolledGift.thirdDescription;
+					enrolledGift.isExchanged = response[2].data.enrolledGift.isExchanged;
 				}
 
 			} else {

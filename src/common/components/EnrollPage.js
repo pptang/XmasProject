@@ -25,14 +25,23 @@ export default class EnrollPage extends React.Component {
 		);
 	}
 
-	renderEnrolledGift(modalVisible, giftId, extension, building, providerName, providerPhoneNum, firstDescription, secondDescription, thirdDescription) {
+	renderModifyBtn(isExchanged) {
+		console.log("isExchanged:" + isExchanged);
+		if (!isExchanged) {
+			return (
+				<Button className="indexFrame" onClick={this.props.onOpenModal}>修改資訊</Button>
+			);
+		}
+	}
+
+	renderEnrolledGift(modalVisible, giftId, extension, building, providerName, providerPhoneNum, firstDescription, secondDescription, thirdDescription, isExchanged) {
 		const title = (
 			<h1>你的禮物</h1>
 		);
 		return (
 			<Row className="show-grid">
 				<Col xs={6} xsOffset={3}>
-					<Panel header={title} bsStyle="primary">
+					<Panel header={title} bsStyle="danger">
 						<h1 style={{color: 'black'}}>{giftId}</h1>
 						<ListGroup fill style={{"textAlign": "left"}}>
 							<ListGroupItem>{providerName} / {providerPhoneNum}</ListGroupItem>
@@ -40,18 +49,17 @@ export default class EnrollPage extends React.Component {
 							<ListGroupItem>禮物形容詞2: {secondDescription}</ListGroupItem>
 							<ListGroupItem>禮物形容詞3: {thirdDescription}</ListGroupItem>
 						</ListGroup>
-						<Button onClick={this.props.onOpenModal}>修改資訊</Button>
-						<Button onClick={this.printResult}>列印</Button>
+						{ this.renderModifyBtn(isExchanged) }					
+						<Button className="indexFrame" onClick={this.printResult}>列印</Button>
 					</Panel>
 					<Modal show={modalVisible} onHide={this.props.onCloseModal}>
-						<Modal.Header closeButton>
-							<Modal.Title>修改資訊</Modal.Title>					
+						<Modal.Header closeButton style={{"backgroundColor": "#C6BBAC"}}>
+							<Modal.Title style={{"color": "#fff"}}>修改資訊</Modal.Title>					
 						</Modal.Header>
-						<Modal.Body>
+						<Modal.Body style={{"backgroundColor": "#9C3F3C"}}>
 							<EnrollBoxContainer />
 						</Modal.Body>
-						<Modal.Footer>
-						</Modal.Footer>
+						
 					</Modal>
 				</Col>
 			</Row>
@@ -63,7 +71,7 @@ export default class EnrollPage extends React.Component {
 	}
 
 	render() {
-		const { spinnerVisible, modalVisible, isEnrolled, giftId, extension, building, providerName, providerPhoneNum, firstDescription, secondDescription, thirdDescription} = this.props;
+		const { spinnerVisible, modalVisible, isEnrolled, giftId, extension, building, providerName, providerPhoneNum, firstDescription, secondDescription, thirdDescription, isExchanged} = this.props;
 		if (!isEnrolled) {
 			return (
 				<Grid>
@@ -74,7 +82,7 @@ export default class EnrollPage extends React.Component {
 		} else {
 			return (
 				<Grid>
-					{this.renderEnrolledGift(modalVisible, giftId, extension, building, providerName, providerPhoneNum, firstDescription, secondDescription, thirdDescription)}
+					{this.renderEnrolledGift(modalVisible, giftId, extension, building, providerName, providerPhoneNum, firstDescription, secondDescription, thirdDescription, isExchanged)}
 				</Grid>
 			);
 		}

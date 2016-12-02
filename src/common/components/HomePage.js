@@ -55,7 +55,7 @@ export default class HomePage extends React.Component {
 		return (
 			<Row className="show-grid">
 				<Col xs={6} xsOffset={3}>
-					<Panel header={title} bsStyle="primary">
+					<Panel header={title} bsStyle="danger">
 						<h1 style={{color: 'black'}}>你抽到的禮物</h1>
 						<h2 style={{color: 'black'}}>{giftId}</h2>
 						<ListGroup fill style={{"textAlign": "left"}}>
@@ -67,7 +67,7 @@ export default class HomePage extends React.Component {
 							<ListGroupItem>分機: {extension}</ListGroupItem>
 							<ListGroupItem>抽獎時間: {exchangedAt}</ListGroupItem>
 						</ListGroup>
-						<Button onClick={this.printResult}>列印</Button>
+						<Button className="indexFrame" onClick={this.printResult}>列印</Button>
 					</Panel>
 				</Col>
 			</Row>

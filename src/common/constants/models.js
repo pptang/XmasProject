@@ -22,6 +22,7 @@ export const GiftState = Immutable.fromJS({
 	firstDescription: '',
 	secondDescription: '',
 	thirdDescription: '',
+	isExchanged: false,
 });
 
 export const TimerState = Immutable.fromJS({

@@ -109,6 +109,7 @@ export default {
 					firstDescription: response.data.enrolledGift.firstDescription,
 					secondDescription: response.data.enrolledGift.secondDescription,
 					thirdDescription: response.data.enrolledGift.thirdDescription,
+					isExchanged: response.data.enrolledGift.isExchanged,
 				}));
 				dispatch(hideSpinner());
 			}

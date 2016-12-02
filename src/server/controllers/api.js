@@ -129,7 +129,6 @@ apiRoutes.post('/enroll', (req, res) => {
 					thirdDescription: req.body.thirdDescription,
 					providerId: req.decoded.userId,
 					enrolledAt: new Date(),
-					isExchanged: false
 				}
 			}, {
 				new: true

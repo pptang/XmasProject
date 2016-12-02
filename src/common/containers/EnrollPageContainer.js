@@ -17,7 +17,7 @@ export default connect(
 		firstDescription: state.getIn(['enroll', 'firstDescription']),
 		secondDescription: state.getIn(['enroll', 'secondDescription']),
 		thirdDescription: state.getIn(['enroll', 'thirdDescription']),
-
+		isExchanged: state.getIn(['enroll', 'isExchanged']),
 	}),
 	(dispatch) => ({
 		onOpenModal: () => (
