@@ -33,7 +33,7 @@ export default {
 	login: (dispatch, email, serialNumber) => {
 
 		axios.post('/api/login', {
-			email: email + '@tw.ibm.com',
+			email: email,
 			serialNumber: serialNumber
 		})
 		.then((response) => {
@@ -46,7 +46,8 @@ export default {
 			} else {
 				if (!document.cookie.token) {
 					let d = new Date();
-					d.setTime(d.getTime() + (24 * 60 * 60 * 1000));
+					//d.setTime(d.getTime() + (24 * 60 * 60 * 1000));
+					d.setTime(d.getTime() + (5 * 60 * 1000));
 					const expires = 'expires=' + d.toUTCString();
 					document.cookie = 'token=' + response.data.token + '; ' + expires;
 					

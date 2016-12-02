@@ -40,7 +40,6 @@ const EnrollBox = ({
 						onChange={onChangeBuildingInput}
 						defaultValue={building}
 					>
-						<option>Building</option>
 						<option value="Beitou">Beitou</option>
 						<option value="CFC 3F">CFC 3F</option>
 						<option value="CFC 4F">CFC 4F</option>

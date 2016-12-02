@@ -21,8 +21,20 @@ export default connect(
 			dispatch(setUser({ key: 'serialNumber', value: event.target.value }))
 		),
 		onLoginSubmit: (email, serialNumber) => () => {/* check the syntax here */
-			dispatch(authStart(dispatch, email, serialNumber));
-			dispatch(showSpinner());
+			email = email + "@tw.ibm.com";
+
+			function validateEmail(input) {
+			    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+			    return re.test(input);
+			}
+			if(validateEmail(email) == true){
+				dispatch(authStart(dispatch, email, serialNumber));
+				dispatch(showSpinner());
+			}else{
+				alert("請輸入正確Email資訊");
+				window.location.reload();
+			}
+			
 		},
 	}),
 	(stateProps, dispatchProps, ownProps) => {
