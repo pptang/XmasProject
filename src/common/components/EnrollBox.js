@@ -38,7 +38,7 @@ const EnrollBox = ({
 					<FormControl
 						componentClass="select"
 						onChange={onChangeBuildingInput}
-						defaultValue={building}
+						defaultValue={"Beitou"}
 					>
 						<option value="Beitou">Beitou</option>
 						<option value="CFC 3F">CFC 3F</option>

@@ -10,8 +10,8 @@ import User from './models/user';
 
 import webpack from 'webpack';
 import React from 'react';
-import webpackDevMiddleware from 'webpack-dev-middleware';
-import webpackHotMiddleware from 'webpack-hot-middleware';
+// import webpackDevMiddleware from 'webpack-dev-middleware';
+// import webpackHotMiddleware from 'webpack-hot-middleware';
 import { RouterContext, match } from 'react-router';
 import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
@@ -126,7 +126,7 @@ const handleRender = (req, res) => {
 			var enrolledGift = {
 				giftId: 0,
 				extension: '',
-				building: '',
+				building: 'Beitou',
 				providerName: '',
 				providerPhoneNum: '',
 				firstDescription: '',
@@ -141,7 +141,12 @@ const handleRender = (req, res) => {
 				if (response[1].data.success === true) {
 					drawedGift.giftId = response[1].data.gift.giftId;
 					drawedGift.extension = response[1].data.gift.extension;
-					drawedGift.building = response[1].data.gift.building;
+					if (!response[1].data.gift.building) {
+						drawedGift.building = 'Beitou';
+					} else {
+						drawedGift.building = response[1].data.gift.building;
+					}
+					
 					drawedGift.providerName = response[1].data.gift.providerName;
 					drawedGift.providerPhoneNum = response[1].data.gift.providerPhoneNum;
 					drawedGift.firstDescription = response[1].data.gift.firstDescription;
