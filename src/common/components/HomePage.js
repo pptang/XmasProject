@@ -126,6 +126,14 @@ export default class HomePage extends React.Component {
 						</div>
 						
 					</div>
+					<div class="event_description">
+						<h4 className="mainContentText">2016 IBM Christmas Event</h4>
+						<hr style={{"width": "30%"}}/>
+						<h2 className="mainContentText">Exchanging Gifts</h2>
+						<hr style={{"width": "30%"}}/>
+						<p className="mainContentText">2016.12.23 14:30-16:00</p>
+						<p className="mainContentText">CFC 4F Agile Corner</p>
+					</div>
 					<div className="drawBtnFrame">
 						{this.renderDrawBtn(total, isAuthorized, isEnrolled, onDraw)}
 					</div>
