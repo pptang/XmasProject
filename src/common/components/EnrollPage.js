@@ -43,7 +43,7 @@ export default class EnrollPage extends React.Component {
 				<h5 style={{color: 'white','fontSize':'150%'}}>您已報名成功，務必列印禮物編號條並貼牢於您的禮物上</h5>
 				<Col xs={6} xsOffset={3}>
 					<Panel header={title} bsStyle="danger">
-						<h1 style={{color: 'black','fontSize':'500%','fontWeight':'bold','margin':'5px 0px 5px'}}>{giftId}</h1>
+						<h1 style={{color: 'black','fontSize':'800%','fontWeight':'bold','margin':'5px 0px 5px'}}>{giftId}</h1>
 						<ListGroup fill style={{"textAlign": "left"}}>
 							<ListGroupItem>{providerName} / {providerPhoneNum}</ListGroupItem>
 							<ListGroupItem>禮物形容詞1: {firstDescription}</ListGroupItem>
@@ -55,12 +55,12 @@ export default class EnrollPage extends React.Component {
 									<li>請同仁將禮物編號單列印並牢貼於您的禮物上</li>
 									<li>繳交禮物的時間:
 										<ul style={{'padding-left':'0.5em'}}>
-											<li>NKO: 請繳交至Winnie Feng #6338</li>
+											<li>NKO: 請於12/19前交至Winnie Feng #6338</li>
 											<li>CFC: Dec. 12-21 每週一、三、五 2:00-3:30 @ 3F Agile area</li>
 											<li>Remote site: 最晚請於12/19前 internal mail 至CFC 3F Cathy Chen #3698 or Florence Lo #3579 收</li>
 										</ul>
 									</li>
-									<li>活動時間: Dec. 23 14:30-16:00 @ CFC 4F Agile corner, remote site 同仁可於15:00 前往CFC參加活動</li>
+									<li>活動時間: Dec. 23 14:30-16:00 @ CFC 4F Agile corner</li>
 								</ol>
 							</ListGroupItem>
 						</ListGroup>
