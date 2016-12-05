@@ -11,6 +11,43 @@ const apiRoutes = Express.Router();
 
 app.set('superSecret', config.secret);
 
+apiRoutes.get('/cleanUpAdminConfig', (req, res) => {
+	ConfigModel.remove({}, function(err) {
+		if (err) throw err;
+		res.json({
+			success: true,
+			message: 'Successfully clean all records',
+		});
+	});
+});
+
+apiRoutes.get('/setupAdminConfig', function(req, res) {
+	ConfigModel.findOne({}, (err, config) => {
+		if (err) throw err;
+		if (!config) {
+			var adminConfig = new ConfigModel({
+				enrollSwitch: true,
+				drawSwitch: true,
+			});
+			adminConfig.save((err, config) => {
+				if (err) throw err;
+				res.json({
+					success: true,
+					message: 'Successfully setup admin config',
+					enrollSwitch: config.enrollSwitch,
+					drawSwitch: config.drawSwitch,
+				});
+			});
+		} else {
+			res.json({
+				success: true,
+				message: 'Already setup!'
+			});
+		}
+	})
+	
+});
+
 apiRoutes.post('/login', function(req, res) {
 	User.findOne({
 		email: req.body.email
@@ -143,7 +180,7 @@ apiRoutes.post('/enroll', (req, res) => {
 				new: true
 			}, (err, enrolledGift) => {
 				if (err) throw err;
-				console.log("api test::" + JSON.stringify(enrolledGift));
+				
 				res.json({
 					success: true,
 					message: 'Successfully updated enrolled info!',
@@ -285,7 +322,7 @@ apiRoutes.get('/getMyGift', (req, res) => {
 });
 
 apiRoutes.get('/getEnrolledGift', (req, res) => {
-	console.log("hi bible");
+	
 	Gift.findOne({
 		providerId: req.decoded.userId
 	}, (err, enrolledGift) => {
@@ -338,7 +375,7 @@ apiRoutes.get('/getAdminConfigStatus', (req, res) => {
 });
 
 apiRoutes.post('/setAdminConfig', (req, res) => {
-	console.log("req body::::" + req.body.enrollSwitch)
+	
 	ConfigModel.findOneAndUpdate({}, {
 		$set: {
 			enrollSwitch: req.body.enrollSwitch,
