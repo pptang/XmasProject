@@ -50,7 +50,8 @@ export default class EnrollPage extends React.Component {
 							<ListGroupItem>禮物形容詞2: {secondDescription}</ListGroupItem>
 							<ListGroupItem>禮物形容詞3: {thirdDescription}</ListGroupItem>
 							<ListGroupItem>
-								<ol style={{'padding-left':'1.4em'}}>
+								<p style={{"textAlign":"left"}}>溫馨小提醒:</p>
+								<ol style={{'padding-left':'1.8em'}}>
 									<li>請同仁將禮物編號單列印並牢貼於您的禮物上</li>
 									<li>繳交禮物的時間:
 										<ul style={{'padding-left':'0.5em'}}>
@@ -75,22 +76,6 @@ export default class EnrollPage extends React.Component {
 						</Modal.Body>
 						
 					</Modal>
-				</Col>
-				<Col xs={6} xsOffset={3}>
-					<div className="mainContentText" style={{"textAlign": "left"}}>
-						<p>溫馨小提醒:</p>
-						<ol>
-							<li>請同仁將禮物編號單列印並牢貼於您的禮物上</li>
-							<li>繳交禮物的時間:
-								<ul>
-									<li>NKO: 請繳交至Winnie Feng #6338</li>
-									<li>CFC: Dec. 12-21 每週一、三、五 2:00-3:30 @ 3F Agile area</li>
-									<li>Remote site: 最晚請於12/19前 internal mail 至CFC 3F Cathy Chen #3698 or Florence Lo #3579 收</li>
-								</ul>
-							</li>
-							<li>活動時間: Dec. 23 14:30-16:00 @ CFC 4F Agile corner, remote site 同仁可於15:00 前往CFC參加活動</li>
-						</ol>
-					</div>
 				</Col>
 			</Row>
 		);
