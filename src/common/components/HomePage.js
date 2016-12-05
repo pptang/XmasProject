@@ -57,8 +57,8 @@ export default class HomePage extends React.Component {
 			<Row className="show-grid">
 				<Col xs={6} xsOffset={3}>
 					<Panel header={title} bsStyle="danger">
-						<h1 style={{color: 'black','fontSize':'500%','fontWeight':'bold','margin':'5px 0px 5px'}}>你抽到的禮物</h1>
-						<h2 style={{color: 'black'}}>{giftId}</h2>
+						<h3 style={{color: 'black'}}>你抽到的禮物</h3>
+						<h1 style={{color: 'black','fontSize':'500%','fontWeight':'bold','margin':'5px 0px 5px'}}>{giftId}</h1>
 						<ListGroup fill style={{"textAlign": "left"}}>
 							<ListGroupItem>{providerName} / {providerPhoneNum}</ListGroupItem>
 							<ListGroupItem>禮物形容詞1: {firstDescription}</ListGroupItem>
@@ -106,11 +106,9 @@ export default class HomePage extends React.Component {
 		if (isAuthorized) {
 			return (
 				<div className="event_schedule">
-					<h3 className="mainContentText">開放報名日期：	Dec. 5   9:00</h3>
-					<h3 className="mainContentText">報名截止日期：	Dec. 21 18:00</h3>
-					<h3 className="mainContentText">現場禮物繳交日期：	Dec. 22</h3>
-					<h3 className="mainContentText">線上抽獎開放日期：	Dec. 23 14:30</h3>
-					<h3 className="mainContentText">線上抽獎截止日期：	Dec. 26 19:00</h3>
+					<h3 className="mainContentText">Dec. 5 - 21 Enrollment</h3>
+                                        <h3 className="mainContentText">Dec. 12 - 22 Gift Submission</h3>
+                                        <h3 className="mainContentText">Dec. 23 14:30 - 16:00 Christmas event!</h3>
 				</div>
 			);
 		} else {
