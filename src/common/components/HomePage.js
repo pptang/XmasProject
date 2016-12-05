@@ -100,20 +100,20 @@ export default class HomePage extends React.Component {
 		if (isAuthorized) {
 			return (
 				<div className="event_schedule">
-					<h4 className="mainContentText">Dec. 5 - 21 Enrollment</h4>
-					<h4 className="mainContentText">Dec. 9 - 22 Gift Submission</h4>
-					<h4 className="mainContentText">Dec. 23 14:30 - 16:00 Christmas event!</h4>
+					<h3 className="mainContentText">Dec. 5 - 21 Enrollment</h3>
+					<h3 className="mainContentText">Dec. 12 - 22 Gift Submission</h3>
+					<h3 className="mainContentText">Dec. 23 14:30 - 16:00 Christmas event!</h3>
 				</div>
 			);
 		} else {
 			return (
 				<div className="event_description">
-					<h4 className="mainContentText">2016 IBM Christmas Event</h4>
+					<h3 className="mainContentText">2016 IBM Christmas Event</h3>
 					<hr style={{"width": "25%"}}/>
 					<h2 className="mainContentText">Exchanging Gifts</h2>
 					<hr style={{"width": "25%"}}/>
-					<p className="mainContentText">2016.12.23 14:30-16:00</p>
-					<p className="mainContentText">CFC 4F Agile Corner</p>
+					<h4 className="mainContentText">2016.12.23 14:30-16:00</h4>
+					<h4 className="mainContentText">CFC 4F Agile Corner</h4>
 				</div>
 			);
 		}
@@ -130,6 +130,7 @@ export default class HomePage extends React.Component {
 			return (
 				<div>
 					<h1>Merry Christmas</h1>
+					{ this.renderMainPromoText(isAuthorized) }
 					<div id="clockdiv">
 						<div>
 							<span className="days">{days}</span>
@@ -149,7 +150,6 @@ export default class HomePage extends React.Component {
 						</div>
 						
 					</div>
-					{ this.renderMainPromoText(isAuthorized) }
 					
 					<div className="drawBtnFrame">
 						{this.renderDrawBtn(total, isAuthorized, isEnrolled, onDraw)}

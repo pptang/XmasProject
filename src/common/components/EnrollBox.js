@@ -29,12 +29,12 @@ const EnrollBox = ({
 					<FormControl
 						type="text"
 						onChange={onChangeExtensionInput}
-						placeholder="請輸入分機號碼"
+						placeholder="Extension"
 						defaultValue={extension}
 					/>
 				</FormGroup>
 				<FormGroup controlId="formBasicText" className="formGroup">
-					<ControlLabel><h5>Location</h5></ControlLabel>
+					<ControlLabel><h5>大樓</h5></ControlLabel>
 					<FormControl
 						componentClass="select"
 						onChange={onChangeBuildingInput}
@@ -56,43 +56,43 @@ const EnrollBox = ({
 					<FormControl
 						type="text"
 						onChange={onChangeProviderNameInput}
-						placeholder="請輸入你的名字"
+						placeholder="Name"
 						defaultValue={providerName}
 					/>
 				</FormGroup>
 				<FormGroup controlId="formBasicText" className="formGroup">
-					<ControlLabel><h5>電話號碼</h5></ControlLabel>
+					<ControlLabel><h5>手機 (可能接到神秘貴賓的來電，請務必保持手機順暢)</h5></ControlLabel>
 					<FormControl
 						type="text"
 						onChange={onChangeProviderPhoneNumInput}
-						placeholder="請輸入你的電話號碼"
+						placeholder="Mobile phone number"
 						defaultValue={providerPhoneNum}
 					/>
 				</FormGroup>
 				<FormGroup controlId="formBasicText" className="formGroup">
-					<ControlLabel><h5>第一個禮物描述</h5></ControlLabel>
+					<ControlLabel><h5>請輸入一個詞來形容您的禮物</h5></ControlLabel>
 					<FormControl
 						type="text"
 						onChange={onChangeFirstDescriptionInput}
-						placeholder="描述 1"
+						placeholder="Enter first description"
 						defaultValue={firstDescription}
 					/>
 				</FormGroup>
 				<FormGroup controlId="formBasicText" className="formGroup">
-					<ControlLabel><h5>第二個禮物描述</h5></ControlLabel>
+					<ControlLabel><h5>請輸入第二個詞來形容您的禮物</h5></ControlLabel>
 					<FormControl
 						type="text"
 						onChange={onChangeSecondDescriptionInput}
-						placeholder="描述 2"
+						placeholder="Enter second description"
 						defaultValue={secondDescription}
 					/>
 				</FormGroup>
 				<FormGroup controlId="formBasicText" className="formGroup">
-					<ControlLabel><h5>第三個禮物描述</h5></ControlLabel>
+					<ControlLabel><h5>請輸入第三個詞來形容您的禮物</h5></ControlLabel>
 					<FormControl
 						type="text"
 						onChange={onChangeThirdDescriptionInput}
-						placeholder="描述 3"
+						placeholder="Enter third description"
 						defaultValue={thirdDescription}
 					/>
 				</FormGroup>
