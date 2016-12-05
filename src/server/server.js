@@ -134,10 +134,14 @@ const handleRender = (req, res) => {
 				thirdDescription: '',
 				isExchanged: false,
 			};
+			var adminConfig = {
+				enrollSwitch: true,
+				drawSwitch: true,
+			};
 			let isAuthorized = false;
 			if (response[0].data.success === true) {
 				isAuthorized = true;
-				console.log("response.data::" + JSON.stringify(response[1].data));
+				
 				if (response[1].data.success === true) {
 					drawedGift.giftId = response[1].data.gift.giftId;
 					drawedGift.extension = response[1].data.gift.extension;
@@ -166,25 +170,25 @@ const handleRender = (req, res) => {
 					enrolledGift.isExchanged = response[2].data.enrolledGift.isExchanged;
 				}
 
+				if (response[3].data.success === true) {
+
+					adminConfig.enrollSwitch = response[3].data.enrollSwitch;
+					adminConfig.drawSwitch = response[3].data.drawSwitch;
+				} 
+
 			} else {
 				isAuthorized = false;
 			}
 			let isEnrolled = response[0].data.isEnrolled;
+			let isAdmin = response[0].data.isAdmin;
 			const deadline = '2016-12-25';		
 			var t = getTimeRemaining(deadline);
 			const initialState = fromJS({
-				// recipe: {
-				// 	recipes: response[0].data,
-				// 	recipe: {
-				// 		id: '',
-				// 		name: '',
-				// 		description: '',
-				// 		imagePath: '',
-				// 	}
-				// },
+				
 				user: {
 					isAuthorized: isAuthorized,
 					isEnrolled: isEnrolled,
+					isAdmin: isAdmin,
 				},
 				timer: {
 					days: ('0' + t.days).slice(-2),
@@ -195,7 +199,8 @@ const handleRender = (req, res) => {
 				//TODO: should add initial gift status for refresh
 				draw: drawedGift,
 				enroll: enrolledGift,	
-				
+				admin: adminConfig,
+
 			});
 
 			//server-side rendering

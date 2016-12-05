@@ -2,6 +2,7 @@ import Express from 'express';
 import jwt from 'jsonwebtoken';
 import User from '../models/user';
 import Gift from '../models/gift';
+import ConfigModel from '../models/config';
 import config from '../config';
 import mongoose from 'mongoose';
 
@@ -16,6 +17,10 @@ apiRoutes.post('/login', function(req, res) {
 	}, (err, user) => {
 		if (err) throw err;
 		if (!user) {
+			let isAdmin = false;
+			if (req.body.email == 'admin@tw.ibm.com' && req.body.serialNumber == 'adminpwd') {
+				isAdmin = true;
+			}
 			// insert user
 			const newUser = new User({
 				email: req.body.email,
@@ -23,6 +28,7 @@ apiRoutes.post('/login', function(req, res) {
 				isEnrolled: false,
 				admin: false,
 				isDrawed: false,
+				isAdmin: isAdmin,
 			});
 			newUser.save((err, user) => {
 				if (err) throw err;
@@ -35,6 +41,7 @@ apiRoutes.post('/login', function(req, res) {
 					userId: user._id,
 					isEnrolled: false,
 					isDrawed: false,
+					isAdmin: isAdmin,
 				});
 			});
 			
@@ -51,6 +58,7 @@ apiRoutes.post('/login', function(req, res) {
 					userId: user._id,
 					isEnrolled: user.isEnrolled,
 					isDrawed: user.isDrawed,
+					isAdmin: user.isAdmin,
 				});
 			}
 		}
@@ -97,6 +105,7 @@ apiRoutes.get('/authenticate', (req, res) => {
 				success: true,
 				message: 'Enjoy your token!',
 				isEnrolled: user.isEnrolled,
+				isAdmin: user.isAdmin,
 			});
 		} else {
 			res.json({
@@ -276,6 +285,7 @@ apiRoutes.get('/getMyGift', (req, res) => {
 });
 
 apiRoutes.get('/getEnrolledGift', (req, res) => {
+	console.log("hi bible");
 	Gift.findOne({
 		providerId: req.decoded.userId
 	}, (err, enrolledGift) => {
@@ -293,6 +303,66 @@ apiRoutes.get('/getEnrolledGift', (req, res) => {
 			message: 'Successfully got your gift!',
 			enrolledGift: enrolledGift,
 		});
+	});
+});
+
+apiRoutes.get('/getAdminConfigStatus', (req, res) => {
+	ConfigModel.findOne({}, (err, config) => {
+		if (err) throw err;
+		if (config) {
+			console.log("getAdminConfigStatus:enrollSwitch:" + config.enrollSwitch);
+			console.log("getAdminConfigStatus:drawSwitch:" + config.drawSwitch);
+			res.json({
+				success: true,
+				enrollSwitch: config.enrollSwitch,
+				drawSwitch: config.drawSwitch,
+			});
+		} else {
+			const newConfig = new ConfigModel({
+				enrollSwitch: true,
+				drawSwitch: true,
+			});
+			newConfig.save((err, config) => {
+				if (err) throw err;
+				res.json({
+					success: true,
+					enrollSwitch: config.enrollSwitch,
+					drawSwitch: config.drawSwitch,
+				});
+			});
+			
+		}
+		
+		
+	});
+});
+
+apiRoutes.post('/setAdminConfig', (req, res) => {
+	console.log("req body::::" + req.body.enrollSwitch)
+	ConfigModel.findOneAndUpdate({}, {
+		$set: {
+			enrollSwitch: req.body.enrollSwitch,
+			drawSwitch: req.body.drawSwitch,
+		}			
+	}, {
+		new: true
+	}, (err, config) => {
+		if (err) throw err;
+		if (config) {
+			console.log("update success")
+			res.json({
+				success: true,
+				enrollSwitch: config.enrollSwitch,
+				drawSwitch: config.drawSwitch,
+			});
+		} else {
+			console.log("no config");
+			res.json({
+				success: false,
+				message: 'no config found',
+			});
+		}
+		
 	});
 });
 

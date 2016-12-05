@@ -21,8 +21,7 @@ export default connect(
 			dispatch(setUser({ key: 'serialNumber', value: event.target.value }))
 		),
 		onLoginSubmit: (email, serialNumber) => () => {/* check the syntax here */
-			console.log("onLoginSubmit:" + email)
-			console.log("onLoginSubmit s/n:" + serialNumber)
+			
 			if (!email) {
 				alert("Email不得為空");
 				return;

@@ -1,6 +1,7 @@
 import React from 'react';
-import { Button, Image, Panel, Grid, Row, Col, ListGroup, ListGroupItem } from 'react-bootstrap';
+import { Button, Image, Panel, Grid, Row, Col, ListGroup, ListGroupItem, FormControl, FormGroup, ControlLabel } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+
 export default class HomePage extends React.Component {
 	constructor(props) {
 		super(props);
@@ -78,20 +79,25 @@ export default class HomePage extends React.Component {
 		window.print();
 	}
 
-	renderDrawBtn(total, isAuthorized, isEnrolled, onDraw) {
+	renderDrawBtn(total, isAuthorized, isEnrolled, onDraw, enrollSwitch, drawSwitch) {
 		if (isAuthorized) {
 			if (isEnrolled) {
-				if (total != 0) {
+				// if (total != 0 || drawSwitch) {
+				if (drawSwitch) {
 					return (<Button id="drawBtn" onClick={onDraw} block>點我抽獎</Button>);
+				
 				} else {
 					return (<Button id="drawBtn" onClick={onDraw} block disabled>點我抽獎</Button>);
 				}
 			} else {
-				return (
-					<LinkContainer to={{ pathname: '/enroll' }}>
-						<Button id="drawBtn" block>參加活動</Button>
-					</LinkContainer>
-				);
+				if (enrollSwitch) {
+					return (
+						<LinkContainer to={{ pathname: '/enroll' }}>
+							<Button id="drawBtn" block>參加活動</Button>
+						</LinkContainer>
+					);
+				}
+				
 			}
 		}
 	}
@@ -119,7 +125,7 @@ export default class HomePage extends React.Component {
 		}
 	}
 
-	renderMainContent(total, days, hours, minutes, seconds, isAuthorized, isEnrolled, onDraw, giftId, extension, building, providerName, providerphoneNum, firstDescription, secondDescription, thirdDescription, exchangedAt) {
+	renderMainContent(total, days, hours, minutes, seconds, isAuthorized, isEnrolled, onDraw, giftId, extension, building, providerName, providerphoneNum, firstDescription, secondDescription, thirdDescription, exchangedAt, enrollSwitch, drawSwitch) {
 		if (giftId) {
 			return (
 				<div>
@@ -152,24 +158,75 @@ export default class HomePage extends React.Component {
 					{ this.renderMainPromoText(isAuthorized) }
 					
 					<div className="drawBtnFrame">
-						{this.renderDrawBtn(total, isAuthorized, isEnrolled, onDraw)}
+						{this.renderDrawBtn(total, isAuthorized, isEnrolled, onDraw, enrollSwitch, drawSwitch)}
 					</div>
 				</div>
 			);
 		}
 	}
 
+	test(elm, state) {
+		console.log("elm:" + elm);
+		console.log("state:" + state);
+	}
+
 	render() {
-		const { total, days, hours, minutes, seconds, isAuthorized, isEnrolled, onDraw, giftId, extension, building, providerName, providerPhoneNum, firstDescription, secondDescription, thirdDescription, exchangedAt } = this.props;
+		const { total, days, hours, minutes, seconds, isAuthorized, isEnrolled, isAdmin, onDraw, giftId, extension, building, providerName, providerPhoneNum, firstDescription, secondDescription, thirdDescription, exchangedAt, enrollSwitch, drawSwitch } = this.props;
 		
 		return (
+
 			<div>				
-				{this.renderMainContent(
-					total, days, hours, minutes, seconds, 
-					isAuthorized, isEnrolled, onDraw, giftId, 
-					extension, building, providerName, providerPhoneNum,
-					firstDescription, secondDescription, thirdDescription, exchangedAt
-				)}			
+				{
+					isAdmin === true ?
+					(
+						<div>
+							<h1>開關</h1>
+							
+							<FormGroup controlId="formBasicText" className="formGroup">
+								<ControlLabel><h5>參加活動按鈕開關</h5></ControlLabel>
+								<FormControl
+									componentClass="select"
+									onChange={this.props.onChangeEnrollSwitch}
+									defaultValue={enrollSwitch}
+								>
+									<option value={true}>打開</option>
+									<option value={false}>關閉</option>
+								</FormControl>
+							</FormGroup>
+							
+							<FormGroup controlId="formBasicText" className="formGroup">
+								<ControlLabel><h5>抽籤按鈕開關</h5></ControlLabel>
+								<FormControl
+									componentClass="select"
+									onChange={this.props.onChangeDrawSwitch}
+									defaultValue={drawSwitch}
+								>
+									<option value={true}>打開</option>
+									<option value={false}>關閉</option>
+								</FormControl>
+							</FormGroup>
+
+							<Button						
+								className="submitButton"
+								onClick={this.props.onSubmitConfig}
+								bsSize="large"
+								block
+							>
+								送出
+							</Button>
+						</div>
+					)
+					:
+					this.renderMainContent(
+						total, days, hours, minutes, seconds, 
+						isAuthorized, isEnrolled, onDraw, giftId, 
+						extension, building, providerName, providerPhoneNum,
+						firstDescription, secondDescription, thirdDescription, exchangedAt,
+						enrollSwitch, drawSwitch
+					)
+					
+					
+				}			
 			</div>
 		);
 	}

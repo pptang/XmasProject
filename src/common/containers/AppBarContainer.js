@@ -13,6 +13,7 @@ export default connect(
 	(state) => ({
 		isAuthorized: state.getIn(['user', 'isAuthorized']),
 		isEnrolled: state.getIn(['user', 'isEnrolled']),
+		isAdmin: state.getIn(['user', 'isAdmin']),
 	}),
 	(dispatch) => ({
 		onLogout: () => {

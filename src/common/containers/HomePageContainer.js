@@ -6,6 +6,8 @@ import {
 	updateTime,
 	drawStart,
 	showSpinner,
+	setAdminConfigStart,
+	setAdminConfigState,
 } from '../actions';
 
 export default connect(
@@ -17,6 +19,7 @@ export default connect(
 		seconds: state.getIn(['timer', 'seconds']),
 		isAuthorized: state.getIn(['user', 'isAuthorized']),
 		isEnrolled: state.getIn(['user', 'isEnrolled']),
+		isAdmin: state.getIn(['user', 'isAdmin']),
 		giftId: state.getIn(['draw', 'giftId']),
 		extension: state.getIn(['draw', 'extension']),
 		building: state.getIn(['draw', 'building']),
@@ -26,6 +29,8 @@ export default connect(
 		secondDescription: state.getIn(['draw', 'secondDescription']),
 		thirdDescription: state.getIn(['draw', 'thirdDescription']),
 		exchangedAt: moment(state.getIn(['draw', 'exchangedAt'])).format('YYYY-MM-DD HH:MM'),
+		enrollSwitch: state.getIn(['admin', 'enrollSwitch']),
+		drawSwitch: state.getIn(['admin', 'drawSwitch']),
 	}),
 	(dispatch) => ({
 		updateDisplayTime: (time) => (
@@ -41,6 +46,24 @@ export default connect(
 			dispatch(drawStart(dispatch));
 			dispatch(showSpinner());
 		},
+		onChangeEnrollSwitch: (event) => {
+			dispatch(setAdminConfigState({ key: 'enrollSwitch', value: event.target.value }))
+		},
+		onChangeDrawSwitch: (event) => {
+			dispatch(setAdminConfigState({ key: 'drawSwitch', value: event.target.value }))
+		},
+		onSubmitConfig: (enrollSwitch, drawSwitch) => () => {
+			console.log("onSubmitConfig::" + enrollSwitch);
+			dispatch(setAdminConfigStart(dispatch, enrollSwitch, drawSwitch));
+			dispatch(showSpinner());
+		},
 
-	})
+	}),
+	(stateProps, dispatchProps, ownProps) => {
+		const { enrollSwitch, drawSwitch } = stateProps;
+		const { onSubmitConfig } = dispatchProps;
+		return Object.assign({}, stateProps, dispatchProps, ownProps, {
+			onSubmitConfig: onSubmitConfig(enrollSwitch, drawSwitch),
+		});
+	}
 )(HomePage);

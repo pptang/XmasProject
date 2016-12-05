@@ -11,6 +11,7 @@ export const UserState = Immutable.fromJS({
 	serialNumber: '',
 	isEnrolled: false,
 	isAuthorized: false,
+	isAdmin: false,
 });
 
 export const GiftState = Immutable.fromJS({
@@ -43,4 +44,9 @@ export const DrawState = Immutable.fromJS({
 	secondDescription: '',
 	thirdDescription: '',
 	exchangedAt: '',
+});
+
+export const AdminState = Immutable.fromJS({
+	enrollSwitch: true,
+	drawSwitch: true,
 });

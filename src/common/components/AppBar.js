@@ -13,8 +13,9 @@ const AppBar = ({
 	isAuthorized,
 	isEnrolled,
 	onLogout,
+	isAdmin,
 }) => {
-	console.log("isAuthorized:" + isAuthorized)
+	
 	return (
 	<Navbar className="nav">
 		<Navbar.Header>
@@ -24,7 +25,7 @@ const AppBar = ({
 			<Navbar.Toggle />
 		</Navbar.Header>
 		<Navbar.Collapse>
-			{
+			{					
 				isAuthorized === false ?
         		(
         		  <Nav pullRight>
@@ -38,7 +39,7 @@ const AppBar = ({
         		  </Nav>
         		) :
 				(						
-					isEnrolled === false ?
+					isEnrolled === false || isAdmin === true ?
 					(
 						<Nav pullRight>
 							<NavItem eventKey={2} onClick={onLogout} href="#" id="indexTitle">
@@ -66,6 +67,8 @@ const AppBar = ({
 					)
 															
 				)
+				
+				
 			}
 		</Navbar.Collapse>
 

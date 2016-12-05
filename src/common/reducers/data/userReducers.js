@@ -22,6 +22,7 @@ const userReducers = handleActions({
 			serialNumber: '',
 			isAuthorized: true,
 			isEnrolled: payload.isEnrolled,
+			isAdmin: payload.isAdmin,
 		})
 	},
 	AUTH_ERROR: (state) => (
@@ -29,11 +30,13 @@ const userReducers = handleActions({
 			email: '',
 			serialNumber: '',
 			isAuthorized: false,
+			isAdmin: false,
 		})
 	),
 	START_LOGOUT: (state) => (
 		state.merge({
 			isAuthorized: false,
+			isAdmin: false,
 		})
 	),
 	CHECK_AUTH: (state) => (

@@ -12,6 +12,9 @@ import {
 	drawComplete,
 	drawError,
 	setUser,
+	setAdminConfigStart,
+	setAdminConfigComplete,
+	setAdminConfigError,
 } from '../actions';
 
 function getCookie(keyName) {
@@ -51,7 +54,10 @@ export default {
 					const expires = 'expires=' + d.toUTCString();
 					document.cookie = 'token=' + response.data.token + '; ' + expires;
 					
-					dispatch(authComplete({ isEnrolled: response.data.isEnrolled }));
+					dispatch(authComplete({ 
+						isEnrolled: response.data.isEnrolled,
+						isAdmin: response.data.isAdmin,
+					}));
 					dispatch(hideSpinner());
 					window.location.reload();
 					// browserHistory.push('/');
@@ -149,5 +155,29 @@ export default {
 			dispatch(drawError());
 		});
 	},
+
+	setAdminConfig: (dispatch, enrollSwitch, drawSwitch) => {
+		axios.post('/api/setAdminConfig', {
+			enrollSwitch: enrollSwitch,
+			drawSwitch: drawSwitch,
+			token: getCookie("token"),
+		})
+		.then((response) => {
+			if (response.data.success === false) {
+				dispatch(setAdminConfigError());
+			} else {
+				dispatch(setAdminConfigComplete({
+					enrollSwitch: response.data.enrollSwitch,
+					drawSwitch: response.data.drawSwitch,
+				}));
+				dispatch(hideSpinner());
+				
+			}
+		})
+		.catch(function(error) {
+			
+			dispatch(setAdminConfigError());
+		});
+	}
 
 };
