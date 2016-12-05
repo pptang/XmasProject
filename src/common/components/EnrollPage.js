@@ -73,9 +73,9 @@ export default class EnrollPage extends React.Component {
 									<li>NKO: 請繳交至Winnie Feng #6338</li>
 									<li>CFC: Dec. 12-21 每週一、三、五 2:00-3:30 @ 3F Agile area</li>
 									<li>Remote site: 最晚請於12/19前 internal mail 至CFC 3F Cathy Chen #3698 or Florence Lo #3579 收</li>
-									<li>活動時間: Dec. 23 14:30-16:00 @ CFC 4F Agile corner, remote site 同仁可於15:00 前往CFC參加活動</li>
 								</ul>
 							</li>
+							<li>活動時間: Dec. 23 14:30-16:00 @ CFC 4F Agile corner, remote site 同仁可於15:00 前往CFC參加活動</li>
 						</ol>
 					</div>
 				</Col>
