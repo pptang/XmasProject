@@ -25,7 +25,7 @@ const EnrollBox = ({
 		<div className="formFrame">
 			<form>
 				<FormGroup controlId="formBasicText" className="formGroup">
-					<ControlLabel><h5>分機號碼</h5></ControlLabel>
+					<ControlLabel><h5>分機號碼(*)</h5></ControlLabel>
 					<FormControl
 						type="text"
 						onChange={onChangeExtensionInput}
@@ -34,7 +34,7 @@ const EnrollBox = ({
 					/>
 				</FormGroup>
 				<FormGroup controlId="formBasicText" className="formGroup">
-					<ControlLabel><h5>大樓</h5></ControlLabel>
+					<ControlLabel><h5>大樓(*)</h5></ControlLabel>
 					<FormControl
 						componentClass="select"
 						onChange={onChangeBuildingInput}
@@ -52,7 +52,7 @@ const EnrollBox = ({
 					</FormControl>
 				</FormGroup>
 				<FormGroup controlId="formBasicText" className="formGroup">
-					<ControlLabel><h5>姓名</h5></ControlLabel>
+					<ControlLabel><h5>姓名(*)</h5></ControlLabel>
 					<FormControl
 						type="text"
 						onChange={onChangeProviderNameInput}
@@ -61,7 +61,7 @@ const EnrollBox = ({
 					/>
 				</FormGroup>
 				<FormGroup controlId="formBasicText" className="formGroup">
-					<ControlLabel><h5>手機 (可能接到神秘貴賓的來電，請務必保持手機順暢)</h5></ControlLabel>
+					<ControlLabel><h5>手機(*)(可能接到神秘貴賓的來電，請務必保持手機順暢)</h5></ControlLabel>
 					<FormControl
 						type="text"
 						onChange={onChangeProviderPhoneNumInput}
@@ -70,7 +70,7 @@ const EnrollBox = ({
 					/>
 				</FormGroup>
 				<FormGroup controlId="formBasicText" className="formGroup">
-					<ControlLabel><h5>請輸入一個詞來形容您的禮物</h5></ControlLabel>
+					<ControlLabel><h5>請輸入一個詞來形容您的禮物(*)</h5></ControlLabel>
 					<FormControl
 						type="text"
 						onChange={onChangeFirstDescriptionInput}
@@ -79,7 +79,7 @@ const EnrollBox = ({
 					/>
 				</FormGroup>
 				<FormGroup controlId="formBasicText" className="formGroup">
-					<ControlLabel><h5>請輸入第二個詞來形容您的禮物</h5></ControlLabel>
+					<ControlLabel><h5>請輸入第二個詞來形容您的禮物(*)</h5></ControlLabel>
 					<FormControl
 						type="text"
 						onChange={onChangeSecondDescriptionInput}
@@ -88,7 +88,7 @@ const EnrollBox = ({
 					/>
 				</FormGroup>
 				<FormGroup controlId="formBasicText" className="formGroup">
-					<ControlLabel><h5>請輸入第三個詞來形容您的禮物</h5></ControlLabel>
+					<ControlLabel><h5>請輸入第三個詞來形容您的禮物(*)</h5></ControlLabel>
 					<FormControl
 						type="text"
 						onChange={onChangeThirdDescriptionInput}

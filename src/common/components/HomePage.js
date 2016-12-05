@@ -57,7 +57,7 @@ export default class HomePage extends React.Component {
 			<Row className="show-grid">
 				<Col xs={6} xsOffset={3}>
 					<Panel header={title} bsStyle="danger">
-						<h1 style={{color: 'black'}}>你抽到的禮物</h1>
+						<h1 style={{color: 'black','fontSize':'500%','fontWeight':'bold','margin':'5px 0px 5px'}}>你抽到的禮物</h1>
 						<h2 style={{color: 'black'}}>{giftId}</h2>
 						<ListGroup fill style={{"textAlign": "left"}}>
 							<ListGroupItem>{providerName} / {providerPhoneNum}</ListGroupItem>

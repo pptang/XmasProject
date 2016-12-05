@@ -14,7 +14,7 @@ const LoginBox = ({
 				<ControlLabel><h5>Email</h5></ControlLabel>
 				<InputGroup>				
 					<FormControl type="email" onChange={onChangeEmailInput}
-						placeholder="Enter Email"/>
+						placeholder="Enter IBM email short name"/>
 					<InputGroup.Addon>@tw.ibm.com</InputGroup.Addon>
 				</InputGroup>
 			</FormGroup>
