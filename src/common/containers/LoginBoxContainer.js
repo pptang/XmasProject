@@ -39,8 +39,8 @@ export default connect(
 				dispatch(authStart(dispatch, email, serialNumber));
 				dispatch(showSpinner());
 			}else{
-				alert("請輸入正確Email資訊");
-				window.location.reload();
+				alert("請輸入正確Email資訊，不需輸入@tw.ibm.com");
+				return;
 			}
 			
 		},

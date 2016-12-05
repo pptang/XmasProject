@@ -36,13 +36,14 @@ export default class EnrollPage extends React.Component {
 
 	renderEnrolledGift(modalVisible, giftId, extension, building, providerName, providerPhoneNum, firstDescription, secondDescription, thirdDescription, isExchanged) {
 		const title = (
-			<h1>你的禮物</h1>
+			<h1>我的禮物</h1>
 		);
 		return (
 			<Row className="show-grid">
+				<h5 style={{color: 'white','font-size':'150%'}}>您已報名成功，務必列印禮物編號條並貼牢於您的禮物上</h5>
 				<Col xs={6} xsOffset={3}>
 					<Panel header={title} bsStyle="danger">
-						<h1 style={{color: 'black'}}>{giftId}</h1>
+						<h1 style={{color: 'black','font-size':'500%','font-weight':'bold','margin':'5px 0px 5px'}}>{giftId}</h1>
 						<ListGroup fill style={{"textAlign": "left"}}>
 							<ListGroupItem>{providerName} / {providerPhoneNum}</ListGroupItem>
 							<ListGroupItem>禮物形容詞1: {firstDescription}</ListGroupItem>
@@ -62,6 +63,14 @@ export default class EnrollPage extends React.Component {
 						
 					</Modal>
 				</Col>
+			溫馨小提醒:
+				1.請同仁將禮物編號單列印並牢貼於您的禮物上
+				2.繳交禮物的時間:  
+					•NKO: 請繳交至Winnie Feng #6338
+					•CFC: Dec. 12-21 每週一、三、五 2:00-3:30 @ 3F Agile area
+					•Remote site: 最晚請於12/19前 internal mail 至CFC 3F Cathy Chen #3698 or Florence Lo #3579 收
+				. 活動時間: Dec. 23 14:30-16:00 @ CFC 4F Agile corner, remote site 同仁可於15:00 前往CFC參加活動
+			
 			</Row>
 		);
 	}
