@@ -106,9 +106,11 @@ export default class HomePage extends React.Component {
 		if (isAuthorized) {
 			return (
 				<div className="event_schedule">
-					<h3 className="mainContentText">Dec. 5 - 21 Enrollment</h3>
-					<h3 className="mainContentText">Dec. 12 - 22 Gift Submission</h3>
-					<h3 className="mainContentText">Dec. 23 14:30 - 16:00 Christmas event!</h3>
+					<h3 className="mainContentText">開放報名日期：	Dec. 5   9:00</h3>
+					<h3 className="mainContentText">報名截止日期：	Dec. 21 18:00</h3>
+					<h3 className="mainContentText">現場禮物繳交日期：	Dec. 22</h3>
+					<h3 className="mainContentText">線上抽獎開放日期：	Dec. 23 14:30</h3>
+					<h3 className="mainContentText">線上抽獎截止日期：	Dec. 26 19:00</h3>
 				</div>
 			);
 		} else {
