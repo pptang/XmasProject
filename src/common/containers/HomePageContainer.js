@@ -53,7 +53,6 @@ export default connect(
 			dispatch(setAdminConfigState({ key: 'drawSwitch', value: event.target.value }))
 		},
 		onSubmitConfig: (enrollSwitch, drawSwitch) => () => {
-			console.log("onSubmitConfig::" + enrollSwitch);
 			dispatch(setAdminConfigStart(dispatch, enrollSwitch, drawSwitch));
 			dispatch(showSpinner());
 		},

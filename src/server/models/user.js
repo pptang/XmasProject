@@ -7,7 +7,7 @@ export default mongoose.model('User', new Schema({
 	email: String,
 	serialNumber: String,
 	isEnrolled: Boolean,
-	admin: Boolean,
+	isAdmin: Boolean,
 	isDrawed: Boolean
 }));
 

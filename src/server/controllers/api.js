@@ -54,18 +54,17 @@ apiRoutes.post('/login', function(req, res) {
 	}, (err, user) => {
 		if (err) throw err;
 		if (!user) {
-			let isAdmin = false;
-			if (req.body.email == 'admin@tw.ibm.com' && req.body.serialNumber == 'adminpwd') {
-				isAdmin = true;
-			}
+			// let isAdmin = false;
+			// if (req.body.email == 'admin@tw.ibm.com' && req.body.serialNumber == 'adminpwd') {
+			// 	isAdmin = true;
+			// }
 			// insert user
 			const newUser = new User({
 				email: req.body.email,
 				serialNumber: req.body.serialNumber,
 				isEnrolled: false,
-				admin: false,
+				isAdmin: false,
 				isDrawed: false,
-				isAdmin: isAdmin,
 			});
 			newUser.save((err, user) => {
 				if (err) throw err;
@@ -78,7 +77,7 @@ apiRoutes.post('/login', function(req, res) {
 					userId: user._id,
 					isEnrolled: false,
 					isDrawed: false,
-					isAdmin: isAdmin,
+					isAdmin: user.isAdmin,
 				});
 			});
 			
@@ -138,6 +137,7 @@ apiRoutes.get('/authenticate', (req, res) => {
 	}, (err, user) => {
 		if (err) throw err;
 		if (user) {
+			console.log("isAdmin:" + user.isAdmin);
 			res.json({
 				success: true,
 				message: 'Enjoy your token!',
@@ -347,8 +347,7 @@ apiRoutes.get('/getAdminConfigStatus', (req, res) => {
 	ConfigModel.findOne({}, (err, config) => {
 		if (err) throw err;
 		if (config) {
-			console.log("getAdminConfigStatus:enrollSwitch:" + config.enrollSwitch);
-			console.log("getAdminConfigStatus:drawSwitch:" + config.drawSwitch);
+			
 			res.json({
 				success: true,
 				enrollSwitch: config.enrollSwitch,

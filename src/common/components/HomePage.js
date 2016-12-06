@@ -165,9 +165,44 @@ export default class HomePage extends React.Component {
 		}
 	}
 
-	test(elm, state) {
-		console.log("elm:" + elm);
-		console.log("state:" + state);
+	renderAdminContent(enrollSwitch, drawSwitch) {
+		return (
+			<div>
+				<h1>開關</h1>
+				
+				<FormGroup controlId="formBasicText" className="formGroup">
+					<ControlLabel><h5>參加活動按鈕開關</h5></ControlLabel>
+					<FormControl
+						componentClass="select"
+						onChange={this.props.onChangeEnrollSwitch}
+						defaultValue={enrollSwitch}
+					>
+						<option value={true}>打開</option>
+						<option value={false}>關閉</option>
+					</FormControl>
+				</FormGroup>
+				
+				<FormGroup controlId="formBasicText" className="formGroup">
+					<ControlLabel><h5>抽籤按鈕開關</h5></ControlLabel>
+					<FormControl
+						componentClass="select"
+						onChange={this.props.onChangeDrawSwitch}
+						defaultValue={drawSwitch}
+					>
+						<option value={true}>打開</option>
+						<option value={false}>關閉</option>
+					</FormControl>
+				</FormGroup>
+				<Button						
+					className="submitButton"
+					onClick={this.props.onSubmitConfig}
+					bsSize="large"
+					block
+				>
+					送出
+				</Button>
+			</div>
+		);
 	}
 
 	render() {
@@ -178,44 +213,7 @@ export default class HomePage extends React.Component {
 			<div>				
 				{
 					isAdmin === true ?
-					(
-						<div>
-							<h1>開關</h1>
-							
-							<FormGroup controlId="formBasicText" className="formGroup">
-								<ControlLabel><h5>參加活動按鈕開關</h5></ControlLabel>
-								<FormControl
-									componentClass="select"
-									onChange={this.props.onChangeEnrollSwitch}
-									defaultValue={enrollSwitch}
-								>
-									<option value={true}>打開</option>
-									<option value={false}>關閉</option>
-								</FormControl>
-							</FormGroup>
-							
-							<FormGroup controlId="formBasicText" className="formGroup">
-								<ControlLabel><h5>抽籤按鈕開關</h5></ControlLabel>
-								<FormControl
-									componentClass="select"
-									onChange={this.props.onChangeDrawSwitch}
-									defaultValue={drawSwitch}
-								>
-									<option value={true}>打開</option>
-									<option value={false}>關閉</option>
-								</FormControl>
-							</FormGroup>
-
-							<Button						
-								className="submitButton"
-								onClick={this.props.onSubmitConfig}
-								bsSize="large"
-								block
-							>
-								送出
-							</Button>
-						</div>
-					)
+					this.renderAdminContent(enrollSwitch, drawSwitch)
 					:
 					this.renderMainContent(
 						total, days, hours, minutes, seconds, 
