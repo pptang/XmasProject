@@ -21,7 +21,7 @@ import routes from '../common/routes';
 import configureStore from '../common/store/configureStore';
 import fetchComponentData from '../common/utils/fetchComponentData';
 import apiRoutes from './controllers/api.js';
-import { ENROLL_END_TIME, DRAW_START_TIME, DRAW_END_TIME } from '../constants/AdminConfig';
+import { ENROLL_END_TIME, DRAW_START_TIME, DRAW_END_TIME } from '../common/constants/AdminConfig';
 const app = new Express();
 const port = process.env.PORT || 3000;
 const host = process.env.VCAP_APP_HOST || 'localhost';
