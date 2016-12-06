@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Image, Panel, Grid, Row, Col, ListGroup, ListGroupItem, FormControl, FormGroup, ControlLabel } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-
+import { ENROLL_END_TIME, DRAW_START_TIME, DRAW_END_TIME } from '../constants/AdminConfig';
 export default class HomePage extends React.Component {
 	constructor(props) {
 		super(props);
@@ -18,9 +18,8 @@ export default class HomePage extends React.Component {
 		})
 	}
 
-	updateClock() {
-		const deadline = '2016-12-25';		
-		var t = getTimeRemaining(deadline);
+	updateClock() {		
+		var t = getTimeRemaining(DRAW_START_TIME);
 		this.props.updateDisplayTime({
 			total: t.total,
 			days: ('0' + t.days).slice(-2),

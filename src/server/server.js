@@ -21,7 +21,7 @@ import routes from '../common/routes';
 import configureStore from '../common/store/configureStore';
 import fetchComponentData from '../common/utils/fetchComponentData';
 import apiRoutes from './controllers/api.js';
-
+import { ENROLL_END_TIME, DRAW_START_TIME, DRAW_END_TIME } from '../constants/AdminConfig';
 const app = new Express();
 const port = process.env.PORT || 3000;
 const host = process.env.VCAP_APP_HOST || 'localhost';
@@ -181,8 +181,8 @@ const handleRender = (req, res) => {
 			}
 			let isEnrolled = response[0].data.isEnrolled;
 			let isAdmin = response[0].data.isAdmin;
-			const deadline = '2016-12-25';		
-			var t = getTimeRemaining(deadline);
+					
+			var t = getTimeRemaining(DRAW_START_TIME);
 			const initialState = fromJS({
 				
 				user: {
